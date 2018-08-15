@@ -32,7 +32,6 @@ namespace Products.Models
         public Boolean? IsActive { get; set;}
         public DateTime EndOn { get; set;}
         public DateTime StartOn { get; set;}
-
       
     }
 }

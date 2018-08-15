@@ -18,10 +18,6 @@ namespace Products.Models
 
         public string Url { get; set;}
 
-        public DateTime EndOn { get; set;}
-
-        public DateTime StartOn { get; set;}
-
         public Boolean? IsActive { get; set;}
     }
 }

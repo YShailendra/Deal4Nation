@@ -11,5 +11,8 @@ namespace Products.Models
     {
         [Required]
         public string Name { get; set;}
+        public ImageModel Logo { get; set; }
+
+
     }
 }

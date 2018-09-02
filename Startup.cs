@@ -32,7 +32,7 @@ namespace Products
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             //using Dependency Injection
             services.AddSingleton<IUserRepository, UserRepository>();
-            services.AddSingleton<IDealRepository, IDealRepository>();
+            services.AddSingleton<IDealRepository, DealRepository>();
             services.AddSingleton<IStoreRepository, StoreRepository>();
             services.AddSingleton<IOfferRepository, OfferRepository>();
             services.AddMvc();

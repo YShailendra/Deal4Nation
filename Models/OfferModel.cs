@@ -23,9 +23,6 @@ namespace Products.Models
 
         [ForeignKey("CategoryID")]
         public CategoryModel Category { get; set; }
-
-        [ForeignKey("SubCategoryID")]
-        public CategoryModel SubCategory { get; set; }
        
         [ForeignKey("BrandID")]
         public BrandModel Brand {get; set;} 

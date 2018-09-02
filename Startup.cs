@@ -4,10 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Products.Context;
+using Products.Repository.Deal;
+using Products.Repository.Offer;
+using Products.Repository.Store;
+using Products.Repository.User;
 
 namespace Products
 {
@@ -23,6 +29,12 @@ namespace Products
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //using Dependency Injection
+            services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddSingleton<IDealRepository, IDealRepository>();
+            services.AddSingleton<IStoreRepository, StoreRepository>();
+            services.AddSingleton<IOfferRepository, OfferRepository>();
             services.AddMvc();
         }
 

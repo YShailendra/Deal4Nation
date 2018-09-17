@@ -2,6 +2,47 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.0": {
+      "IdentityModel/3.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "10.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/IdentityModel.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/IdentityModel.dll": {}
+        }
+      },
+      "IdentityModel.AspNetCore.OAuth2Introspection/3.1.0": {
+        "type": "package",
+        "dependencies": {
+          "IdentityModel": "3.0.0",
+          "Microsoft.AspNetCore.Authentication": "2.0.1",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.0.1",
+          "Microsoft.Extensions.Caching.Memory": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/IdentityModel.AspNetCore.OAuth2Introspection.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/IdentityModel.AspNetCore.OAuth2Introspection.dll": {}
+        }
+      },
+      "IdentityServer4.AccessTokenValidation/2.4.0": {
+        "type": "package",
+        "dependencies": {
+          "IdentityModel.AspNetCore.OAuth2Introspection": "3.1.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "2.0.1",
+          "Microsoft.AspNetCore.Authorization": "2.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/IdentityServer4.AccessTokenValidation.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/IdentityServer4.AccessTokenValidation.dll": {}
+        }
+      },
       "Libuv/1.10.0": {
         "type": "package",
         "dependencies": {
@@ -2685,34 +2726,14 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "Newtonsoft.Json/10.0.1": {
+      "Newtonsoft.Json/10.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
-          "System.Collections": "4.3.0",
+          "NETStandard.Library": "1.6.1",
           "System.ComponentModel.TypeConverter": "4.3.0",
-          "System.Diagnostics.Debug": "4.3.0",
-          "System.Dynamic.Runtime": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.IO": "4.3.0",
-          "System.Linq": "4.3.0",
-          "System.Linq.Expressions": "4.3.0",
-          "System.ObjectModel": "4.3.0",
-          "System.Reflection": "4.3.0",
-          "System.Reflection.Extensions": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0",
-          "System.Runtime.Numerics": "4.3.0",
           "System.Runtime.Serialization.Formatters": "4.3.0",
           "System.Runtime.Serialization.Primitives": "4.3.0",
-          "System.Text.Encoding": "4.3.0",
-          "System.Text.Encoding.Extensions": "4.3.0",
-          "System.Text.RegularExpressions": "4.3.0",
-          "System.Threading": "4.3.0",
-          "System.Threading.Tasks": "4.3.0",
-          "System.Xml.ReaderWriter": "4.3.0",
-          "System.Xml.XDocument": "4.3.0",
           "System.Xml.XmlDocument": "4.3.0"
         },
         "compile": {
@@ -4750,6 +4771,52 @@
     }
   },
   "libraries": {
+    "IdentityModel/3.0.0": {
+      "sha512": "EKMOOUUqDzBR3goiA8eWJ1aQBz1AMfKVxxR7XnzAf5qq2k9vr6GT91SyHmzC14KINpNNJOrbmowXf5S04gQ0ZA==",
+      "type": "package",
+      "path": "identitymodel/3.0.0",
+      "files": [
+        "identitymodel.3.0.0.nupkg.sha512",
+        "identitymodel.nuspec",
+        "lib/net452/IdentityModel.dll",
+        "lib/net452/IdentityModel.xml",
+        "lib/net461/IdentityModel.dll",
+        "lib/net461/IdentityModel.xml",
+        "lib/netstandard1.4/IdentityModel.dll",
+        "lib/netstandard1.4/IdentityModel.xml",
+        "lib/netstandard2.0/IdentityModel.dll",
+        "lib/netstandard2.0/IdentityModel.xml"
+      ]
+    },
+    "IdentityModel.AspNetCore.OAuth2Introspection/3.1.0": {
+      "sha512": "x8e2m1JAHpUG+u8fuYtda72ppeqCSux+YIytLLII9eDqm5mK7sofqWzPlXTUQ9bD6qGFZrK+frMyjRfARKTKPQ==",
+      "type": "package",
+      "path": "identitymodel.aspnetcore.oauth2introspection/3.1.0",
+      "files": [
+        "identitymodel.aspnetcore.oauth2introspection.3.1.0.nupkg.sha512",
+        "identitymodel.aspnetcore.oauth2introspection.nuspec",
+        "lib/net461/IdentityModel.AspNetCore.OAuth2Introspection.dll",
+        "lib/net461/IdentityModel.AspNetCore.OAuth2Introspection.pdb",
+        "lib/netstandard2.0/IdentityModel.AspNetCore.OAuth2Introspection.dll",
+        "lib/netstandard2.0/IdentityModel.AspNetCore.OAuth2Introspection.pdb",
+        "lib/netstandard2.0/IdentityModel.AspNetCore.OAuth2Introspection.xml"
+      ]
+    },
+    "IdentityServer4.AccessTokenValidation/2.4.0": {
+      "sha512": "6zGnz8b5SZsinxa/YBNeC4xb1NTJP0/JUkjynHYo7DoDHt2QDJSnAUgKvi9HROz4/QIsmyrZE3ZFKm3xB063kg==",
+      "type": "package",
+      "path": "identityserver4.accesstokenvalidation/2.4.0",
+      "files": [
+        "identityserver4.accesstokenvalidation.2.4.0.nupkg.sha512",
+        "identityserver4.accesstokenvalidation.nuspec",
+        "lib/net461/IdentityServer4.AccessTokenValidation.dll",
+        "lib/net461/IdentityServer4.AccessTokenValidation.pdb",
+        "lib/net461/IdentityServer4.AccessTokenValidation.xml",
+        "lib/netstandard2.0/IdentityServer4.AccessTokenValidation.dll",
+        "lib/netstandard2.0/IdentityServer4.AccessTokenValidation.pdb",
+        "lib/netstandard2.0/IdentityServer4.AccessTokenValidation.xml"
+      ]
+    },
     "Libuv/1.10.0": {
       "sha512": "GsCf4q+eyaI49rCPlgYxdxa1SQCysXFFdSJWdstrwxytg4+VPYLYrXD4AT2rjHVJ+UF7SSWX9CapWEYaU4ejVQ==",
       "type": "package",
@@ -7522,11 +7589,12 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Newtonsoft.Json/10.0.1": {
-      "sha512": "ebWzW9j2nwxQeBo59As2TYn7nYr9BHicqqCwHOD1Vdo+50HBtLPuqdiCYJcLdTRknpYis/DSEOQz5KmZxwrIAg==",
+    "Newtonsoft.Json/10.0.3": {
+      "sha512": "hSXaFmh7hNCuEoC4XNY5DrRkLDzYHqPx/Ik23R4J86Z7PE/Y6YidhG602dFVdLBRSdG6xp9NabH3dXpcoxWvww==",
       "type": "package",
-      "path": "newtonsoft.json/10.0.1",
+      "path": "newtonsoft.json/10.0.3",
       "files": [
+        "LICENSE.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
         "lib/net35/Newtonsoft.Json.dll",
@@ -7539,9 +7607,11 @@
         "lib/netstandard1.0/Newtonsoft.Json.xml",
         "lib/netstandard1.3/Newtonsoft.Json.dll",
         "lib/netstandard1.3/Newtonsoft.Json.xml",
-        "lib/portable-net45+win8+wpa81+wp8/Newtonsoft.Json.dll",
-        "lib/portable-net45+win8+wpa81+wp8/Newtonsoft.Json.xml",
-        "newtonsoft.json.10.0.1.nupkg.sha512",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.10.0.3.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "tools/install.ps1"
       ]
@@ -12530,7 +12600,11 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "IdentityServer4.AccessTokenValidation >= 2.4.0",
       "Microsoft.AspNetCore.All >= 2.0.5",
+      "Microsoft.EntityFrameworkCore.Design >= 2.0.1",
+      "Microsoft.EntityFrameworkCore.SqlServer >= 2.0.1",
+      "Microsoft.EntityFrameworkCore.Tools >= 2.0.1",
       "Microsoft.NETCore.App >= 2.0.0"
     ]
   },
@@ -12573,9 +12647,25 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
+          "IdentityServer4.AccessTokenValidation": {
+            "target": "Package",
+            "version": "[2.4.0, )"
+          },
           "Microsoft.AspNetCore.All": {
             "target": "Package",
             "version": "[2.0.5, )"
+          },
+          "Microsoft.EntityFrameworkCore.Design": {
+            "target": "Package",
+            "version": "[2.0.1, )"
+          },
+          "Microsoft.EntityFrameworkCore.SqlServer": {
+            "target": "Package",
+            "version": "[2.0.1, )"
+          },
+          "Microsoft.EntityFrameworkCore.Tools": {
+            "target": "Package",
+            "version": "[2.0.1, )"
           },
           "Microsoft.NETCore.App": {
             "target": "Package",

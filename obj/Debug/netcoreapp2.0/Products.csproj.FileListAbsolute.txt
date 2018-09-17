@@ -1,0 +1,11 @@
+C:\Users\shail\Documents\dotnet\Products\bin\Debug\netcoreapp2.0\Products.deps.json
+C:\Users\shail\Documents\dotnet\Products\bin\Debug\netcoreapp2.0\Products.runtimeconfig.json
+C:\Users\shail\Documents\dotnet\Products\bin\Debug\netcoreapp2.0\Products.runtimeconfig.dev.json
+C:\Users\shail\Documents\dotnet\Products\bin\Debug\netcoreapp2.0\Products.dll
+C:\Users\shail\Documents\dotnet\Products\bin\Debug\netcoreapp2.0\Products.pdb
+C:\Users\shail\Documents\dotnet\Products\obj\Debug\netcoreapp2.0\Products.csprojResolveAssemblyReference.cache
+C:\Users\shail\Documents\dotnet\Products\obj\Debug\netcoreapp2.0\Products.csproj.CoreCompileInputs.cache
+C:\Users\shail\Documents\dotnet\Products\obj\Debug\netcoreapp2.0\Products.AssemblyInfoInputs.cache
+C:\Users\shail\Documents\dotnet\Products\obj\Debug\netcoreapp2.0\Products.AssemblyInfo.cs
+C:\Users\shail\Documents\dotnet\Products\obj\Debug\netcoreapp2.0\Products.dll
+C:\Users\shail\Documents\dotnet\Products\obj\Debug\netcoreapp2.0\Products.pdb

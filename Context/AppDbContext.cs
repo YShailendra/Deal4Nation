@@ -19,13 +19,16 @@ namespace Products.Context
          public DbSet<DealModel> Deals { get; set; }
         public DbSet<OfferModel> Offers {get; set;}
         public DbSet<StoreModel> Stores {get; set;}
+        public DbSet<FavouriteModel> Favourite {get; set;}
+        
         protected override void OnModelCreating(ModelBuilder builder)
         {
         
          builder.Entity<UserModel>(entity => {
                     entity.HasIndex(e => e.Email).IsUnique();
                     entity.HasIndex(e=>e.PhoneNo).IsUnique();
-                });       
+                });
+         //builder.Entity<CategoryModel>().HasData(new CategoryModel{ ID=Guid.NewGuid()},);               
         }
         
     }

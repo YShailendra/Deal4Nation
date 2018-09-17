@@ -13,6 +13,8 @@ namespace Products.Models
         [Required]
         public string Name { get; set;}
         public string Description {get; set;}
+        public string ShortDescription {get; set;}
+        public string Cashback {get; set;}
         public Guid BrandID {get; set;}
         public Guid CategoryID {get; set;}
         public Guid SubCategoryID {get; set;}

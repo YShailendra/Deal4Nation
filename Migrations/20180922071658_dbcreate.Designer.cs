@@ -11,8 +11,8 @@ using System;
 namespace Products.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20180902081415_CreateInitial")]
-    partial class CreateInitial
+    [Migration("20180922071658_dbcreate")]
+    partial class dbcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,7 @@ namespace Products.Migrations
 
                     b.Property<Guid?>("CreatedBy");
 
-                    b.Property<DateTime>("CreatedDate");
+                    b.Property<DateTime>("CreatedOn");
 
                     b.Property<Guid?>("LogoID");
 
@@ -37,7 +37,7 @@ namespace Products.Migrations
 
                     b.Property<Guid?>("UpdatedBy");
 
-                    b.Property<DateTime?>("UpdatedDate");
+                    b.Property<DateTime?>("UpdatedOn");
 
                     b.HasKey("ID");
 
@@ -57,14 +57,14 @@ namespace Products.Migrations
 
                     b.Property<Guid?>("CreatedBy");
 
-                    b.Property<DateTime>("CreatedDate");
+                    b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("Name")
                         .IsRequired();
 
                     b.Property<Guid?>("UpdatedBy");
 
-                    b.Property<DateTime?>("UpdatedDate");
+                    b.Property<DateTime?>("UpdatedOn");
 
                     b.HasKey("ID");
 
@@ -78,7 +78,7 @@ namespace Products.Migrations
 
                     b.Property<Guid?>("CreatedBy");
 
-                    b.Property<DateTime>("CreatedDate");
+                    b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("Description");
 
@@ -91,13 +91,35 @@ namespace Products.Migrations
 
                     b.Property<Guid?>("UpdatedBy");
 
-                    b.Property<DateTime?>("UpdatedDate");
+                    b.Property<DateTime?>("UpdatedOn");
 
                     b.Property<string>("Url");
 
                     b.HasKey("ID");
 
                     b.ToTable("Deals");
+                });
+
+            modelBuilder.Entity("Products.Models.FavouriteModel", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<int>("OfferId");
+
+                    b.Property<Guid?>("UpdatedBy");
+
+                    b.Property<DateTime?>("UpdatedOn");
+
+                    b.Property<Guid>("UserId");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Favourite");
                 });
 
             modelBuilder.Entity("Products.Models.ImageModel", b =>
@@ -107,24 +129,20 @@ namespace Products.Migrations
 
                     b.Property<Guid?>("CreatedBy");
 
-                    b.Property<DateTime>("CreatedDate");
+                    b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("Name")
                         .IsRequired();
-
-                    b.Property<Guid?>("OfferModelID");
 
                     b.Property<Guid>("RefrenceID");
 
                     b.Property<Guid?>("UpdatedBy");
 
-                    b.Property<DateTime?>("UpdatedDate");
+                    b.Property<DateTime?>("UpdatedOn");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("OfferModelID");
-
-                    b.ToTable("AppImage");
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("Products.Models.MarketPlaceModel", b =>
@@ -134,7 +152,7 @@ namespace Products.Migrations
 
                     b.Property<Guid?>("CreatedBy");
 
-                    b.Property<DateTime>("CreatedDate");
+                    b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("Description");
 
@@ -147,7 +165,7 @@ namespace Products.Migrations
 
                     b.Property<Guid?>("UpdatedBy");
 
-                    b.Property<DateTime?>("UpdatedDate");
+                    b.Property<DateTime?>("UpdatedOn");
 
                     b.Property<string>("Url");
 
@@ -165,13 +183,15 @@ namespace Products.Migrations
 
                     b.Property<Guid>("BrandID");
 
+                    b.Property<string>("Cashback");
+
                     b.Property<Guid>("CategoryID");
 
                     b.Property<string>("CouponCode");
 
                     b.Property<Guid?>("CreatedBy");
 
-                    b.Property<DateTime>("CreatedDate");
+                    b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("Description");
 
@@ -184,13 +204,15 @@ namespace Products.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
+                    b.Property<string>("ShortDescription");
+
                     b.Property<DateTime>("StartOn");
 
                     b.Property<Guid>("SubCategoryID");
 
                     b.Property<Guid?>("UpdatedBy");
 
-                    b.Property<DateTime?>("UpdatedDate");
+                    b.Property<DateTime?>("UpdatedOn");
 
                     b.Property<string>("Url");
 
@@ -210,7 +232,7 @@ namespace Products.Migrations
 
                     b.Property<Guid?>("CreatedBy");
 
-                    b.Property<DateTime>("CreatedDate");
+                    b.Property<DateTime>("CreatedOn");
 
                     b.Property<Guid?>("LogoID");
 
@@ -219,7 +241,7 @@ namespace Products.Migrations
 
                     b.Property<Guid?>("UpdatedBy");
 
-                    b.Property<DateTime?>("UpdatedDate");
+                    b.Property<DateTime?>("UpdatedOn");
 
                     b.HasKey("ID");
 
@@ -241,7 +263,7 @@ namespace Products.Migrations
 
                     b.Property<Guid?>("CreatedBy");
 
-                    b.Property<DateTime>("CreatedDate");
+                    b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("DeviceID");
 
@@ -263,7 +285,7 @@ namespace Products.Migrations
 
                     b.Property<Guid?>("UpdatedBy");
 
-                    b.Property<DateTime?>("UpdatedDate");
+                    b.Property<DateTime?>("UpdatedOn");
 
                     b.Property<string>("Username");
 
@@ -283,13 +305,6 @@ namespace Products.Migrations
                     b.HasOne("Products.Models.ImageModel", "Logo")
                         .WithMany()
                         .HasForeignKey("LogoID");
-                });
-
-            modelBuilder.Entity("Products.Models.ImageModel", b =>
-                {
-                    b.HasOne("Products.Models.OfferModel")
-                        .WithMany("Images")
-                        .HasForeignKey("OfferModelID");
                 });
 
             modelBuilder.Entity("Products.Models.MarketPlaceModel", b =>

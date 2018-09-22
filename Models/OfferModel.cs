@@ -21,6 +21,7 @@ namespace Products.Models
         public string Url {get; set;}
         public string Logo {get; set;}
         public string CouponCode {get; set;}
+        [NotMapped]
         public List<ImageModel> Images {get;set;}
 
         [ForeignKey("CategoryID")]

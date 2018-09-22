@@ -14,9 +14,9 @@ namespace Products.Context
         public DbSet<UserModel> User { get; set; }
         public DbSet<BrandModel> Brand { get; set; }
         public DbSet<CategoryModel> Category { get; set; } 
-        public DbSet<ImageModel> AppImage { get; set; }
+        public DbSet<ImageModel> Images { get; set; }
         public DbSet<MarketPlaceModel> MarketPlace { get; set; }
-         public DbSet<DealModel> Deals { get; set; }
+        public DbSet<DealModel> Deals { get; set; }
         public DbSet<OfferModel> Offers {get; set;}
         public DbSet<StoreModel> Stores {get; set;}
         public DbSet<FavouriteModel> Favourite {get; set;}

@@ -9,9 +9,9 @@ namespace Products.Models
     public class BaseModel
     {
         public Guid ID { get; set;}
-        public DateTime CreatedDate {get; set;}
+        public DateTime CreatedOn {get; set;}
         [JsonIgnore]
-        public DateTime? UpdatedDate {get; set;}
+        public DateTime? UpdatedOn {get; set;}
         [JsonIgnore]
         public Guid? CreatedBy {get; set;}
         [JsonIgnore]

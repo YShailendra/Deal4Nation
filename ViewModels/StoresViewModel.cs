@@ -34,6 +34,12 @@ namespace Products.ViewModels
            var data = await _repo.GetAll();
            return data;
         }
+        public async Task<StoreModel> Create(StoreModel model)
+        {
+           model.ID = Guid.NewGuid(); 
+           var data = await _repo.Add(model);
+           return data;
+        }
         #region  Private Methods
        
         #endregion

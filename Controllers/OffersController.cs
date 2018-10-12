@@ -3,17 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Products.Models;
+using Products.Repository.Offer;
+using Products.ViewModels;
 
 namespace Products.Controllers
 {
     [Route("api/[controller]")]
     public class OffersController : Controller
     {
+        #region Private Property
+        private IOfferRepository _repo;
+        public OffersController(IOfferRepository repo){
+            this._repo = repo;
+        }
+        #endregion
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "value1", "value2" };
+            var vm = new OffersViewModel(this._repo); 
+            return  Ok(await vm.GetAllOffers());
         }
 
         // GET api/values/5
@@ -25,8 +35,10 @@ namespace Products.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<IActionResult> Post([FromBody]OfferModel value)
         {
+            var vm = new OffersViewModel(this._repo); 
+            return Ok(await vm.Create(value));
         }
 
         // PUT api/values/5

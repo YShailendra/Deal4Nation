@@ -32,6 +32,12 @@ namespace Products.ViewModels
            var data = await _offerRepo.GetAll();
            return data;
         }
+        public async Task<OfferModel> Create(OfferModel model)
+        {
+           model.ID= Guid.NewGuid(); 
+           var data = await _offerRepo.Add(model);
+           return data;
+        }
         #region  Private Methods
        
         #endregion

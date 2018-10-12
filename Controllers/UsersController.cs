@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Products.Models;
+using Products.Repository.User;
+using Products.ViewModels;
 
 namespace Products.Controllers
 {
     [Route("api/[controller]")]
     public class UsersController : Controller
     {
+        private UserViewModel viewModel;
+        public UsersController(IUserRepository repo){
+            this.viewModel = new UserViewModel(repo);
+        }
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(await this.viewModel.GetUsers());
         }
 
         // GET api/values/5
@@ -25,8 +32,9 @@ namespace Products.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<IActionResult> Post([FromBody]UserModel value)
         {
+            return Ok(await this.viewModel.RegisterUser(value));
         }
 
         // PUT api/values/5

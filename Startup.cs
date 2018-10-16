@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Products.Context;
+using Products.Repository.Brand;
+using Products.Repository.Category;
 using Products.Repository.Deal;
 using Products.Repository.Offer;
 using Products.Repository.Store;
@@ -35,6 +37,8 @@ namespace Products
             services.AddSingleton<IDealRepository, DealRepository>();
             services.AddSingleton<IStoreRepository, StoreRepository>();
             services.AddSingleton<IOfferRepository, OfferRepository>();
+            services.AddSingleton<ICategoryRepository, CategoryRepository>();
+            services.AddSingleton<IBrandRepository, BrandRepository>();
             services.AddMvc();
         }
 

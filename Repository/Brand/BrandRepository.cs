@@ -53,7 +53,13 @@ namespace Products.Repository.Category
 
         public async Task<IEnumerable<BrandModel>> GetAll()
         {
-             var data= await this.context.Brand.ToListAsync();
+             var data= await this.context.Brand.Select(s=> new BrandModel(){
+                 ID=s.ID,
+                 Name=s.Name,
+                 CreatedOn=s.CreatedOn,
+                 Logo = this.context.Images.FirstOrDefault(f=>f.RefrenceID==s.ID)
+             }
+             ).ToListAsync();
              return data;
         }
 

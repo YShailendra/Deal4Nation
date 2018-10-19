@@ -21,7 +21,7 @@ namespace Products
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseUrls("http://localhost:5000", "http://odin:5000", "http://192.168.1.2:5000")
+                .UseUrls("http://localhost:5000", "http://odin:5000", "http://192.168.43.15:5000")
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();

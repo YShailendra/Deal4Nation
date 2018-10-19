@@ -49,7 +49,11 @@ namespace Products
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors(builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
             app.UseMvc();
         }
     }

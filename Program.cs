@@ -20,6 +20,11 @@ namespace Products
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseUrls("http://localhost:5000", "http://odin:5000", "http://192.168.1.2:5000")
+                .UseIISIntegration()
+                .UseStartup<Startup>()
                 .Build();
+                
     }
 }

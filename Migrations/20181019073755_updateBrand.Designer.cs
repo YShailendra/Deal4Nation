@@ -11,9 +11,10 @@ using System;
 namespace Products.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181019073755_updateBrand")]
+    partial class updateBrand
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,6 +30,8 @@ namespace Products.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
+                    b.Property<Guid?>("LogoID");
+
                     b.Property<string>("Name")
                         .IsRequired();
 
@@ -37,6 +40,8 @@ namespace Products.Migrations
                     b.Property<DateTime?>("UpdatedOn");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("LogoID");
 
                     b.ToTable("Brand");
                 });
@@ -293,6 +298,13 @@ namespace Products.Migrations
                         .IsUnique();
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("Products.Models.BrandModel", b =>
+                {
+                    b.HasOne("Products.Models.ImageModel", "Logo")
+                        .WithMany()
+                        .HasForeignKey("LogoID");
                 });
 
             modelBuilder.Entity("Products.Models.MarketPlaceModel", b =>

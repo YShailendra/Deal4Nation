@@ -9,6 +9,6 @@ namespace Products.Models
     public class FavouriteModel:BaseModel
     {
         public Guid UserId { get; set; }
-        public int OfferId { get; set; }
+        public Guid OfferId { get; set; }
     }
 }

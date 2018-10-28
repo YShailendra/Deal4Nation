@@ -35,7 +35,7 @@ namespace Products.Repository.Offer
         }
         public async Task<OfferModel> Find(string Id)
         {
-            return await this.context.Offers.Where(w=>w.ID==System.Guid.Parse(Id)).SingleOrDefaultAsync();
+            return await this.context.Offers.Where(w=>w.ID==System.Guid.Parse(Id)).FirstOrDefaultAsync();
         }
         public async Task<OfferModel> GetByEmailOrNumber(string _value)
         {
@@ -61,6 +61,25 @@ namespace Products.Repository.Offer
             }
             return item;
         }
-        
+
+        public async Task<IEnumerable<OfferModel>> GetByStoreId(Guid id)
+        {
+            return await this.context.Offers.Where(w=>w.BrandID==id).ToListAsync();
+        }
+
+        public async Task<IEnumerable<OfferModel>> GetByBrand(Guid id)
+        {
+            return await this.context.Offers.Where(w=>w.BrandID==id).ToListAsync();
+        }
+
+        public async Task<IEnumerable<OfferModel>> GetByCategories(List<Guid> ids)
+        {
+            return await this.context.Offers.Where(w=>ids.Contains(w.CategoryID)).ToListAsync();
+        }
+        public async Task<IEnumerable<OfferModel>> GetFavouriteOffers(Guid userId)
+        {
+            return await this.context.Favourite.Where(w=>w.UserId==userId).
+            Join(this.context.Offers,fav=>fav.OfferId,offer=>offer.ID,(fav,Offer)=> new { fav, Offer}).Select(s=> s.Offer).ToListAsync();
+        }
     }
 }

@@ -14,31 +14,51 @@ namespace Products.Controllers
     {
         #region Private Property
         private IOfferRepository _repo;
+        private  OffersViewModel vm;
         public OffersController(IOfferRepository repo){
             this._repo = repo;
+            this.vm= new OffersViewModel(this._repo);
         }
         #endregion
         // GET api/values
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var vm = new OffersViewModel(this._repo); 
-            return  Ok(await vm.GetAllOffers());
+            return  Ok(await this.vm.GetAllOffers());
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(string id)
         {
-            return "value";
+            return  Ok(await this.vm.GetOfferById(Guid.Parse(id)));;
+        }
+        [HttpGet("GetByStoreId/{id}")]
+        public async Task<IActionResult> GetByStoreId(string id)
+        {
+            return  Ok(await this.vm.GetOfferById(Guid.Parse(id)));;
+        }
+        [HttpGet("GetByBrandId/{id}")]
+        public async Task<IActionResult> GetByBrandId(string id)
+        {
+            return  Ok(await this.vm.GetOfferById(Guid.Parse(id)));;
         }
 
-        // POST api/values
+        [HttpGet("GetFavouriteByUserId/{id}")]
+        public async Task<IActionResult> GetFavouriteByUserId(string id)
+        {
+            return  Ok(await this.vm.GetFavoriteByUserId(Guid.Parse(id)));;
+        }
+        [HttpPost("GetByCategories")]
+        public async Task<IActionResult> GetByCategories(List<Guid> ids)
+        {
+            return  Ok(await this.vm.GetByCategories(ids));
+        }    
+        //POST api/values
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]OfferModel value)
         {
-            var vm = new OffersViewModel(this._repo); 
-            return Ok(await vm.Create(value));
+            return Ok(await this.vm.Create(value));
         }
 
         // PUT api/values/5

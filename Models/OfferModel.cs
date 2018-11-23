@@ -12,12 +12,14 @@ namespace Products.Models
     {
         [Required]
         public string Name { get; set;}
+        [Required]
         public string Description {get; set;}
         public string ShortDescription {get; set;}
         public string Cashback {get; set;}
         public Guid BrandID {get; set;}
         public Guid CategoryID {get; set;}
-        public Guid SubCategoryID {get; set;}
+        public Guid StroreID {get; set;}
+        public Guid? SubCategoryID {get; set;}
         public string Url {get; set;}
         public string Logo {get; set;}
         public string CouponCode {get; set;}
@@ -29,9 +31,12 @@ namespace Products.Models
        
         [ForeignKey("BrandID")]
         public BrandModel Brand {get; set;} 
+
+        [ForeignKey("StoreID")]
+        public StoreModel Store {get; set;}
         public Boolean? IsActive { get; set;}
-        public DateTime EndOn { get; set;}
-        public DateTime StartOn { get; set;}
+        public DateTime? EndOn { get; set;}
+        public DateTime? StartOn { get; set;}
       
     }
 }

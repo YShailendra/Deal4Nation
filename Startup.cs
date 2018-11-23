@@ -16,6 +16,12 @@ using Products.Repository.Deal;
 using Products.Repository.Offer;
 using Products.Repository.Store;
 using Products.Repository.User;
+using Newtonsoft.Json.Serialization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using System.Buffers;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace Products
 {
@@ -39,6 +45,14 @@ namespace Products
             services.AddSingleton<IOfferRepository, OfferRepository>();
             services.AddSingleton<ICategoryRepository, CategoryRepository>();
             services.AddSingleton<IBrandRepository, BrandRepository>();
+            services.AddMvc(options=>{
+            //this is to remove refrence loop of data model
+            options.OutputFormatters.Clear();
+            options.OutputFormatters.Add(new JsonOutputFormatter(new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            }, ArrayPool<char>.Shared));
+            }).AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
             services.AddMvc();
         }
 

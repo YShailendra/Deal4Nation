@@ -11,8 +11,8 @@ using System;
 namespace Products.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20181019074518_updateBrand2")]
-    partial class updateBrand2
+    [Migration("20181123071212_updateModel")]
+    partial class updateModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -105,7 +105,7 @@ namespace Products.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<int>("OfferId");
+                    b.Property<Guid>("OfferId");
 
                     b.Property<Guid?>("UpdatedBy");
 
@@ -154,8 +154,6 @@ namespace Products.Migrations
 
                     b.Property<bool?>("IsActive");
 
-                    b.Property<Guid?>("LogoID");
-
                     b.Property<string>("Name")
                         .IsRequired();
 
@@ -166,8 +164,6 @@ namespace Products.Migrations
                     b.Property<string>("Url");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("LogoID");
 
                     b.ToTable("MarketPlace");
                 });
@@ -189,9 +185,10 @@ namespace Products.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
-                    b.Property<DateTime>("EndOn");
+                    b.Property<DateTime?>("EndOn");
 
                     b.Property<bool?>("IsActive");
 
@@ -202,9 +199,9 @@ namespace Products.Migrations
 
                     b.Property<string>("ShortDescription");
 
-                    b.Property<DateTime>("StartOn");
+                    b.Property<DateTime?>("StartOn");
 
-                    b.Property<Guid>("SubCategoryID");
+                    b.Property<Guid?>("SubCategoryID");
 
                     b.Property<Guid?>("UpdatedBy");
 
@@ -230,8 +227,6 @@ namespace Products.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<Guid?>("LogoID");
-
                     b.Property<string>("Name")
                         .IsRequired();
 
@@ -240,8 +235,6 @@ namespace Products.Migrations
                     b.Property<DateTime?>("UpdatedOn");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("LogoID");
 
                     b.ToTable("Stores");
                 });
@@ -296,13 +289,6 @@ namespace Products.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("Products.Models.MarketPlaceModel", b =>
-                {
-                    b.HasOne("Products.Models.ImageModel", "Logo")
-                        .WithMany()
-                        .HasForeignKey("LogoID");
-                });
-
             modelBuilder.Entity("Products.Models.OfferModel", b =>
                 {
                     b.HasOne("Products.Models.BrandModel", "Brand")
@@ -314,13 +300,6 @@ namespace Products.Migrations
                         .WithMany()
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Products.Models.StoreModel", b =>
-                {
-                    b.HasOne("Products.Models.ImageModel", "Logo")
-                        .WithMany()
-                        .HasForeignKey("LogoID");
                 });
 #pragma warning restore 612, 618
         }

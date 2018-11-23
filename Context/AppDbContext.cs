@@ -2,6 +2,7 @@
 using System;
 using Products.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Products.Context
 {
@@ -30,6 +31,37 @@ namespace Products.Context
                 });
          //builder.Entity<CategoryModel>().HasData(new CategoryModel{ ID=Guid.NewGuid()},);               
         }
+          
+  
+        /// <summary>  
+        /// Overriding Save Changes  
+        /// </summary>  
+        /// <returns></returns>  
+        public override int SaveChanges()  
+        {  
+            var addedEntityList = ChangeTracker.Entries()  
+                                    .Where(x => x.Entity is BaseModel &&  
+                                    (x.State == EntityState.Added));  
+            var updatedEntityList = ChangeTracker.Entries()  
+                                    .Where(x => x.Entity is BaseModel &&  
+                                    (x.State == EntityState.Modified));  
+            //Gt user Name from  session or other authentication   
+            var userName = Guid.NewGuid();  
+  
+            foreach (var entity in addedEntityList)  
+            {  
+                ((BaseModel)entity.Entity).ID = Guid.NewGuid();
+                ((BaseModel)entity.Entity).CreatedOn = DateTime.Now;  
+                ((BaseModel)entity.Entity).CreatedBy = userName;  
+            }  
+            foreach (var entity in updatedEntityList)  
+            {  
+  
+                ((BaseModel)entity.Entity).UpdatedOn = DateTime.Now;  
+                ((BaseModel)entity.Entity).UpdatedBy = userName;  
+            }
+            return base.SaveChanges();  
+        }  
         
     }
 }

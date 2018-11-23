@@ -11,8 +11,8 @@ using System;
 namespace Products.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20181019073755_updateBrand")]
-    partial class updateBrand
+    [Migration("20181123072453_updateOffers")]
+    partial class updateOffers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,8 +30,6 @@ namespace Products.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<Guid?>("LogoID");
-
                     b.Property<string>("Name")
                         .IsRequired();
 
@@ -40,8 +38,6 @@ namespace Products.Migrations
                     b.Property<DateTime?>("UpdatedOn");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("LogoID");
 
                     b.ToTable("Brand");
                 });
@@ -109,7 +105,7 @@ namespace Products.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<int>("OfferId");
+                    b.Property<Guid>("OfferId");
 
                     b.Property<Guid?>("UpdatedBy");
 
@@ -158,8 +154,6 @@ namespace Products.Migrations
 
                     b.Property<bool?>("IsActive");
 
-                    b.Property<Guid?>("LogoID");
-
                     b.Property<string>("Name")
                         .IsRequired();
 
@@ -170,8 +164,6 @@ namespace Products.Migrations
                     b.Property<string>("Url");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("LogoID");
 
                     b.ToTable("MarketPlace");
                 });
@@ -193,9 +185,10 @@ namespace Products.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
-                    b.Property<DateTime>("EndOn");
+                    b.Property<DateTime?>("EndOn");
 
                     b.Property<bool?>("IsActive");
 
@@ -206,9 +199,13 @@ namespace Products.Migrations
 
                     b.Property<string>("ShortDescription");
 
-                    b.Property<DateTime>("StartOn");
+                    b.Property<DateTime?>("StartOn");
 
-                    b.Property<Guid>("SubCategoryID");
+                    b.Property<Guid?>("StoreID");
+
+                    b.Property<Guid>("StroreID");
+
+                    b.Property<Guid?>("SubCategoryID");
 
                     b.Property<Guid?>("UpdatedBy");
 
@@ -222,6 +219,8 @@ namespace Products.Migrations
 
                     b.HasIndex("CategoryID");
 
+                    b.HasIndex("StoreID");
+
                     b.ToTable("Offers");
                 });
 
@@ -234,8 +233,6 @@ namespace Products.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<Guid?>("LogoID");
-
                     b.Property<string>("Name")
                         .IsRequired();
 
@@ -244,8 +241,6 @@ namespace Products.Migrations
                     b.Property<DateTime?>("UpdatedOn");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("LogoID");
 
                     b.ToTable("Stores");
                 });
@@ -300,20 +295,6 @@ namespace Products.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("Products.Models.BrandModel", b =>
-                {
-                    b.HasOne("Products.Models.ImageModel", "Logo")
-                        .WithMany()
-                        .HasForeignKey("LogoID");
-                });
-
-            modelBuilder.Entity("Products.Models.MarketPlaceModel", b =>
-                {
-                    b.HasOne("Products.Models.ImageModel", "Logo")
-                        .WithMany()
-                        .HasForeignKey("LogoID");
-                });
-
             modelBuilder.Entity("Products.Models.OfferModel", b =>
                 {
                     b.HasOne("Products.Models.BrandModel", "Brand")
@@ -325,13 +306,10 @@ namespace Products.Migrations
                         .WithMany()
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
 
-            modelBuilder.Entity("Products.Models.StoreModel", b =>
-                {
-                    b.HasOne("Products.Models.ImageModel", "Logo")
+                    b.HasOne("Products.Models.StoreModel", "Store")
                         .WithMany()
-                        .HasForeignKey("LogoID");
+                        .HasForeignKey("StoreID");
                 });
 #pragma warning restore 612, 618
         }

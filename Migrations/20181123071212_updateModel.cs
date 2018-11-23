@@ -4,10 +4,26 @@ using System.Collections.Generic;
 
 namespace Products.Migrations
 {
-    public partial class dbcreate : Migration
+    public partial class updateModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Brand",
+                columns: table => new
+                {
+                    ID = table.Column<Guid>(nullable: false),
+                    CreatedBy = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    UpdatedBy = table.Column<Guid>(nullable: true),
+                    UpdatedOn = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Brand", x => x.ID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Category",
                 columns: table => new
@@ -53,7 +69,7 @@ namespace Products.Migrations
                     ID = table.Column<Guid>(nullable: false),
                     CreatedBy = table.Column<Guid>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
-                    OfferId = table.Column<int>(nullable: false),
+                    OfferId = table.Column<Guid>(nullable: false),
                     UpdatedBy = table.Column<Guid>(nullable: true),
                     UpdatedOn = table.Column<DateTime>(nullable: true),
                     UserId = table.Column<Guid>(nullable: false)
@@ -78,6 +94,41 @@ namespace Products.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Images", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MarketPlace",
+                columns: table => new
+                {
+                    ID = table.Column<Guid>(nullable: false),
+                    CreatedBy = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    IsActive = table.Column<bool>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    UpdatedBy = table.Column<Guid>(nullable: true),
+                    UpdatedOn = table.Column<DateTime>(nullable: true),
+                    Url = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MarketPlace", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Stores",
+                columns: table => new
+                {
+                    ID = table.Column<Guid>(nullable: false),
+                    CreatedBy = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    UpdatedBy = table.Column<Guid>(nullable: true),
+                    UpdatedOn = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Stores", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -107,78 +158,6 @@ namespace Products.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Brand",
-                columns: table => new
-                {
-                    ID = table.Column<Guid>(nullable: false),
-                    CreatedBy = table.Column<Guid>(nullable: true),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    LogoID = table.Column<Guid>(nullable: true),
-                    Name = table.Column<string>(nullable: false),
-                    UpdatedBy = table.Column<Guid>(nullable: true),
-                    UpdatedOn = table.Column<DateTime>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Brand", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Brand_Images_LogoID",
-                        column: x => x.LogoID,
-                        principalTable: "Images",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MarketPlace",
-                columns: table => new
-                {
-                    ID = table.Column<Guid>(nullable: false),
-                    CreatedBy = table.Column<Guid>(nullable: true),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    Description = table.Column<string>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: true),
-                    LogoID = table.Column<Guid>(nullable: true),
-                    Name = table.Column<string>(nullable: false),
-                    UpdatedBy = table.Column<Guid>(nullable: true),
-                    UpdatedOn = table.Column<DateTime>(nullable: true),
-                    Url = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MarketPlace", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_MarketPlace_Images_LogoID",
-                        column: x => x.LogoID,
-                        principalTable: "Images",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Stores",
-                columns: table => new
-                {
-                    ID = table.Column<Guid>(nullable: false),
-                    CreatedBy = table.Column<Guid>(nullable: true),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    LogoID = table.Column<Guid>(nullable: true),
-                    Name = table.Column<string>(nullable: false),
-                    UpdatedBy = table.Column<Guid>(nullable: true),
-                    UpdatedOn = table.Column<DateTime>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Stores", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Stores_Images_LogoID",
-                        column: x => x.LogoID,
-                        principalTable: "Images",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Offers",
                 columns: table => new
                 {
@@ -189,14 +168,14 @@ namespace Products.Migrations
                     CouponCode = table.Column<string>(nullable: true),
                     CreatedBy = table.Column<Guid>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
-                    Description = table.Column<string>(nullable: true),
-                    EndOn = table.Column<DateTime>(nullable: false),
+                    Description = table.Column<string>(nullable: false),
+                    EndOn = table.Column<DateTime>(nullable: true),
                     IsActive = table.Column<bool>(nullable: true),
                     Logo = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     ShortDescription = table.Column<string>(nullable: true),
-                    StartOn = table.Column<DateTime>(nullable: false),
-                    SubCategoryID = table.Column<Guid>(nullable: false),
+                    StartOn = table.Column<DateTime>(nullable: true),
+                    SubCategoryID = table.Column<Guid>(nullable: true),
                     UpdatedBy = table.Column<Guid>(nullable: true),
                     UpdatedOn = table.Column<DateTime>(nullable: true),
                     Url = table.Column<string>(nullable: true)
@@ -219,16 +198,6 @@ namespace Products.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Brand_LogoID",
-                table: "Brand",
-                column: "LogoID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MarketPlace_LogoID",
-                table: "MarketPlace",
-                column: "LogoID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Offers_BrandID",
                 table: "Offers",
                 column: "BrandID");
@@ -237,11 +206,6 @@ namespace Products.Migrations
                 name: "IX_Offers_CategoryID",
                 table: "Offers",
                 column: "CategoryID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Stores_LogoID",
-                table: "Stores",
-                column: "LogoID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_Email",
@@ -265,6 +229,9 @@ namespace Products.Migrations
                 name: "Favourite");
 
             migrationBuilder.DropTable(
+                name: "Images");
+
+            migrationBuilder.DropTable(
                 name: "MarketPlace");
 
             migrationBuilder.DropTable(
@@ -281,9 +248,6 @@ namespace Products.Migrations
 
             migrationBuilder.DropTable(
                 name: "Category");
-
-            migrationBuilder.DropTable(
-                name: "Images");
         }
     }
 }

@@ -57,6 +57,7 @@ namespace Products.Repository.Category
                  ID=s.ID,
                  Name=s.Name,
                  CreatedOn=s.CreatedOn,
+                 isFav = s.isFav,
                  Logo = this.context.Images.FirstOrDefault(f=>f.RefrenceID==s.ID)
              }
              ).ToListAsync();

@@ -9,7 +9,7 @@ using System;
 
 namespace Products.Repository.Category
 {
-    public class CategoryRepository:ICategoryRepository
+    public class CategoryRepository : ICategoryRepository
     {
         private AppDbContext context;
 
@@ -21,7 +21,7 @@ namespace Products.Repository.Category
         public CategoryRepository()
         {
 
-        } 
+        }
         public async Task<CategoryModel> Remove(string Id)
         {
             var itemToRemove = await context.Category.SingleOrDefaultAsync(r => r.ID == Guid.Parse(Id));
@@ -35,9 +35,9 @@ namespace Products.Repository.Category
         }
         public async Task<CategoryModel> Update(CategoryModel item)
         {
-            if(item!=null)
+            if (item != null)
             {
-                this.context.Entry(item).State= Microsoft.EntityFrameworkCore.EntityState.Modified;
+                this.context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 await this.context.SaveChangesAsync();
             }
             return item;
@@ -52,15 +52,21 @@ namespace Products.Repository.Category
 
         public async Task<IEnumerable<CategoryModel>> GetAll()
         {
-             var data= await this.context.Category.ToListAsync();
-             return data;
+            var data = await this.context.Category.Select(s => new CategoryModel()
+            {
+                ID = s.ID,
+                Name = s.Name,
+                CreatedOn = s.CreatedOn,
+                isFav = s.isFav,
+            }).ToListAsync();
+            return data;
         }
 
         public async Task<CategoryModel> Find(string key)
         {
-            return await this.context.Category.Where(w=>w.ID==Guid.Parse(key)).SingleOrDefaultAsync();
+            return await this.context.Category.Where(w => w.ID == Guid.Parse(key)).SingleOrDefaultAsync();
         }
 
-       
+
     }
 }

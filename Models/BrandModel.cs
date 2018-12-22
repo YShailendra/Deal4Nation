@@ -13,6 +13,7 @@ namespace Products.Models
         public string Name { get; set;}
         [NotMapped]
         public ImageModel Logo { get; set; }
+        public bool? isFav {get;set;}
 
     }
 }

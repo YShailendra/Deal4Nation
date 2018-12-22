@@ -10,7 +10,7 @@ namespace Products.Repository.Offer
     {
         Task<IEnumerable<OfferModel>> GetByStoreId(Guid id);
         Task<IEnumerable<OfferModel>> GetByBrand(Guid id);
-        Task<IEnumerable<OfferModel>> GetByCategories(List<Guid> ids);
+        Task<IEnumerable<OfferModel>> GetByCategories(Guid ids);
         Task<IEnumerable<OfferModel>> GetFavouriteOffers(Guid userId);
     }
 }

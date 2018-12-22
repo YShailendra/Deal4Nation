@@ -25,6 +25,7 @@ namespace Products.ViewModels
         public async Task<OfferModel> GetOfferById(Guid id)
         {
            var data = await _offerRepo.Find(id.ToString());
+           Console.WriteLine(data);
            return data;
         }
         public async Task<IEnumerable<OfferModel>> GetAllOffers()
@@ -45,10 +46,12 @@ namespace Products.ViewModels
         }
         public async Task<IEnumerable<OfferModel>> GetByBrand(Guid id)
         {
+          
            var data = await _offerRepo.GetByBrand(id);
+            Console.WriteLine(data);
            return data;
         }
-        public async Task<IEnumerable<OfferModel>> GetByCategories(List<Guid> ids)
+        public async Task<IEnumerable<OfferModel>> GetByCategories(Guid ids)
         {
            var data = await _offerRepo.GetByCategories(ids);
            return data;

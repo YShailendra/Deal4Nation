@@ -36,12 +36,14 @@ namespace Products.Controllers
         [HttpGet("GetByStoreId/{id}")]
         public async Task<IActionResult> GetByStoreId(string id)
         {
-            return  Ok(await this.vm.GetOfferById(Guid.Parse(id)));;
+            Console.WriteLine(id);
+            return  Ok(await this.vm.GetByStoreId(Guid.Parse(id)));;
         }
         [HttpGet("GetByBrandId/{id}")]
         public async Task<IActionResult> GetByBrandId(string id)
         {
-            return  Ok(await this.vm.GetOfferById(Guid.Parse(id)));;
+             Console.WriteLine(id);
+            return  Ok(await this.vm.GetByBrand(Guid.Parse(id)));;
         }
 
         [HttpGet("GetFavouriteByUserId/{id}")]
@@ -49,10 +51,12 @@ namespace Products.Controllers
         {
             return  Ok(await this.vm.GetFavoriteByUserId(Guid.Parse(id)));;
         }
-        [HttpPost("GetByCategories")]
-        public async Task<IActionResult> GetByCategories(List<Guid> ids)
+
+          [HttpGet("GetByCategories/{id}")]
+        public async Task<IActionResult> GetByCategories(string id)
         {
-            return  Ok(await this.vm.GetByCategories(ids));
+            Console.WriteLine(id);
+            return  Ok(await this.vm.GetByCategories(Guid.Parse(id)));
         }    
         //POST api/values
         [HttpPost]

@@ -19,5 +19,7 @@ namespace Products.Models
         public string Url { get; set;}
 
         public Boolean? IsActive { get; set;}
+
+        public bool? isFav {get;set;}
     }
 }

@@ -72,10 +72,12 @@ namespace Products.Repository.Offer
             return await this.context.Offers.Where(w=>w.BrandID==id).ToListAsync();
         }
 
-        public async Task<IEnumerable<OfferModel>> GetByCategories(List<Guid> ids)
+        public async Task<IEnumerable<OfferModel>> GetByCategories(Guid ids)
         {
-            return await this.context.Offers.Where(w=>ids.Contains(w.CategoryID)).ToListAsync();
-        }
+            Console.WriteLine(ids);
+
+            return await this.context.Offers.Where(w=>w.CategoryID == ids).ToListAsync();
+        } 
         public async Task<IEnumerable<OfferModel>> GetFavouriteOffers(Guid userId)
         {
             return await this.context.Favourite.Where(w=>w.UserId==userId).

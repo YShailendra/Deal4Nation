@@ -34,5 +34,35 @@ namespace Products.ViewModels
         {     
             return await this._repo.GetAll() as List<UserModel>;
         }
+
+        public async Task<LoginModel> Login(LoginModel data)
+        {
+            
+            if (!string.IsNullOrEmpty(data.Username) &&
+           !string.IsNullOrEmpty(data.Password))
+            {
+                var user = this._repo.GetByEmailOrNumber(data.Username).Result;
+                data.Password = AppHelper.Instance.GetHash(data.Password);
+                if (user != null)
+                {
+                    if(data.Password == user.Password)
+                    {
+                        data.Token = new JwtTokenBuilder()
+                                                        .AddSecurityKey(JwtSecurityKey.Create(user.ID.ToString()))
+                                                        .AddSubject(user.Email)
+                                                        .AddIssuer("Security.Bearer")
+                                                        .AddAudience("Security.Bearer")
+                                                        // .AddClaim("IsAdmin", user.IsAdmin)
+                                                        .AddExpiry(5)
+                                                        .Build().ToString();
+                        // return Ok(token);
+                       
+                    }
+                  
+                }
+            
+            }
+            return data;
+        } 
     }
 }

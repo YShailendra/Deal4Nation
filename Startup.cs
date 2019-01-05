@@ -17,6 +17,7 @@ using Products.Repository.Offer;
 using Products.Repository.Store;
 using Products.Repository.User;
 using Products.Repository.UserInteraction;
+using Products.Repository.Ads;
 using Newtonsoft.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
@@ -47,6 +48,7 @@ namespace Products
             services.AddSingleton<ICategoryRepository, CategoryRepository>();
             services.AddSingleton<IBrandRepository, BrandRepository>();
             services.AddSingleton<IUserInteractionRepository, UserInteractionRepository>();
+            services.AddSingleton<IAdsRepository, AdsRepository>();
             services.AddMvc(options=>{
             //this is to remove refrence loop of data model
             options.OutputFormatters.Clear();

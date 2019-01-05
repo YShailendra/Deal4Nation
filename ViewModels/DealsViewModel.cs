@@ -25,13 +25,25 @@ namespace Products.ViewModels
         }
         public async Task<DealModel> GetDealById(Guid id)
         {
-           var data = await _repo.Find(id.ToString());
-           return data;
+           return await _repo.Find(id.ToString());
         }
         public async Task<IEnumerable<DealModel>> GetAllDeal()
         {
            var data = await _repo.GetAll();
            return data;
+        }
+        public async Task<DealModel> CreateDeal(DealModel model)
+        {
+            model.ID = Guid.NewGuid();
+            return await _repo.Add(model);
+        }
+        public async Task<DealModel> UpdateDeal(DealModel model)
+        {
+            return await _repo.Update(model); ;
+        }
+        public async Task<DealModel> DeleteDeal(string id)
+        {
+           return await _repo.Remove(id);
         }
         #region  Private Methods
        

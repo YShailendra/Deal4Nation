@@ -55,7 +55,6 @@ namespace Products.Controllers
           [HttpGet("GetByCategories/{id}")]
         public async Task<IActionResult> GetByCategories(string id)
         {
-            Console.WriteLine(id);
             return  Ok(await this.vm.GetByCategories(Guid.Parse(id)));
         }    
         //POST api/values
@@ -67,14 +66,16 @@ namespace Products.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async Task<IActionResult> Put(int id, [FromBody]OfferModel value)
         {
+            return Ok(await this.vm.UpdateOffer(value));
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
+            return Ok(await this.vm.DeleteOffer(id));
         }
     }
 }

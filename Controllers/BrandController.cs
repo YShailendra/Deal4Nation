@@ -34,7 +34,7 @@ namespace Products.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            return null;
         }
 
         // POST api/values
@@ -46,14 +46,17 @@ namespace Products.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async Task<IActionResult> Put(int id, [FromBody]BrandModel value)
         {
+            //await this.vm.UpdateBrand(value);
+            return Ok(await this.vm.UpdateBrand(value));
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
+             return Ok(await this.vm.DeleteBrand(id));
         }
     }
 }

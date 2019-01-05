@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Products.Models;
 using Products.Repository.Deal;
 using Products.ViewModels;
 
@@ -13,8 +14,10 @@ namespace Products.Controllers
     {
        #region Private Property
         private IDealRepository _repo;
+        private DealsViewModel vm;
         public DealsController(IDealRepository repo){
             this._repo = repo;
+            this.vm = new DealsViewModel(this._repo);
         }
         #endregion
         // GET api/values
@@ -22,33 +25,36 @@ namespace Products.Controllers
 
         public async Task<IActionResult> Get()
         {
-           var vm = new DealsViewModel(this._repo);
-            var result= await vm.GetAllDeal();
+           //var vm = new DealsViewModel(this._repo);
+            var result= await this.vm.GetAllDeal();
             return  Ok(result);
         }
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            return "value";
+            return Ok(await this.vm.GetDealById(id));
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<IActionResult> Post([FromBody]DealModel value)
         {
+            return Ok(await this.vm.CreateDeal(value));
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async Task<IActionResult> Put(int id, [FromBody]DealModel value)
         {
+            return Ok(await this.vm.UpdateDeal(value));
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
+            return Ok(await this.vm.DeleteDeal(id));
         }
     }
 }

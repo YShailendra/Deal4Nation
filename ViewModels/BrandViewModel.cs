@@ -32,5 +32,19 @@ namespace Products.ViewModels
         {     
             return await this._repo.GetAll() as List<BrandModel>;
         }
+
+        public async Task<BrandModel> GetBrandById(string id)
+        {     
+            return await this._repo.Find(id);
+        }
+
+        public async Task<BrandModel> UpdateBrand(BrandModel model)
+        {     
+            return await this._repo.Update(model);
+        }
+        public async Task<BrandModel> DeleteBrand(string id)
+        {     
+            return await this._repo.Remove(id);
+        }
     }
 }

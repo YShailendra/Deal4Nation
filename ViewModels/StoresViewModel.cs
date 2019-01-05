@@ -40,6 +40,15 @@ namespace Products.ViewModels
            var data = await _repo.Add(model);
            return data;
         }
+        public async Task<StoreModel> UpdateStore(StoreModel model)
+        {
+           return await _repo.Update(model);;
+        }
+        public async Task<StoreModel> DeleteStore(string id)
+        {
+           var data = await _repo.Remove(id);
+           return data;
+        }
         #region  Private Methods
        
         #endregion

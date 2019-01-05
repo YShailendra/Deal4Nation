@@ -48,7 +48,6 @@ namespace Products.ViewModels
         {
           
            var data = await _offerRepo.GetByBrand(id);
-            Console.WriteLine(data);
            return data;
         }
         public async Task<IEnumerable<OfferModel>> GetByCategories(Guid ids)
@@ -56,7 +55,16 @@ namespace Products.ViewModels
            var data = await _offerRepo.GetByCategories(ids);
            return data;
         }
-
+         public async Task<OfferModel> UpdateOffer(OfferModel model)
+        {
+           var data = await _offerRepo.Update(model);
+           return data;
+        }
+         public async Task<OfferModel> DeleteOffer(string id)
+        {
+           var data = await _offerRepo.Remove(id);
+           return data;
+        }
         public async Task<IEnumerable<OfferModel>> GetFavoriteByUserId(Guid userId)
         {
            var data = await _offerRepo.GetFavouriteOffers(userId);

@@ -21,14 +21,12 @@ namespace Products.Controllers
         }
 
         [HttpGet]
-
         public async Task<IActionResult> Get(){
                var result = await this.vm.GetAds();
                return Ok(result);
         }
-
+        
         [HttpGet("{id}")]
-
         public async Task<IActionResult> GetById(string value){
             var result = await this.vm.GetAdsById(Guid.Parse(value));
             return Ok(result);

@@ -41,7 +41,7 @@ namespace Products.ViewModels
             if (!string.IsNullOrEmpty(data.Username) &&
            !string.IsNullOrEmpty(data.Password))
             {
-                var user = this._repo.GetByEmailOrNumber(data.Username).Result;
+                var user = await this._repo.GetByEmailOrNumber(data.Username);
                 data.Password = AppHelper.Instance.GetHash(data.Password);
                 if (user != null)
                 {

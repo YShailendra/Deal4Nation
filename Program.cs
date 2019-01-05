@@ -14,6 +14,10 @@ namespace Products
     {
         public static void Main(string[] args)
         {
+            IConfigurationRoot config = new ConfigurationBuilder()
+        .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile("appsettings.json")
+        .Build();
             BuildWebHost(args).Run();
         }
 

@@ -24,15 +24,15 @@ namespace Products.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+        [HttpPost]
+        [Route("api/[controller]/login")]
+        public async Task<IActionResult> Login(LoginModel model){
+            return Ok(await this.viewModel.Login(model));
         }
 
         // POST api/values
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]UserModel value)
+        public async Task<IActionResult> Register ([FromBody]UserModel value)
         {
             return Ok(await this.viewModel.RegisterUser(value));
         }

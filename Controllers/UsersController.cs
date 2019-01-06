@@ -23,9 +23,7 @@ namespace Products.Controllers
             return Ok(await this.viewModel.GetUsers());
         }
 
-        // GET api/values/5
-        [HttpPost]
-        [Route("api/[controller]/login")]
+        [HttpPost("Login")]
         public async Task<IActionResult> Login(LoginModel model){
             return Ok(await this.viewModel.Login(model));
         }
@@ -39,14 +37,32 @@ namespace Products.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async Task<IActionResult> Put(int id, [FromBody]UserModel value)
         {
+            return Ok(await this.viewModel.UpdateUser(value));
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+        
+        [HttpPost("ForgetPassword")]
+        public async Task<IActionResult> ForgetPassword(string email)
+        {
+            return Ok(await this.viewModel.ForgetPassword(email));
+        }
+        
+        [HttpPost("ChangePassword")]
+        public async Task<IActionResult> ChangePassword(int id, [FromBody]ChangePasswordModel value)
+        {
+            return Ok(await this.viewModel.ChangePassword(value));
+        }
+        [HttpPost("VerifyOtp")]
+         public async Task<IActionResult> VerifyOtp(int id, [FromBody]ChangePasswordModel value)
+        {
+            return Ok(await this.viewModel.VerifyOtp(value));
         }
     }
 }

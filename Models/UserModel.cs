@@ -26,5 +26,6 @@ namespace Products.Models
         public string DeviceID {get; set;}
         public string Refrrel {get; set;}
         public int? Balance {get; set;} 
+        public string Otp {get; set;} 
     }
 }

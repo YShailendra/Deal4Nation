@@ -29,8 +29,9 @@ namespace Products.ViewModels
             var result =this._repo.Add(data);
             return await result;
         }
-        public async Task<UserModel> UpdateUser(UserModel data)
+        public async Task<UserModel> UpdateUser(Guid id,UserModel data)
         {
+            data.ID = id;
             var result = this._repo.Update(data);
             return await result;
         }

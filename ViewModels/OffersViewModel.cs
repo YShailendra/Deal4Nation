@@ -55,8 +55,9 @@ namespace Products.ViewModels
            var data = await _offerRepo.GetByCategories(ids);
            return data;
         }
-         public async Task<OfferModel> UpdateOffer(OfferModel model)
+         public async Task<OfferModel> UpdateOffer(Guid id,OfferModel model)
         {
+           model.ID = id;
            var data = await _offerRepo.Update(model);
            return data;
         }

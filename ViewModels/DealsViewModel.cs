@@ -37,8 +37,9 @@ namespace Products.ViewModels
             model.ID = Guid.NewGuid();
             return await _repo.Add(model);
         }
-        public async Task<DealModel> UpdateDeal(DealModel model)
+        public async Task<DealModel> UpdateDeal(Guid id,DealModel model)
         {
+            model.ID =id;
             return await _repo.Update(model); ;
         }
         public async Task<DealModel> DeleteDeal(string id)

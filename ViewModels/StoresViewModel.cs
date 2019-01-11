@@ -40,8 +40,9 @@ namespace Products.ViewModels
            var data = await _repo.Add(model);
            return data;
         }
-        public async Task<StoreModel> UpdateStore(StoreModel model)
+        public async Task<StoreModel> UpdateStore(Guid id,StoreModel model)
         {
+            model.ID = id;
            return await _repo.Update(model);;
         }
         public async Task<StoreModel> DeleteStore(string id)

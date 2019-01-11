@@ -36,8 +36,8 @@ namespace Products.ViewModels
         {     
             return await this._repo.Find(id);
         }
-        public async Task<CategoryModel> UpdateCategory(CategoryModel model)
-        {     
+        public async Task<CategoryModel> UpdateCategory(Guid id,CategoryModel model)
+        {   model.ID = id; 
             return await this._repo.Update(model);
         }
         public async Task<CategoryModel> DeleteCategory(string id)

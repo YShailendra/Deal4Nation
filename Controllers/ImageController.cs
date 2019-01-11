@@ -42,10 +42,10 @@ namespace Products.Controllers{
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody]ImageModel value)
+        public async Task<IActionResult> Put(Guid id, [FromBody]ImageModel value)
         {
             //await this.vm.UpdateBrand(value);
-            return Ok(await this.vm.UpdateImage(value));
+            return Ok(await this.vm.UpdateImage(id,value));
         }
        
     }

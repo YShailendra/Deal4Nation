@@ -38,8 +38,8 @@ namespace Products.ViewModels
             return await this._repo.Find(id);
         }
 
-        public async Task<BrandModel> UpdateBrand(BrandModel model)
-        {     
+        public async Task<BrandModel> UpdateBrand(Guid id,BrandModel model)
+        {   model.ID = id;
             return await this._repo.Update(model);
         }
         public async Task<BrandModel> DeleteBrand(string id)

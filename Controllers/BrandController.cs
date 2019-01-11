@@ -46,10 +46,10 @@ namespace Products.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody]BrandModel value)
+        public async Task<IActionResult> Put(Guid id, [FromBody]BrandModel value)
         {
             //await this.vm.UpdateBrand(value);
-            return Ok(await this.vm.UpdateBrand(value));
+            return Ok(await this.vm.UpdateBrand(id,value));
         }
 
         // DELETE api/values/5

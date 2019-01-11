@@ -45,9 +45,9 @@ namespace Products.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody]DealModel value)
+        public async Task<IActionResult> Put(Guid id, [FromBody]DealModel value)
         {
-            return Ok(await this.vm.UpdateDeal(value));
+            return Ok(await this.vm.UpdateDeal(id,value));
         }
 
         // DELETE api/values/5

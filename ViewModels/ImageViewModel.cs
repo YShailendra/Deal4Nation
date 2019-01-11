@@ -31,8 +31,9 @@ namespace Products.ViewModels{
             return await this._repo.Find(id.ToString());
         }
 
-        public async Task<ImageModel> UpdateImage(ImageModel model)
+        public async Task<ImageModel> UpdateImage(Guid id,ImageModel model)
         {
+            model.ID = id;
             return await this._repo.Update(model);
         }
         public async Task<ImageModel> DeleteImage(string id)

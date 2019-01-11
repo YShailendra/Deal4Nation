@@ -55,8 +55,7 @@ namespace Products.ViewModels
                 if (user != null)
                 {
                     if(data.Password == user.Password)
-                    {
-                        data.Password = null;
+                    {    
                         data.Token = new JwtTokenBuilder()
                                                         .AddSecurityKey(JwtSecurityKey.Create(user.ID.ToString()))
                                                         .AddSubject(user.Email)
@@ -67,10 +66,15 @@ namespace Products.ViewModels
                                                         .Build();
                        
                     }
+
+                    else{
+                        data.Token = "wrong password";
+                    }
                   
                 }
             
             }
+            data.Password = null;
             return data;
         } 
         public async Task<string> ForgetPassword(string email){

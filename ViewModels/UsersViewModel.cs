@@ -100,7 +100,6 @@ namespace Products.ViewModels
                 result.Username = user.Email;
                 if (data.NewPassword == data.ConfirmPassword)
                 {
-
                     user.Password = AppHelper.Instance.GetHash(data.NewPassword);
                     await this._repo.Update(user);
                     return await this.Login(result);
@@ -113,6 +112,7 @@ namespace Products.ViewModels
             return result;
         }
         public async Task<string> VerifyOtp(ChangePasswordModel data){
+
              var user = await this._repo.Find(data.UserId.ToString());
              if(user.Otp==data.Otp)
              {

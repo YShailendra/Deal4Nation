@@ -51,8 +51,9 @@ namespace Products.Controllers
         }
         
         [HttpPost("ForgetPassword")]
-        public async Task<IActionResult> ForgetPassword(string email)
+        public async Task<IActionResult> ForgetPassword([FromBody]string email)
         {
+            Console.WriteLine(email);
             return Ok(await this.viewModel.ForgetPassword(email));
         }
         
@@ -63,7 +64,7 @@ namespace Products.Controllers
             return Ok(await this.viewModel.ChangePassword(id, value));
         }
         [HttpPost("VerifyOtp")]
-         public async Task<IActionResult> VerifyOtp(int id, [FromBody]ChangePasswordModel value)
+         public async Task<IActionResult> VerifyOtp( [FromBody]ChangePasswordModel value)
         {
             return Ok(await this.viewModel.VerifyOtp(value));
         }

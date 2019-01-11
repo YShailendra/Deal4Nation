@@ -21,9 +21,7 @@ namespace Products.Context
         public DbSet<OfferModel> Offers { get; set; }
         public DbSet<StoreModel> Stores { get; set; }
         public DbSet<FavouriteModel> Favourite { get; set; }
-
         public DbSet<AdsModel> Ads { get; set; }
-
         public DbSet<ClickModel> UserClick { get; set; }
         public DbSet<PaymentRequestModel> PaymentRequest { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)

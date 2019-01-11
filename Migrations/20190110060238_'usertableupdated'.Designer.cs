@@ -11,8 +11,8 @@ using System;
 namespace Products.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20181123072453_updateOffers")]
-    partial class updateOffers
+    [Migration("20190110060238_'usertableupdated'")]
+    partial class usertableupdated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,33 @@ namespace Products.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Products.Models.AdsModel", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("AdsCategory");
+
+                    b.Property<string>("AdsDescription");
+
+                    b.Property<Guid?>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<string>("Link");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<Guid?>("UpdatedBy");
+
+                    b.Property<DateTime?>("UpdatedOn");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Ads");
+                });
 
             modelBuilder.Entity("Products.Models.BrandModel", b =>
                 {
@@ -36,6 +63,8 @@ namespace Products.Migrations
                     b.Property<Guid?>("UpdatedBy");
 
                     b.Property<DateTime?>("UpdatedOn");
+
+                    b.Property<bool?>("isFav");
 
                     b.HasKey("ID");
 
@@ -62,9 +91,33 @@ namespace Products.Migrations
 
                     b.Property<DateTime?>("UpdatedOn");
 
+                    b.Property<bool?>("isFav");
+
                     b.HasKey("ID");
 
                     b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("Products.Models.ClickModel", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<Guid>("OfferId");
+
+                    b.Property<Guid?>("UpdatedBy");
+
+                    b.Property<DateTime?>("UpdatedOn");
+
+                    b.Property<Guid>("UserId");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("UserClick");
                 });
 
             modelBuilder.Entity("Products.Models.DealModel", b =>
@@ -90,6 +143,8 @@ namespace Products.Migrations
                     b.Property<DateTime?>("UpdatedOn");
 
                     b.Property<string>("Url");
+
+                    b.Property<bool?>("isFav");
 
                     b.HasKey("ID");
 
@@ -224,6 +279,28 @@ namespace Products.Migrations
                     b.ToTable("Offers");
                 });
 
+            modelBuilder.Entity("Products.Models.PaymentRequestModel", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Amount");
+
+                    b.Property<Guid?>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<Guid?>("UpdatedBy");
+
+                    b.Property<DateTime?>("UpdatedOn");
+
+                    b.Property<Guid>("UserId");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("PaymentRequest");
+                });
+
             modelBuilder.Entity("Products.Models.StoreModel", b =>
                 {
                     b.Property<Guid>("ID")
@@ -239,6 +316,8 @@ namespace Products.Migrations
                     b.Property<Guid?>("UpdatedBy");
 
                     b.Property<DateTime?>("UpdatedOn");
+
+                    b.Property<bool?>("isFav");
 
                     b.HasKey("ID");
 
@@ -267,6 +346,8 @@ namespace Products.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired();
+
+                    b.Property<string>("Otp");
 
                     b.Property<string>("Password")
                         .IsRequired();

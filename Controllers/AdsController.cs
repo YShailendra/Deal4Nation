@@ -9,7 +9,7 @@ using Products.ViewModels;
 
 namespace Products.Controllers
 {
-    [Route("[api/controller]")]
+    [Route("api/[controller]")]
     public class AdsController : Controller
     {
         private IAdsRepository _repo;

@@ -20,6 +20,33 @@ namespace Products.Migrations
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Products.Models.AdsModel", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("AdsCategory");
+
+                    b.Property<string>("AdsDescription");
+
+                    b.Property<Guid?>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<string>("Link");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<Guid?>("UpdatedBy");
+
+                    b.Property<DateTime?>("UpdatedOn");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Ads");
+                });
+
             modelBuilder.Entity("Products.Models.BrandModel", b =>
                 {
                     b.Property<Guid>("ID")
@@ -68,6 +95,28 @@ namespace Products.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("Products.Models.ClickModel", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<Guid>("OfferId");
+
+                    b.Property<Guid?>("UpdatedBy");
+
+                    b.Property<DateTime?>("UpdatedOn");
+
+                    b.Property<Guid>("UserId");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("UserClick");
                 });
 
             modelBuilder.Entity("Products.Models.DealModel", b =>
@@ -229,6 +278,28 @@ namespace Products.Migrations
                     b.ToTable("Offers");
                 });
 
+            modelBuilder.Entity("Products.Models.PaymentRequestModel", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Amount");
+
+                    b.Property<Guid?>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<Guid?>("UpdatedBy");
+
+                    b.Property<DateTime?>("UpdatedOn");
+
+                    b.Property<Guid>("UserId");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("PaymentRequest");
+                });
+
             modelBuilder.Entity("Products.Models.StoreModel", b =>
                 {
                     b.Property<Guid>("ID")
@@ -274,6 +345,8 @@ namespace Products.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired();
+
+                    b.Property<string>("Otp");
 
                     b.Property<string>("Password")
                         .IsRequired();

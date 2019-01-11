@@ -56,14 +56,15 @@ namespace Products.ViewModels
                 {
                     if(data.Password == user.Password)
                     {
+                        data.Password = null;
                         data.Token = new JwtTokenBuilder()
                                                         .AddSecurityKey(JwtSecurityKey.Create(user.ID.ToString()))
                                                         .AddSubject(user.Email)
                                                         .AddIssuer("Security.Bearer")
                                                         .AddAudience("Security.Bearer")
-                                                        // .AddClaim("IsAdmin", user.IsAdmin)
+                                                        .AddClaim("IsAdmin", "true")
                                                         .AddExpiry(5)
-                                                        .Build().ToString();
+                                                        .Build();
                        
                     }
                   
@@ -85,7 +86,8 @@ namespace Products.ViewModels
                 return "Inavalid Email";
             }
         }
-        public async Task<LoginModel> ChangePassword(ChangePasswordModel data){
+        public async Task<LoginModel> ChangePassword(Guid Id,ChangePasswordModel data){
+            data.UserId = Id;
             var user = await this._repo.Find(data.UserId.ToString());
             var result = new LoginModel();
             if (user != null)

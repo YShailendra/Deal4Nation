@@ -10,10 +10,10 @@ namespace Products.Models
     public class ChangePasswordModel
     {
         public Guid UserId {get;set;}
-        public string NewPassword { get;}
-        public string OldPassword {get;}
-        public string ConfirmPassword {get;}
-        public string Otp { get; }
+        public string NewPassword { get;set;}
+        public string OldPassword {get;set;}
+        public string ConfirmPassword {get;set;}
+        public string Otp { get;set; }
        
     };
 }

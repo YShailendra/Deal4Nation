@@ -24,7 +24,9 @@ namespace Products.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login(LoginModel model){
+        public async Task<IActionResult> Login([FromBody]LoginModel model){
+            Console.WriteLine(model.Username);
+            Console.WriteLine(model.Password);
             return Ok(await this.viewModel.Login(model));
         }
 
@@ -54,10 +56,11 @@ namespace Products.Controllers
             return Ok(await this.viewModel.ForgetPassword(email));
         }
         
-        [HttpPost("ChangePassword")]
-        public async Task<IActionResult> ChangePassword(int id, [FromBody]ChangePasswordModel value)
+        [HttpPost("ChangePassword/{id}")]
+        public async Task<IActionResult> ChangePassword(Guid id, [FromBody]ChangePasswordModel value)
         {
-            return Ok(await this.viewModel.ChangePassword(value));
+        
+            return Ok(await this.viewModel.ChangePassword(id, value));
         }
         [HttpPost("VerifyOtp")]
          public async Task<IActionResult> VerifyOtp(int id, [FromBody]ChangePasswordModel value)

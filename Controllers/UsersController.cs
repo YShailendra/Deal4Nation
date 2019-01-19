@@ -22,11 +22,13 @@ namespace Products.Controllers
         {
             return Ok(await this.viewModel.GetUsers());
         }
-
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(Guid id)
+        {
+            return Ok(await this.viewModel.GetUserById(id));
+        }
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody]LoginModel model){
-            Console.WriteLine(model.Username);
-            Console.WriteLine(model.Password);
             return Ok(await this.viewModel.Login(model));
         }
 
@@ -61,7 +63,7 @@ namespace Products.Controllers
         public async Task<IActionResult> ChangePassword(Guid id, [FromBody]ChangePasswordModel value)
         {
         
-            return Ok(await this.viewModel.ChangePassword(id, value));
+            return Ok(await this.viewModel.ChangePassword(id,value));
         }
         [HttpPost("VerifyOtp")]
          public async Task<IActionResult> VerifyOtp( [FromBody]ChangePasswordModel value)

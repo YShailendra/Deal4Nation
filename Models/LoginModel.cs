@@ -14,6 +14,5 @@ namespace Products.Models
         public string Password { get; set; }
         public dynamic Token{get;set;}
        
-       
     }
 }

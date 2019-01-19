@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Products.Models;
 using Products.Repository.Deal;
+using Products.Repository.Image;
 using Products.ViewModels;
 
 namespace Products.Controllers
@@ -15,9 +16,9 @@ namespace Products.Controllers
        #region Private Property
         private IDealRepository _repo;
         private DealsViewModel vm;
-        public DealsController(IDealRepository repo){
+        public DealsController(IDealRepository repo,IImageRepository imgRepo){
             this._repo = repo;
-            this.vm = new DealsViewModel(this._repo);
+            this.vm = new DealsViewModel(this._repo,imgRepo);
         }
         #endregion
         // GET api/values

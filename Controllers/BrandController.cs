@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Products.Models;
 using Products.Repository.Brand;
 using Products.Repository.Deal;
+using Products.Repository.Image;
 using Products.ViewModels;
 
 namespace Products.Controllers

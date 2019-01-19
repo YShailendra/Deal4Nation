@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Products.Models;
 using Products.Repository.Brand;
+using Products.Repository.Image;
 
 
 namespace Products.ViewModels
@@ -28,9 +29,9 @@ namespace Products.ViewModels
             data.ID= Guid.NewGuid();
             var result = await this._repo.Add(data);
             if(result !=null && data.Logo!=null){
-                 var img =  await this._imgRepo.Find(data.Logo.ID);
+                 var img =  await this._imgRepo.Find(data.Logo.ID.ToString());
                  if(img !=null){
-                     img.ReferenceID= data.ID;
+                     img.RefrenceID = data.ID;
                  }
                 await this._imgRepo.Update(img);
             }

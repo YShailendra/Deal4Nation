@@ -43,7 +43,10 @@ namespace Products.ViewModels
         {     
             return await this._repo.GetAll() as List<UserModel>;
         }
-
+        public async Task<UserModel> GetUserById(Guid id)
+        {     
+            return await this._repo.Find(id.ToString());
+        }
         public async Task<LoginModel> Login(LoginModel data)
         {
             

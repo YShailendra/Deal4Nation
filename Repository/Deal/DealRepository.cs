@@ -35,7 +35,11 @@ namespace Products.Repository.Deal
         }
         public async Task<DealModel> Find(string Id)
         {
-            return await this.context.Deals.Where(w=>w.ID==System.Guid.Parse(Id)).FirstOrDefaultAsync();
+            return await this.context.Deals.Where(w=>w.ID==Guid.Parse(Id)).Select(s=> new DealModel{
+                ID=s.ID,
+                Name=s.Name,
+                Logo = this.context.Images.FirstOrDefault(f=>f.RefrenceID==s.ID)
+            }).FirstOrDefaultAsync();
         }
         public async Task<DealModel> GetByEmailOrNumber(string _value)
         {

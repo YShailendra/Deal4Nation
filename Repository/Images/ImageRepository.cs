@@ -31,10 +31,15 @@ namespace Products.Repository.Image
             
             return await this.context.Images.Where(w => w.ID == System.Guid.Parse(Id)).FirstOrDefaultAsync();
         }
-
         public async Task<IEnumerable<ImageModel>> GetAll()
         {
            return await this.context.Images.ToListAsync();
+        }
+        
+
+        public async Task<IEnumerable<ImageModel>> GetImagesByIds(List<Guid> imageIds)
+        {
+            return await this.context.Images.Where(w=>imageIds.Contains(w.ID)).ToListAsync();
         }
 
         public async Task<ImageModel> Remove(string Id)

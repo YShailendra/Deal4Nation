@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Products.Models;
 using Products.Repository.Offer;
+using Products.Repository.Image;
 using Products.ViewModels;
 
 namespace Products.Controllers
@@ -15,9 +16,9 @@ namespace Products.Controllers
         #region Private Property
         private IOfferRepository _repo;
         private  OffersViewModel vm;
-        public OffersController(IOfferRepository repo){
+        public OffersController(IOfferRepository repo,IImageRepository imgRepo){
             this._repo = repo;
-            this.vm= new OffersViewModel(this._repo);
+            this.vm= new OffersViewModel(this._repo,imgRepo);
         }
         #endregion
         // GET api/values

@@ -6,6 +6,7 @@ using Products.Models;
 using Products.Repository;
 using Newtonsoft.Json;
 using Products.Repository.Offer;
+using Products.Repository.Image;
 
 namespace Products.ViewModels
 {
@@ -13,10 +14,12 @@ namespace Products.ViewModels
     {
         #region Private Property
         private IOfferRepository _offerRepo;
+        private IImageRepository _imgRepo;
         #endregion
-        public OffersViewModel(IOfferRepository repo)
+        public OffersViewModel(IOfferRepository repo,IImageRepository imgRepo)
         {
             this._offerRepo = repo;
+            this._imgRepo = imgRepo;
         }
         public OffersViewModel()
         {
@@ -37,6 +40,7 @@ namespace Products.ViewModels
         {
            model.ID= Guid.NewGuid(); 
            var data = await _offerRepo.Add(model);
+           data = await this.UpdateOfferImage(data,model);
            return data;
         }
         public async Task<IEnumerable<OfferModel>> GetByStoreId(Guid id)
@@ -72,7 +76,21 @@ namespace Products.ViewModels
            return data;
         }
         #region  Private Methods
-       
+       private async Task<OfferModel> UpdateOfferImage(OfferModel result,OfferModel data)
+        {
+            if(result !=null && data.Images!=null){
+                 var img =  await this._imgRepo.GetImagesByIds(data.Images.Select(ss=>ss.ID).ToList());
+                 if(img !=null && img.Count()>0){
+                     foreach (var item in img)
+                     {
+                        item.RefrenceID = data.ID;
+                         await this._imgRepo.Update(item);
+                     }
+                     
+                 }
+            }
+            return data;
+        }
         #endregion
     }
 }

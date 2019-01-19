@@ -21,7 +21,6 @@ namespace Products.Models
         public Guid StroreID {get; set;}
         public Guid? SubCategoryID {get; set;}
         public string Url {get; set;}
-        public string Logo {get; set;}
         public string CouponCode {get; set;}
         [NotMapped]
         public List<ImageModel> Images {get;set;}

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Products.Models;
 using Products.Repository.Store;
 using Products.ViewModels;
-
+using Products.Repository.Image;
 namespace Products.Controllers
 {
     [Route("api/[controller]")]
@@ -14,10 +14,10 @@ namespace Products.Controllers
     {
         private IStoreRepository _repo;
         private StoresViewModel viewModel;
-        public StoresController(IStoreRepository repo)
+        public StoresController(IStoreRepository repo,IImageRepository imageRepo)
         {
             this._repo = repo;
-            this.viewModel = new StoresViewModel(this._repo);
+            this.viewModel = new StoresViewModel(this._repo,imageRepo);
         }
 
         // GET api/values

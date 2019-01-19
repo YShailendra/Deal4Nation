@@ -28,7 +28,8 @@ namespace Products.Repository.Image
 
         public  async Task<ImageModel> Find(string Id)
         {
-            return await this.context.Images.Where(w => w.ID == System.Guid.Parse(Id)).SingleOrDefaultAsync();
+            
+            return await this.context.Images.Where(w => w.ID == System.Guid.Parse(Id)).FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<ImageModel>> GetAll()

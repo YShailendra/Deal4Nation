@@ -34,6 +34,7 @@ namespace Products.ViewModels
                      img.RefrenceID = data.ID;
                  }
                 await this._imgRepo.Update(img);
+                data.Logo = img;
             }
 
                 //this._imgRepo.Add()

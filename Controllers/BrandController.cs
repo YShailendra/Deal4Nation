@@ -15,10 +15,12 @@ namespace Products.Controllers
     {
        #region Private Property
         private IBrandRepository _repo;
+        private IImageRepository _imgRepo;
+
         private BrandViewModel vm;
-        public BrandController(IBrandRepository repo){
+        public BrandController(IBrandRepository repo,IImageRepository imgrepo){
             this._repo = repo;
-            this.vm = new BrandViewModel(this._repo);
+            this.vm = new BrandViewModel(this._repo,imgrepo);
         }
         #endregion
         // GET api/values

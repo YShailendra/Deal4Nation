@@ -15,7 +15,7 @@ namespace Products.Repository.Image
 
         private AppDbContext context;
 
-        private ImageRepository(AppDbContext context){
+        public ImageRepository(AppDbContext context){
             this.context = context;
         }
 

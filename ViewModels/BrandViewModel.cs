@@ -12,10 +12,12 @@ namespace Products.ViewModels
     {
         #region Private Variables 
         public IBrandRepository _repo {get; set;}
+        public IImageRepository _imgRepo {get; set;}
         #endregion
-        public BrandViewModel(IBrandRepository repo)
+        public BrandViewModel(IBrandRepository repo,IImageRepository imgRepo)
         {
             this._repo=repo;
+            this._imgRepo = imgRepo;
         }
         public BrandViewModel()
         {
@@ -24,8 +26,18 @@ namespace Products.ViewModels
         public async Task<BrandModel> Create(BrandModel data)
         {
             data.ID= Guid.NewGuid();
-            var result =this._repo.Add(data);
-            return await result;
+            var result = await this._repo.Add(data);
+            if(result !=null && data.Logo!=null){
+                 var img =  await this._imgRepo.Find(data.Logo.ID);
+                 if(img !=null){
+                     img.ReferenceID= data.ID;
+                 }
+                await this._imgRepo.Update(img);
+            }
+
+                //this._imgRepo.Add()
+           
+            return  result;
         }
 
         public async Task<List<BrandModel>> GetBrands()

@@ -35,7 +35,7 @@ namespace Products.Repository.Store
         }
         public async Task<StoreModel> Find(string Id)
         {
-            return await this.context.Stores.Where(w=>w.ID==System.Guid.Parse(Id)).SingleOrDefaultAsync();
+            return await this.context.Stores.Where(w=>w.ID==System.Guid.Parse(Id)).FirstOrDefaultAsync();
         }
         public async Task<StoreModel> GetByName(string _value)
         {
@@ -43,7 +43,7 @@ namespace Products.Repository.Store
         }
         public async Task<StoreModel> Remove(string Id)
         {
-            var itemToRemove = await context.Stores.SingleOrDefaultAsync(r => r.ID == Guid.Parse(Id));
+            var itemToRemove = await context.Stores.FirstOrDefaultAsync(r => r.ID == Guid.Parse(Id));
             if (itemToRemove != null)
             {
                 context.Stores.Remove(itemToRemove);

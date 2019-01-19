@@ -39,7 +39,7 @@ namespace Products.Repository.Image
 
         public async Task<ImageModel> Remove(string Id)
         {
-            var itemToRemove = await context.Images.SingleOrDefaultAsync(r => r.ID == Guid.Parse(Id));
+            var itemToRemove = await context.Images.FirstOrDefaultAsync(r => r.ID == Guid.Parse(Id));
             if (itemToRemove != null)
             {
                 context.Images.Remove(itemToRemove);

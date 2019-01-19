@@ -27,7 +27,7 @@ namespace Products.Repository.Ads
 
         public async Task<AdsModel> Find(string key)
         {
-            return await this.context.Ads.Where(w => w.ID == Guid.Parse(key)).SingleOrDefaultAsync();
+            return await this.context.Ads.Where(w => w.ID == Guid.Parse(key)).FirstOrDefaultAsync();
         }
 
         public Task<IEnumerable<AdsModel>> GetAll()
@@ -37,7 +37,7 @@ namespace Products.Repository.Ads
 
         public async Task<AdsModel> Remove(string Id)
         {
-            var itemToRemove = await context.Ads.SingleOrDefaultAsync(r => r.ID == Guid.Parse(Id));
+            var itemToRemove = await context.Ads.FirstOrDefaultAsync(r => r.ID == Guid.Parse(Id));
             if (itemToRemove != null)
             {
                 context.Ads.Remove(itemToRemove);
@@ -58,7 +58,7 @@ namespace Products.Repository.Ads
         }
 
         public async Task<AdsModel> GetAdsByCategory(string value){
-            return await this.context.Ads.Where(w => w.AdsCategory == Guid.Parse(value)).SingleOrDefaultAsync();
+            return await this.context.Ads.Where(w => w.AdsCategory == Guid.Parse(value)).FirstOrDefaultAsync();
         }
     }
 

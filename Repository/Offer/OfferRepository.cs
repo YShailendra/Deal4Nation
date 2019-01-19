@@ -43,7 +43,7 @@ namespace Products.Repository.Offer
         }
         public async Task<OfferModel> Remove(string Id)
         {
-            var itemToRemove = await context.Offers.SingleOrDefaultAsync(r => r.ID == Guid.Parse(Id));
+            var itemToRemove = await context.Offers.FirstOrDefaultAsync(r => r.ID == Guid.Parse(Id));
             if (itemToRemove != null)
             {
                 context.Offers.Remove(itemToRemove);

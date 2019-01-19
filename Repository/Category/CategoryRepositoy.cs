@@ -24,7 +24,7 @@ namespace Products.Repository.Category
         }
         public async Task<CategoryModel> Remove(string Id)
         {
-            var itemToRemove = await context.Category.SingleOrDefaultAsync(r => r.ID == Guid.Parse(Id));
+            var itemToRemove = await context.Category.FirstOrDefaultAsync(r => r.ID == Guid.Parse(Id));
             if (itemToRemove != null)
             {
                 context.Category.Remove(itemToRemove);
@@ -64,7 +64,7 @@ namespace Products.Repository.Category
 
         public async Task<CategoryModel> Find(string key)
         {
-            return await this.context.Category.Where(w => w.ID == Guid.Parse(key)).SingleOrDefaultAsync();
+            return await this.context.Category.Where(w => w.ID == Guid.Parse(key)).FirstOrDefaultAsync();
         }
 
 

@@ -14,5 +14,7 @@ namespace Products.Models
         [Required]
         public int CatType { get; set;}
         public Guid? CatPID { get; set;}
+
+        public bool? isFav {get;set;}
     }
 }

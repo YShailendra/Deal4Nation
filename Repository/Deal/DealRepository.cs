@@ -35,7 +35,11 @@ namespace Products.Repository.Deal
         }
         public async Task<DealModel> Find(string Id)
         {
-            return await this.context.Deals.Where(w=>w.ID==System.Guid.Parse(Id)).SingleOrDefaultAsync();
+            return await this.context.Deals.Where(w=>w.ID==Guid.Parse(Id)).Select(s=> new DealModel{
+                ID=s.ID,
+                Name=s.Name,
+                Logo = this.context.Images.FirstOrDefault(f=>f.RefrenceID==s.ID)
+            }).FirstOrDefaultAsync();
         }
         public async Task<DealModel> GetByEmailOrNumber(string _value)
         {
@@ -43,7 +47,7 @@ namespace Products.Repository.Deal
         }
         public async Task<DealModel> Remove(string Id)
         {
-            var itemToRemove = await context.Deals.SingleOrDefaultAsync(r => r.ID == Guid.Parse(Id));
+            var itemToRemove = await context.Deals.FirstOrDefaultAsync(r => r.ID == Guid.Parse(Id));
             if (itemToRemove != null)
             {
                 context.Deals.Remove(itemToRemove);

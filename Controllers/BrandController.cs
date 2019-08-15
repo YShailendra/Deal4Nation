@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Products.Models;
 using Products.Repository.Brand;
 using Products.Repository.Deal;
+using Products.Repository.Image;
 using Products.ViewModels;
 
 namespace Products.Controllers
@@ -15,10 +16,12 @@ namespace Products.Controllers
     {
        #region Private Property
         private IBrandRepository _repo;
+        private IImageRepository _imgRepo;
+
         private BrandViewModel vm;
-        public BrandController(IBrandRepository repo){
+        public BrandController(IBrandRepository repo,IImageRepository imgrepo){
             this._repo = repo;
-            this.vm = new BrandViewModel(this._repo);
+            this.vm = new BrandViewModel(this._repo,imgrepo);
         }
         #endregion
         // GET api/values
@@ -34,7 +37,7 @@ namespace Products.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            return null;
         }
 
         // POST api/values
@@ -46,14 +49,17 @@ namespace Products.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async Task<IActionResult> Put(Guid id, [FromBody]BrandModel value)
         {
+            //await this.vm.UpdateBrand(value);
+            return Ok(await this.vm.UpdateBrand(id,value));
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
+             return Ok(await this.vm.DeleteBrand(id));
         }
     }
 }

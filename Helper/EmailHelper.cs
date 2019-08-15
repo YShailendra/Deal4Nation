@@ -14,9 +14,9 @@ namespace Products.Helper
             bool isResult = false;
             try
             {
-                MailMessage mail = new MailMessage("ershailendra57@gmail.com", to);
+                MailMessage mail = new MailMessage("prateek22elinfinito@gmail.com", to);
                 SmtpClient client = new SmtpClient();
-                client.Credentials = new System.Net.NetworkCredential("ershailendra57@gmail.com", "9891313017");
+               
                 client.Port = 587;
                 client.Host = "smtp.gmail.com";
                 client.EnableSsl = true;
@@ -26,6 +26,7 @@ namespace Products.Helper
                 
                 mail.Subject = subject;
                 mail.Body = messageBody;
+                 client.Credentials = new System.Net.NetworkCredential("prateek22elinfinito@gmail.com", "Elinfinito@22");
                 client.Send(mail);
                 isResult = true;
             }

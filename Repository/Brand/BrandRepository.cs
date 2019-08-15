@@ -25,7 +25,7 @@ namespace Products.Repository.Category
         } 
         public async Task<BrandModel> Remove(string Id)
         {
-            var itemToRemove = await context.Brand.SingleOrDefaultAsync(r => r.ID == Guid.Parse(Id));
+            var itemToRemove = await context.Brand.FirstOrDefaultAsync(r => r.ID == Guid.Parse(Id));
             if (itemToRemove != null)
             {
                 context.Brand.Remove(itemToRemove);
@@ -57,6 +57,7 @@ namespace Products.Repository.Category
                  ID=s.ID,
                  Name=s.Name,
                  CreatedOn=s.CreatedOn,
+                 isFav = s.isFav,
                  Logo = this.context.Images.FirstOrDefault(f=>f.RefrenceID==s.ID)
              }
              ).ToListAsync();
@@ -65,7 +66,7 @@ namespace Products.Repository.Category
 
         public async Task<BrandModel> Find(string key)
         {
-            return await this.context.Brand.Where(w=>w.ID==Guid.Parse(key)).SingleOrDefaultAsync();
+            return await this.context.Brand.Where(w=>w.ID==Guid.Parse(key)).FirstOrDefaultAsync();
         }
 
        

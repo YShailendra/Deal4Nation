@@ -22,31 +22,53 @@ namespace Products.Controllers
         {
             return Ok(await this.viewModel.GetUsers());
         }
-
-        // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            return "value";
+            return Ok(await this.viewModel.GetUserById(id));
+        }
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login([FromBody]LoginModel model){
+            return Ok(await this.viewModel.Login(model));
         }
 
         // POST api/values
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]UserModel value)
+        public async Task<IActionResult> Register ([FromBody]UserModel value)
         {
             return Ok(await this.viewModel.RegisterUser(value));
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async Task<IActionResult> Put(Guid id, [FromBody]UserModel value)
         {
+            return Ok(await this.viewModel.UpdateUser(id,value));
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+        
+        [HttpPost("ForgetPassword")]
+        public async Task<IActionResult> ForgetPassword([FromBody]string email)
+        {
+            Console.WriteLine(email);
+            return Ok(await this.viewModel.ForgetPassword(email));
+        }
+        
+        [HttpPost("ChangePassword/{id}")]
+        public async Task<IActionResult> ChangePassword(Guid id, [FromBody]ChangePasswordModel value)
+        {
+        
+            return Ok(await this.viewModel.ChangePassword(id,value));
+        }
+        [HttpPost("VerifyOtp")]
+         public async Task<IActionResult> VerifyOtp( [FromBody]ChangePasswordModel value)
+        {
+            return Ok(await this.viewModel.VerifyOtp(value));
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Products.Models;
 using Products.Repository.Offer;
+using Products.Repository.Image;
 using Products.ViewModels;
 
 namespace Products.Controllers
@@ -15,9 +16,9 @@ namespace Products.Controllers
         #region Private Property
         private IOfferRepository _repo;
         private  OffersViewModel vm;
-        public OffersController(IOfferRepository repo){
+        public OffersController(IOfferRepository repo,IImageRepository imgRepo){
             this._repo = repo;
-            this.vm= new OffersViewModel(this._repo);
+            this.vm= new OffersViewModel(this._repo,imgRepo);
         }
         #endregion
         // GET api/values
@@ -36,12 +37,14 @@ namespace Products.Controllers
         [HttpGet("GetByStoreId/{id}")]
         public async Task<IActionResult> GetByStoreId(string id)
         {
-            return  Ok(await this.vm.GetOfferById(Guid.Parse(id)));;
+            Console.WriteLine(id);
+            return  Ok(await this.vm.GetByStoreId(Guid.Parse(id)));;
         }
         [HttpGet("GetByBrandId/{id}")]
         public async Task<IActionResult> GetByBrandId(string id)
         {
-            return  Ok(await this.vm.GetOfferById(Guid.Parse(id)));;
+             Console.WriteLine(id);
+            return  Ok(await this.vm.GetByBrand(Guid.Parse(id)));;
         }
 
         [HttpGet("GetFavouriteByUserId/{id}")]
@@ -49,10 +52,11 @@ namespace Products.Controllers
         {
             return  Ok(await this.vm.GetFavoriteByUserId(Guid.Parse(id)));;
         }
-        [HttpPost("GetByCategories")]
-        public async Task<IActionResult> GetByCategories(List<Guid> ids)
+
+          [HttpGet("GetByCategories/{id}")]
+        public async Task<IActionResult> GetByCategories(string id)
         {
-            return  Ok(await this.vm.GetByCategories(ids));
+            return  Ok(await this.vm.GetByCategories(Guid.Parse(id)));
         }    
         //POST api/values
         [HttpPost]
@@ -63,14 +67,16 @@ namespace Products.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async Task<IActionResult> Put(Guid id, [FromBody]OfferModel value)
         {
+            return Ok(await this.vm.UpdateOffer(id,value));
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
+            return Ok(await this.vm.DeleteOffer(id));
         }
     }
 }

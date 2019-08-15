@@ -33,9 +33,9 @@ namespace Products.Controllers
         }
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(string id)
         {
-            return "value";
+            return Ok(await this.vm.GetCategoryById(id));
         }
 
         // POST api/values
@@ -47,14 +47,16 @@ namespace Products.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async Task<IActionResult> Put(Guid id, [FromBody]CategoryModel value)
         {
+            return Ok(await this.vm.UpdateCategory(id,value));
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
+            return Ok(await this.vm.DeleteCategory(id));
         }
     }
 }

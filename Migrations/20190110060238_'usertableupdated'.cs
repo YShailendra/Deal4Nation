@@ -4,10 +4,29 @@ using System.Collections.Generic;
 
 namespace Products.Migrations
 {
-    public partial class updateModel : Migration
+    public partial class usertableupdated : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Ads",
+                columns: table => new
+                {
+                    ID = table.Column<Guid>(nullable: false),
+                    AdsCategory = table.Column<Guid>(nullable: false),
+                    AdsDescription = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    Link = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    UpdatedBy = table.Column<Guid>(nullable: true),
+                    UpdatedOn = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ads", x => x.ID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Brand",
                 columns: table => new
@@ -17,7 +36,8 @@ namespace Products.Migrations
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     UpdatedBy = table.Column<Guid>(nullable: true),
-                    UpdatedOn = table.Column<DateTime>(nullable: true)
+                    UpdatedOn = table.Column<DateTime>(nullable: true),
+                    isFav = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -35,7 +55,8 @@ namespace Products.Migrations
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     UpdatedBy = table.Column<Guid>(nullable: true),
-                    UpdatedOn = table.Column<DateTime>(nullable: true)
+                    UpdatedOn = table.Column<DateTime>(nullable: true),
+                    isFav = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,7 +76,8 @@ namespace Products.Migrations
                     Name = table.Column<string>(nullable: false),
                     UpdatedBy = table.Column<Guid>(nullable: true),
                     UpdatedOn = table.Column<DateTime>(nullable: true),
-                    Url = table.Column<string>(nullable: true)
+                    Url = table.Column<string>(nullable: true),
+                    isFav = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -116,6 +138,23 @@ namespace Products.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PaymentRequest",
+                columns: table => new
+                {
+                    ID = table.Column<Guid>(nullable: false),
+                    Amount = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    UpdatedBy = table.Column<Guid>(nullable: true),
+                    UpdatedOn = table.Column<DateTime>(nullable: true),
+                    UserId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PaymentRequest", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Stores",
                 columns: table => new
                 {
@@ -124,7 +163,8 @@ namespace Products.Migrations
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     UpdatedBy = table.Column<Guid>(nullable: true),
-                    UpdatedOn = table.Column<DateTime>(nullable: true)
+                    UpdatedOn = table.Column<DateTime>(nullable: true),
+                    isFav = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -144,6 +184,7 @@ namespace Products.Migrations
                     DeviceID = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
+                    Otp = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: false),
                     PhoneNo = table.Column<string>(nullable: false),
                     Profession = table.Column<string>(nullable: true),
@@ -155,6 +196,23 @@ namespace Products.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserClick",
+                columns: table => new
+                {
+                    ID = table.Column<Guid>(nullable: false),
+                    CreatedBy = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    OfferId = table.Column<Guid>(nullable: false),
+                    UpdatedBy = table.Column<Guid>(nullable: true),
+                    UpdatedOn = table.Column<DateTime>(nullable: true),
+                    UserId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserClick", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -175,6 +233,8 @@ namespace Products.Migrations
                     Name = table.Column<string>(nullable: false),
                     ShortDescription = table.Column<string>(nullable: true),
                     StartOn = table.Column<DateTime>(nullable: true),
+                    StoreID = table.Column<Guid>(nullable: true),
+                    StroreID = table.Column<Guid>(nullable: false),
                     SubCategoryID = table.Column<Guid>(nullable: true),
                     UpdatedBy = table.Column<Guid>(nullable: true),
                     UpdatedOn = table.Column<DateTime>(nullable: true),
@@ -195,6 +255,12 @@ namespace Products.Migrations
                         principalTable: "Category",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Offers_Stores_StoreID",
+                        column: x => x.StoreID,
+                        principalTable: "Stores",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -206,6 +272,11 @@ namespace Products.Migrations
                 name: "IX_Offers_CategoryID",
                 table: "Offers",
                 column: "CategoryID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Offers_StoreID",
+                table: "Offers",
+                column: "StoreID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_Email",
@@ -223,6 +294,9 @@ namespace Products.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Ads");
+
+            migrationBuilder.DropTable(
                 name: "Deals");
 
             migrationBuilder.DropTable(
@@ -238,16 +312,22 @@ namespace Products.Migrations
                 name: "Offers");
 
             migrationBuilder.DropTable(
-                name: "Stores");
+                name: "PaymentRequest");
 
             migrationBuilder.DropTable(
                 name: "User");
+
+            migrationBuilder.DropTable(
+                name: "UserClick");
 
             migrationBuilder.DropTable(
                 name: "Brand");
 
             migrationBuilder.DropTable(
                 name: "Category");
+
+            migrationBuilder.DropTable(
+                name: "Stores");
         }
     }
 }

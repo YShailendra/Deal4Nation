@@ -34,7 +34,7 @@ namespace Products.Repository.User
         }
         public async Task<UserModel> Find(string Id)
         {
-            return await this.context.User.Where(w=>w.ID==Guid.Parse(Id)).SingleOrDefaultAsync();
+            return await this.context.User.Where(w=>w.ID==Guid.Parse(Id)).FirstOrDefaultAsync();
         }
         public async Task<UserModel> GetByEmailOrNumber(string _value)
         {
@@ -42,7 +42,7 @@ namespace Products.Repository.User
         }
         public async Task<UserModel> Remove(string Id)
         {
-            var itemToRemove = await context.User.SingleOrDefaultAsync(r => r.ID == Guid.Parse(Id));
+            var itemToRemove = await context.User.FirstOrDefaultAsync(r => r.ID == Guid.Parse(Id));
             if (itemToRemove != null)
             {
                 context.User.Remove(itemToRemove);

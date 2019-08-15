@@ -80,6 +80,7 @@ namespace Products.Helper
                                                         this.securityKey,
                                                         SecurityAlgorithms.HmacSha256));
 
+            Console.WriteLine(token);
             return new JwtToken(token);
         }
 

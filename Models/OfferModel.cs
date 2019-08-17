@@ -22,12 +22,16 @@ namespace Products.Models
         public Guid? SubCategoryID {get; set;}
         public string Url {get; set;}
         public string CouponCode {get; set;}
+
         [NotMapped]
         public List<ImageModel> Images {get;set;}
 
-        [ForeignKey("CategoryID")]
+        [NotMapped]
         public CategoryModel Category { get; set; }
-       
+
+        [NotMapped]
+        public CategoryModel SubCategory { get; set; }
+
         [ForeignKey("BrandID")]
         public BrandModel Brand {get; set;} 
 

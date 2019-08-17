@@ -24,7 +24,7 @@ namespace Products.Models
         public string City {get; set;}
         public string Addr {get; set;}
         public string DeviceID {get; set;}
-        public string Refrrel {get; set;}
+        public string Referral {get; set;}
         public int? Balance {get; set;} 
         public string Otp {get; set;} 
     }

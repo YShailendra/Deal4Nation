@@ -3,6 +3,8 @@ using System;
 using Products.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace Products.Context
 {
@@ -24,6 +26,7 @@ namespace Products.Context
         public DbSet<AdsModel> Ads { get; set; }
         public DbSet<ClickModel> UserClick { get; set; }
         public DbSet<PaymentRequestModel> PaymentRequest { get; set; }
+        public DbSet<ProductModel> Product { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
 
@@ -65,6 +68,36 @@ namespace Products.Context
             }
             return base.SaveChanges();
         }
+        /// <summary>  
+        /// Overriding Save Changes Async  
+        /// </summary>  
+        /// <returns></returns>  
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            var addedEntityList = ChangeTracker.Entries()
+                                    .Where(x => x.Entity is BaseModel &&
+                                    (x.State == EntityState.Added));
+            var updatedEntityList = ChangeTracker.Entries()
+                                    .Where(x => x.Entity is BaseModel &&
+                                    (x.State == EntityState.Modified));
+            //Gt user Name from  session or other authentication   
+            var userName = Guid.NewGuid();
 
+            foreach (var entity in addedEntityList)
+            {
+                ((BaseModel)entity.Entity).ID = Guid.NewGuid();
+                ((BaseModel)entity.Entity).CreatedOn = DateTime.Now;
+                ((BaseModel)entity.Entity).CreatedBy = userName;
+            }
+            foreach (var entity in updatedEntityList)
+            {
+
+                ((BaseModel)entity.Entity).UpdatedOn = DateTime.Now;
+                ((BaseModel)entity.Entity).UpdatedBy = userName;
+            }
+            int result = await base.SaveChangesAsync();
+            return result; 
+        }
+        
     }
 }

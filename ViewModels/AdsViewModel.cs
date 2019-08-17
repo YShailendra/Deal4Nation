@@ -8,7 +8,8 @@ using Products.Repository.Ads;
 
 namespace Products.ViewModels
 {
-    public class AdsViewModel{
+    public class AdsViewModel
+    {
 
         public IAdsRepository _repo {get;set;}
 

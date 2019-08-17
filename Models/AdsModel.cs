@@ -19,7 +19,9 @@ namespace Products.Models
 
         public string Link{get;set;}
 
-        public Guid AdsCategory {get;set;}
+        public Guid? Category {get;set;}
+
+        public Guid? SubCategory { get; set; }
 
     }
 }

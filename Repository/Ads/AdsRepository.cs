@@ -58,7 +58,7 @@ namespace Products.Repository.Ads
         }
 
         public async Task<AdsModel> GetAdsByCategory(string value){
-            return await this.context.Ads.Where(w => w.AdsCategory == Guid.Parse(value)).FirstOrDefaultAsync();
+            return await this.context.Ads.Where(w => w.Category == Guid.Parse(value)).FirstOrDefaultAsync();
         }
     }
 

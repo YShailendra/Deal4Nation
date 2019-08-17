@@ -1,21 +1,22 @@
 using Products.Context;
-using Products.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BookingSystemApi.Repository
 {
-    public class BaseRepository<T> where T:class
+    public class BaseRepository
     {
-        
-        
-        public void SaveChanges(AppDbContext context)
-        {   
-            context.SaveChangesAsync();
+        public BaseRepository() { }
+
+        protected AppDbContext context;
+        public BaseRepository(AppDbContext ctx)
+        {
+            context = ctx;
         }
         
+
+        //public void SaveChanges(AppDbContext context)
+        //{   
+        //    context.SaveChangesAsync();
+        //}
+
     }
 }

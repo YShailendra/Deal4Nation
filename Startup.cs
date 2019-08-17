@@ -25,6 +25,8 @@ using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using System.Buffers;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Products.ViewModels;
+using Products.Repository.Product;
 
 namespace Products
 {
@@ -42,15 +44,17 @@ namespace Products
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             //using Dependency Injection
-            services.AddSingleton<IUserRepository, UserRepository>();
-            services.AddSingleton<IDealRepository, DealRepository>();
-            services.AddSingleton<IStoreRepository, StoreRepository>();
-            services.AddSingleton<IOfferRepository, OfferRepository>();
-            services.AddSingleton<ICategoryRepository, CategoryRepository>();
-            services.AddSingleton<IBrandRepository, BrandRepository>();
-            services.AddSingleton<IUserInteractionRepository, UserInteractionRepository>();
-            services.AddSingleton<IAdsRepository, AdsRepository>();
-            services.AddSingleton<IImageRepository, ImageRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IDealRepository, DealRepository>();
+            services.AddScoped<IStoreRepository, StoreRepository>();
+            services.AddScoped<IOfferRepository, OfferRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IBrandRepository, BrandRepository>();
+            services.AddScoped<IUserInteractionRepository, UserInteractionRepository>();
+            services.AddScoped<IAdsRepository, AdsRepository>();
+            services.AddScoped<IImageRepository, ImageRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ProductViewModel>();
             services.AddMvc(options=>{
             //this is to remove refrence loop of data model
             options.OutputFormatters.Clear();
@@ -60,7 +64,7 @@ namespace Products
             }, ArrayPool<char>.Shared));
             }).AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
             services.AddMvc();
-         services.AddCors();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

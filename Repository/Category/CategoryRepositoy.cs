@@ -58,6 +58,8 @@ namespace Products.Repository.Category
                 Name = s.Name,
                 CreatedOn = s.CreatedOn,
                 isFav = s.isFav,
+                CatType=s.CatType,
+                CatPID=s.CatPID
             }).ToListAsync();
             return data;
         }

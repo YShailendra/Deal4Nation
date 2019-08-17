@@ -25,5 +25,13 @@ namespace Products.Models
         public Boolean? IsActive { get; set;}
 
         public bool? isFav {get;set;}
+
+        public Guid? CategoryID { get; set; }
+        public Guid? SubCategoryID { get; set; }
+
+        [NotMapped]
+        public CategoryModel Category { get; set; }
+        [NotMapped]
+        public CategoryModel SubCategory { get; set; }
     }
 }

@@ -8,23 +8,21 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Products.Models
 {
-    public class DealModel:BaseModel
+    public class DealModel : BaseModel
     {
-        public DealModel(){
-            Logo = new ImageModel();
-        }
+
         [Required]
-        public string Name { get; set;}
+        public string Name { get; set; }
 
-        public string Description { get; set;}
+        public string Description { get; set; }
         [NotMapped]
-        public ImageModel Logo { get; set;}
+        public string Logo { get; set; }
 
-        public string Url { get; set;}
+        public string Url { get; set; }
 
-        public Boolean? IsActive { get; set;}
+        public Boolean? IsActive { get; set; }
 
-        public bool? isFav {get;set;}
+        public bool? isFav { get; set; }
 
         public Guid? CategoryID { get; set; }
         public Guid? SubCategoryID { get; set; }

@@ -31,3 +31,14 @@ D:\Personal\Deal4Nation\obj\Debug\netcoreapp2.0\Products.AssemblyInfoInputs.cach
 D:\Personal\Deal4Nation\obj\Debug\netcoreapp2.0\Products.AssemblyInfo.cs
 D:\Personal\Deal4Nation\obj\Debug\netcoreapp2.0\Products.dll
 D:\Personal\Deal4Nation\obj\Debug\netcoreapp2.0\Products.pdb
+D:\development\backend\Deal4Nation\bin\Debug\netcoreapp2.0\Products.deps.json
+D:\development\backend\Deal4Nation\bin\Debug\netcoreapp2.0\Products.runtimeconfig.json
+D:\development\backend\Deal4Nation\bin\Debug\netcoreapp2.0\Products.runtimeconfig.dev.json
+D:\development\backend\Deal4Nation\bin\Debug\netcoreapp2.0\Products.dll
+D:\development\backend\Deal4Nation\bin\Debug\netcoreapp2.0\Products.pdb
+D:\development\backend\Deal4Nation\obj\Debug\netcoreapp2.0\Products.csprojAssemblyReference.cache
+D:\development\backend\Deal4Nation\obj\Debug\netcoreapp2.0\Products.csproj.CoreCompileInputs.cache
+D:\development\backend\Deal4Nation\obj\Debug\netcoreapp2.0\Products.AssemblyInfoInputs.cache
+D:\development\backend\Deal4Nation\obj\Debug\netcoreapp2.0\Products.AssemblyInfo.cs
+D:\development\backend\Deal4Nation\obj\Debug\netcoreapp2.0\Products.dll
+D:\development\backend\Deal4Nation\obj\Debug\netcoreapp2.0\Products.pdb

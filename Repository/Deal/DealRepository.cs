@@ -9,7 +9,7 @@ using System;
 
 namespace Products.Repository.Deal
 {
-    public class DealRepository:IDealRepository
+    public class DealRepository : IDealRepository
     {
         private AppDbContext context;
 
@@ -28,22 +28,23 @@ namespace Products.Repository.Deal
             await this.context.SaveChangesAsync();
             return item;
         }
-        public async Task<IEnumerable<DealModel>>GetAll()
+        public async Task<IEnumerable<DealModel>> GetAll()
         {
-            var data= await this.context.Deals.ToListAsync();
+            var data = await this.context.Deals.ToListAsync();
             return data;
         }
         public async Task<DealModel> Find(string Id)
         {
-            return await this.context.Deals.Where(w=>w.ID==Guid.Parse(Id)).Select(s=> new DealModel{
-                ID=s.ID,
-                Name=s.Name,
-                Logo = this.context.Images.FirstOrDefault(f=>f.RefrenceID==s.ID)
+            return await this.context.Deals.Where(w => w.ID == Guid.Parse(Id)).Select(s => new DealModel
+            {
+                ID = s.ID,
+                Name = s.Name,
+                Logo = s.Logo
             }).FirstOrDefaultAsync();
         }
         public async Task<DealModel> GetByEmailOrNumber(string _value)
         {
-            return await this.context.Deals.Where(w=>w.Name==_value).FirstOrDefaultAsync();
+            return await this.context.Deals.Where(w => w.Name == _value).FirstOrDefaultAsync();
         }
         public async Task<DealModel> Remove(string Id)
         {
@@ -58,13 +59,13 @@ namespace Products.Repository.Deal
         }
         public async Task<DealModel> Update(DealModel item)
         {
-            if(item!=null)
+            if (item != null)
             {
-                this.context.Entry(item).State= Microsoft.EntityFrameworkCore.EntityState.Modified;
+                this.context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 await this.context.SaveChangesAsync();
             }
             return item;
         }
-        
+
     }
 }

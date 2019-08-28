@@ -3,7 +3,10 @@
     //TO:DO
     public enum CategoryEnum
     {
-        Minor,
-        Major
+        Major,
+        SubCategory,
+        Product,
+        
+
     }
 }

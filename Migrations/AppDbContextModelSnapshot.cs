@@ -25,9 +25,9 @@ namespace Products.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("AdsCategory");
-
                     b.Property<string>("AdsDescription");
+
+                    b.Property<Guid?>("Category");
 
                     b.Property<Guid?>("CreatedBy");
 
@@ -37,6 +37,8 @@ namespace Products.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired();
+
+                    b.Property<Guid?>("SubCategory");
 
                     b.Property<Guid?>("UpdatedBy");
 
@@ -83,6 +85,8 @@ namespace Products.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
+                    b.Property<string>("Logo");
+
                     b.Property<string>("Name")
                         .IsRequired();
 
@@ -124,6 +128,8 @@ namespace Products.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<Guid?>("CategoryID");
+
                     b.Property<Guid?>("CreatedBy");
 
                     b.Property<DateTime>("CreatedOn");
@@ -134,6 +140,8 @@ namespace Products.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired();
+
+                    b.Property<Guid?>("SubCategoryID");
 
                     b.Property<Guid?>("UpdatedBy");
 
@@ -267,8 +275,6 @@ namespace Products.Migrations
 
                     b.HasIndex("BrandID");
 
-                    b.HasIndex("CategoryID");
-
                     b.HasIndex("StoreID");
 
                     b.ToTable("Offers");
@@ -296,6 +302,34 @@ namespace Products.Migrations
                     b.ToTable("PaymentRequest");
                 });
 
+            modelBuilder.Entity("Products.Models.ProductModel", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("CategoryID");
+
+                    b.Property<Guid?>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<string>("Descriptions");
+
+                    b.Property<string>("Link");
+
+                    b.Property<string>("Name");
+
+                    b.Property<Guid?>("SubCategoryID");
+
+                    b.Property<Guid?>("UpdatedBy");
+
+                    b.Property<DateTime?>("UpdatedOn");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Product");
+                });
+
             modelBuilder.Entity("Products.Models.StoreModel", b =>
                 {
                     b.Property<Guid>("ID")
@@ -311,6 +345,8 @@ namespace Products.Migrations
                     b.Property<Guid?>("UpdatedBy");
 
                     b.Property<DateTime?>("UpdatedOn");
+
+                    b.Property<string>("Url");
 
                     b.Property<bool?>("isFav");
 
@@ -352,7 +388,7 @@ namespace Products.Migrations
 
                     b.Property<string>("Profession");
 
-                    b.Property<string>("Refrrel");
+                    b.Property<string>("Referral");
 
                     b.Property<Guid?>("UpdatedBy");
 
@@ -376,11 +412,6 @@ namespace Products.Migrations
                     b.HasOne("Products.Models.BrandModel", "Brand")
                         .WithMany()
                         .HasForeignKey("BrandID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Products.Models.CategoryModel", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Products.Models.StoreModel", "Store")

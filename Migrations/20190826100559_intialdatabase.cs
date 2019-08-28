@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Products.Migrations
 {
-    public partial class usertableupdated : Migration
+    public partial class intialdatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,12 +13,13 @@ namespace Products.Migrations
                 columns: table => new
                 {
                     ID = table.Column<Guid>(nullable: false),
-                    AdsCategory = table.Column<Guid>(nullable: false),
                     AdsDescription = table.Column<string>(nullable: true),
+                    Category = table.Column<Guid>(nullable: true),
                     CreatedBy = table.Column<Guid>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     Link = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: false),
+                    SubCategory = table.Column<Guid>(nullable: true),
                     UpdatedBy = table.Column<Guid>(nullable: true),
                     UpdatedOn = table.Column<DateTime>(nullable: true)
                 },
@@ -53,6 +54,7 @@ namespace Products.Migrations
                     CatType = table.Column<int>(nullable: false),
                     CreatedBy = table.Column<Guid>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
+                    Logo = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     UpdatedBy = table.Column<Guid>(nullable: true),
                     UpdatedOn = table.Column<DateTime>(nullable: true),
@@ -68,12 +70,13 @@ namespace Products.Migrations
                 columns: table => new
                 {
                     ID = table.Column<Guid>(nullable: false),
+                    CategoryID = table.Column<Guid>(nullable: true),
                     CreatedBy = table.Column<Guid>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(nullable: true),
-                    Image = table.Column<string>(nullable: true),
                     IsActive = table.Column<bool>(nullable: true),
                     Name = table.Column<string>(nullable: false),
+                    SubCategoryID = table.Column<Guid>(nullable: true),
                     UpdatedBy = table.Column<Guid>(nullable: true),
                     UpdatedOn = table.Column<DateTime>(nullable: true),
                     Url = table.Column<string>(nullable: true),
@@ -155,6 +158,26 @@ namespace Products.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Product",
+                columns: table => new
+                {
+                    ID = table.Column<Guid>(nullable: false),
+                    CategoryID = table.Column<Guid>(nullable: false),
+                    CreatedBy = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    Descriptions = table.Column<string>(nullable: true),
+                    Link = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    SubCategoryID = table.Column<Guid>(nullable: true),
+                    UpdatedBy = table.Column<Guid>(nullable: true),
+                    UpdatedOn = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Stores",
                 columns: table => new
                 {
@@ -164,6 +187,7 @@ namespace Products.Migrations
                     Name = table.Column<string>(nullable: false),
                     UpdatedBy = table.Column<Guid>(nullable: true),
                     UpdatedOn = table.Column<DateTime>(nullable: true),
+                    Url = table.Column<string>(nullable: true),
                     isFav = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
@@ -188,7 +212,7 @@ namespace Products.Migrations
                     Password = table.Column<string>(nullable: false),
                     PhoneNo = table.Column<string>(nullable: false),
                     Profession = table.Column<string>(nullable: true),
-                    Refrrel = table.Column<string>(nullable: true),
+                    Referral = table.Column<string>(nullable: true),
                     UpdatedBy = table.Column<Guid>(nullable: true),
                     UpdatedOn = table.Column<DateTime>(nullable: true),
                     Username = table.Column<string>(nullable: true)
@@ -229,7 +253,6 @@ namespace Products.Migrations
                     Description = table.Column<string>(nullable: false),
                     EndOn = table.Column<DateTime>(nullable: true),
                     IsActive = table.Column<bool>(nullable: true),
-                    Logo = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     ShortDescription = table.Column<string>(nullable: true),
                     StartOn = table.Column<DateTime>(nullable: true),
@@ -250,12 +273,6 @@ namespace Products.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Offers_Category_CategoryID",
-                        column: x => x.CategoryID,
-                        principalTable: "Category",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Offers_Stores_StoreID",
                         column: x => x.StoreID,
                         principalTable: "Stores",
@@ -267,11 +284,6 @@ namespace Products.Migrations
                 name: "IX_Offers_BrandID",
                 table: "Offers",
                 column: "BrandID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Offers_CategoryID",
-                table: "Offers",
-                column: "CategoryID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Offers_StoreID",
@@ -297,6 +309,9 @@ namespace Products.Migrations
                 name: "Ads");
 
             migrationBuilder.DropTable(
+                name: "Category");
+
+            migrationBuilder.DropTable(
                 name: "Deals");
 
             migrationBuilder.DropTable(
@@ -315,6 +330,9 @@ namespace Products.Migrations
                 name: "PaymentRequest");
 
             migrationBuilder.DropTable(
+                name: "Product");
+
+            migrationBuilder.DropTable(
                 name: "User");
 
             migrationBuilder.DropTable(
@@ -322,9 +340,6 @@ namespace Products.Migrations
 
             migrationBuilder.DropTable(
                 name: "Brand");
-
-            migrationBuilder.DropTable(
-                name: "Category");
 
             migrationBuilder.DropTable(
                 name: "Stores");

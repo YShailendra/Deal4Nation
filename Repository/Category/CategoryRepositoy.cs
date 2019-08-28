@@ -58,15 +58,33 @@ namespace Products.Repository.Category
                 Name = s.Name,
                 CreatedOn = s.CreatedOn,
                 isFav = s.isFav,
-                CatType=s.CatType,
-                CatPID=s.CatPID
+                CatType = s.CatType,
+                CatPID = s.CatPID,
+                Logo = s.Logo
             }).ToListAsync();
             return data;
         }
 
         public async Task<CategoryModel> Find(string key)
         {
-            return await this.context.Category.Where(w => w.ID == Guid.Parse(key)).FirstOrDefaultAsync();
+            return await this.context.Category.Where(w => w.CatType == Int32.Parse(key)).FirstOrDefaultAsync();
+        }
+
+
+        public async Task<IEnumerable<CategoryModel>> GetAllSub(string key)
+        {
+            var data = await this.context.Category.Where(d => d.CatPID == Guid.Parse(key))
+            .Select(s => new CategoryModel()
+            {
+                ID = s.ID,
+                Name = s.Name,
+                CreatedOn = s.CreatedOn,
+                isFav = s.isFav,
+                CatType = s.CatType,
+                CatPID = s.CatPID
+            }).ToListAsync();
+            return data;
+            // return await this.context.Category.wH
         }
 
 

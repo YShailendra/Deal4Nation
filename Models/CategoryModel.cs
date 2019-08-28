@@ -7,14 +7,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Products.Models
 {
-    public class CategoryModel:BaseModel
+    public class CategoryModel : BaseModel
     {
         [Required]
-        public string Name { get; set;}
+        public string Name { get; set; }
         [Required]
-        public int CatType { get; set;}
-        public Guid? CatPID { get; set;}
+        public int CatType { get; set; }
+        public Guid? CatPID { get; set; }
 
-        public bool? isFav {get;set;}
+        public bool? isFav { get; set; }
+
+        public string Logo { get; set; }
     }
 }

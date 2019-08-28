@@ -10,7 +10,7 @@ using Products.Repository.Brand;
 
 namespace Products.Repository.Category
 {
-    public class BrandRepository:IBrandRepository
+    public class BrandRepository : IBrandRepository
     {
         private AppDbContext context;
 
@@ -22,7 +22,7 @@ namespace Products.Repository.Category
         public BrandRepository()
         {
 
-        } 
+        }
         public async Task<BrandModel> Remove(string Id)
         {
             var itemToRemove = await context.Brand.FirstOrDefaultAsync(r => r.ID == Guid.Parse(Id));
@@ -36,9 +36,9 @@ namespace Products.Repository.Category
         }
         public async Task<BrandModel> Update(BrandModel item)
         {
-            if(item!=null)
+            if (item != null)
             {
-                this.context.Entry(item).State= Microsoft.EntityFrameworkCore.EntityState.Modified;
+                this.context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 await this.context.SaveChangesAsync();
             }
             return item;
@@ -53,22 +53,23 @@ namespace Products.Repository.Category
 
         public async Task<IEnumerable<BrandModel>> GetAll()
         {
-             var data= await this.context.Brand.Select(s=> new BrandModel(){
-                 ID=s.ID,
-                 Name=s.Name,
-                 CreatedOn=s.CreatedOn,
-                 isFav = s.isFav,
-                 Logo = this.context.Images.FirstOrDefault(f=>f.RefrenceID==s.ID)
-             }
-             ).ToListAsync();
-             return data;
+            var data = await this.context.Brand.Select(s => new BrandModel()
+            {
+                ID = s.ID,
+                Name = s.Name,
+                CreatedOn = s.CreatedOn,
+                isFav = s.isFav,
+                Logo = s.Logo
+            }
+            ).ToListAsync();
+            return data;
         }
 
         public async Task<BrandModel> Find(string key)
         {
-            return await this.context.Brand.Where(w=>w.ID==Guid.Parse(key)).FirstOrDefaultAsync();
+            return await this.context.Brand.Where(w => w.ID == Guid.Parse(key)).FirstOrDefaultAsync();
         }
 
-       
+
     }
 }

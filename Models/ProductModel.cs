@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Products.Models
 {
-    public class ProductModel:BaseModel
+    public class ProductModel : BaseModel
     {
         public string Name { get; set; }
         public string Descriptions { get; set; }
         public Guid CategoryID { get; set; }
-        public string  Link { get; set; }
+        public string Link { get; set; }
         public Guid? SubCategoryID { get; set; }
         [JsonIgnore]
         [NotMapped]
@@ -20,5 +20,7 @@ namespace Products.Models
         [JsonIgnore]
         [NotMapped]
         public CategoryModel SubCategory { get; set; }
+
+        public string Image { get; set; }
     }
 }

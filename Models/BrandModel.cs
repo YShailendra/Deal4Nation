@@ -7,13 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace Products.Models
 {
-    public class BrandModel:BaseModel
+    public class BrandModel : BaseModel
     {
         [Required]
-        public string Name { get; set;}
+        public string Name { get; set; }
         [NotMapped]
-        public ImageModel Logo { get; set; }
-        public bool? isFav {get;set;}
+        public string Logo { get; set; }
+        public bool? isFav { get; set; }
 
     }
 }

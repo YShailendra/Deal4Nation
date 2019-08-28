@@ -8,13 +8,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Products.Models
 {
-    public class StoreModel:BaseModel
+    public class StoreModel : BaseModel
     {
         [Required]
-        public string Name { get; set;}
+        public string Name { get; set; }
         [NotMapped]
-        public  ImageModel Logo {get; set;}
+        public string Logo { get; set; }
 
-        public bool? isFav {get;set;}
+        public bool? isFav { get; set; }
+
+        public string Url { get; set; }
     }
 }

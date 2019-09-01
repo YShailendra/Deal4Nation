@@ -27,6 +27,7 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Products.ViewModels;
 using Products.Repository.Product;
+using Products.Extensions;
 
 namespace Products
 {
@@ -65,6 +66,7 @@ namespace Products
             }).AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
             services.AddMvc();
             services.AddCors();
+            services.AddSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,6 +82,7 @@ namespace Products
             .AllowAnyHeader()
             .AllowCredentials());
             app.UseMvc();
+            app.UseSwagger(env);
         }
     }
 }

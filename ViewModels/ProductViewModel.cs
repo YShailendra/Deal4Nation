@@ -12,9 +12,9 @@ namespace Products.ViewModels
     {
         #region Private Property
         private IProductRepository _repo;
-        private IImageRepository _imgRepo;
+
         #endregion
-        public ProductViewModel(IProductRepository repo, IImageRepository _imgRepo)
+        public ProductViewModel(IProductRepository repo)
         {
             _repo = repo;
         }

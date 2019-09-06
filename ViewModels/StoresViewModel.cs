@@ -54,6 +54,17 @@ namespace Products.ViewModels
             var data = await _repo.Remove(id);
             return data;
         }
+
+        public async Task<IEnumerable<StoreModel>> GetSubStores(Guid id)
+        {
+            var data = await this._repo.GetSubStores(id);
+            return data;
+        }
+
+
+
+
+
         #region  Private Methods
         private async Task<StoreModel> UpdateStoreImage(StoreModel result, StoreModel data)
         {

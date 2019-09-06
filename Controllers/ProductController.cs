@@ -15,14 +15,14 @@ namespace Products.Controllers
     public class ProductController : Controller
     {
         #region Private Property
-        //private IProductRepository _repo;
+        private IProductRepository _repo;
         //private IImageRepository _imgRepo;
 
-        private ProductViewModel _repo;
-        public ProductController(ProductViewModel vm)
+        private ProductViewModel vm;
+        public ProductController(IProductRepository repo)
         {
-            _repo = vm;
-            //this.vm = new BrandViewModel(this._repo, imgrepo);
+            this._repo = repo;
+            this.vm = new ProductViewModel(this._repo);
         }
         #endregion
         // GET api/values
@@ -31,7 +31,7 @@ namespace Products.Controllers
         public async Task<IActionResult> Get()
         {
 
-            var result = await _repo.GetAllProduct();
+            var result = await vm.GetAllProduct();
             return Ok(result);
         }
         // GET api/values/5
@@ -45,7 +45,8 @@ namespace Products.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]ProductModel value)
         {
-            return Ok(await _repo.CreateProduct(value));
+            Console.WriteLine(value);
+            return Ok(await vm.CreateProduct(value));
         }
 
         // PUT api/values/5
@@ -53,14 +54,14 @@ namespace Products.Controllers
         public async Task<IActionResult> Put(Guid id, [FromBody]ProductModel value)
         {
             //await this.vm.UpdateBrand(value);
-            return Ok(await _repo.UpdateProduct(id, value));
+            return Ok(await vm.UpdateProduct(id, value));
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            return Ok(await _repo.DeleteProduct(id));
+            return Ok(await vm.DeleteProduct(id));
         }
     }
 }

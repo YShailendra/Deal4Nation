@@ -12,14 +12,14 @@ namespace Products.Models
     {
         [Required]
         public string Name { get; set; }
-        [NotMapped]
-        public ImageModel Image { get; set; }
-      
-        public string AdsDescription{get;set;}
+        [Required]
+        public string Image { get; set; }
 
-        public string Link{get;set;}
+        public string Description { get; set; }
 
-        public Guid? Category {get;set;}
+        public string Link { get; set; }
+
+        public Guid? Category { get; set; }
 
         public Guid? SubCategory { get; set; }
 

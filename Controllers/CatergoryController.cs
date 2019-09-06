@@ -44,6 +44,13 @@ namespace Products.Controllers
             return Ok(await this.vm.GetSubCategories(id));
         }
 
+        [HttpGet("getProductCategory")]
+
+        public async Task<IActionResult> GetProductCategory()
+        {
+            return Ok(await this.vm.GetProductCategory());
+        }
+
         // POST api/values
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CategoryModel value)

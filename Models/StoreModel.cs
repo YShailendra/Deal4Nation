@@ -12,11 +12,16 @@ namespace Products.Models
     {
         [Required]
         public string Name { get; set; }
-        [NotMapped]
+
+
         public string Logo { get; set; }
 
         public bool? isFav { get; set; }
 
         public string Url { get; set; }
+
+        public int StoreType { get; set; }
+
+        public Guid StorePID { get; set; }
     }
 }

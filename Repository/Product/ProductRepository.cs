@@ -12,6 +12,7 @@ namespace Products.Repository.Product
     {
         public async Task<ProductModel> Add(ProductModel item)
         {
+
             await context.Product.AddAsync(item);
             await context.SaveChangesAsync();
             return item;

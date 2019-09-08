@@ -6,7 +6,7 @@ namespace BookingSystemApi.Repository
     {
         public BaseRepository() { }
 
-        protected AppDbContext context;
+        public AppDbContext context;
         public BaseRepository(AppDbContext ctx)
         {
             context = ctx;

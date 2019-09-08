@@ -28,6 +28,7 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using Products.ViewModels;
 using Products.Repository.Product;
 using Products.Extensions;
+using Products.MiddleWare;
 
 namespace Products
 {
@@ -74,7 +75,8 @@ namespace Products
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+               // app.UseDeveloperExceptionPage();
+                app.UseMiddleware<ExceptionMiddleware>();
             }
             app.UseCors(builder => builder
             .AllowAnyOrigin()

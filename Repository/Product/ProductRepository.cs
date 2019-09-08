@@ -4,12 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using BookingSystemApi.Repository;
 using Microsoft.EntityFrameworkCore;
+using Products.Context;
 using Products.Models;
 
 namespace Products.Repository.Product
 {
-    public class ProductRepository : BaseRepository, IProductRepository
+    public class ProductRepository : IProductRepository
     {
+        public AppDbContext context;
+        public ProductRepository()
+        { }
+        public ProductRepository(AppDbContext ctx)
+        {
+            context = ctx;
+        }
         public async Task<ProductModel> Add(ProductModel item)
         {
             await context.Product.AddAsync(item);
@@ -19,12 +27,12 @@ namespace Products.Repository.Product
 
         public async Task<ProductModel> Find(string key)
         {
-            return await this.context.Product.Where(w => w.ID == Guid.Parse(key)).FirstOrDefaultAsync();
+            return await context.Product.Where(w => w.ID == Guid.Parse(key)).FirstOrDefaultAsync();
         }
 
-        public Task<IEnumerable<ProductModel>> GetAll()
+        public async Task<IEnumerable<ProductModel>> GetAll()
         {
-            throw new NotImplementedException();
+            return await context.Product.ToListAsync();
         }
 
         public async Task<ProductModel> Remove(string Id)

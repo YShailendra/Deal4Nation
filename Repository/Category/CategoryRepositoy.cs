@@ -87,6 +87,19 @@ namespace Products.Repository.Category
             // return await this.context.Category.wH
         }
 
+        public async Task<IEnumerable<CategoryModel>> GetProductCategory()
+        {
+            var data = await this.context.Category.Where(p => p.CatType == 4).Select(s => new CategoryModel()
+            {
+                ID = s.ID,
+                Name = s.Name,
+                Logo = s.Logo
+            }).ToListAsync();
+
+
+            return data;
+        }
+
 
     }
 }

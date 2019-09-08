@@ -9,7 +9,7 @@ using System;
 
 namespace Products.Repository.Store
 {
-    public class StoreRepository:IStoreRepository
+    public class StoreRepository : IStoreRepository
     {
         private AppDbContext context;
 
@@ -28,18 +28,18 @@ namespace Products.Repository.Store
             await this.context.SaveChangesAsync();
             return item;
         }
-        public async Task<IEnumerable<StoreModel>>GetAll()
+        public async Task<IEnumerable<StoreModel>> GetAll()
         {
-            var data= await this.context.Stores.ToListAsync();
+            var data = await this.context.Stores.ToListAsync();
             return data;
         }
         public async Task<StoreModel> Find(string Id)
         {
-            return await this.context.Stores.Where(w=>w.ID==System.Guid.Parse(Id)).FirstOrDefaultAsync();
+            return await this.context.Stores.Where(w => w.ID == System.Guid.Parse(Id)).FirstOrDefaultAsync();
         }
         public async Task<StoreModel> GetByName(string _value)
         {
-            return await this.context.Stores.Where(w=>w.Name==_value).FirstOrDefaultAsync();
+            return await this.context.Stores.Where(w => w.Name == _value).FirstOrDefaultAsync();
         }
         public async Task<StoreModel> Remove(string Id)
         {
@@ -54,13 +54,24 @@ namespace Products.Repository.Store
         }
         public async Task<StoreModel> Update(StoreModel item)
         {
-            if(item!=null)
+            if (item != null)
             {
-                this.context.Entry(item).State= Microsoft.EntityFrameworkCore.EntityState.Modified;
+                this.context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 await this.context.SaveChangesAsync();
             }
             return item;
         }
-        
+
+        public async Task<IEnumerable<StoreModel>> GetSubStores(Guid id)
+        {
+            var item = await this.context.Stores.Where(r => r.StorePID == id).Select(s => new StoreModel()
+            {
+                Name = s.Name,
+                Url = s.Url,
+                Logo = s.Logo,
+            }).ToListAsync();
+            return item;
+        }
+
     }
 }

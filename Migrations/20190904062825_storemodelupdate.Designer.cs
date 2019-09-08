@@ -11,8 +11,8 @@ using System;
 namespace Products.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190901080711_UpdateTable")]
-    partial class UpdateTable
+    [Migration("20190904062825_storemodelupdate")]
+    partial class storemodelupdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,13 +26,16 @@ namespace Products.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("AdsDescription");
-
                     b.Property<Guid?>("Category");
 
                     b.Property<Guid?>("CreatedBy");
 
                     b.Property<DateTime>("CreatedOn");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Image")
+                        .IsRequired();
 
                     b.Property<string>("Link");
 
@@ -344,6 +347,8 @@ namespace Products.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired();
+
+                    b.Property<int>("StoreType");
 
                     b.Property<Guid?>("UpdatedBy");
 

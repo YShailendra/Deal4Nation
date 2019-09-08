@@ -7,5 +7,6 @@ namespace Products.Repository.Category
     public interface ICategoryRepository : IBaseRepository<CategoryModel>
     {
         Task<IEnumerable<CategoryModel>> GetAllSub(string key);
+        Task<IEnumerable<CategoryModel>> GetProductCategory();
     }
 }

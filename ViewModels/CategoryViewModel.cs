@@ -51,5 +51,9 @@ namespace Products.ViewModels
             return await this._repo.GetAllSub(id);
         }
 
+        public async Task<IEnumerable<CategoryModel>> GetProductCategory()
+        {
+            return await this._repo.GetProductCategory();
+        }
     }
 }

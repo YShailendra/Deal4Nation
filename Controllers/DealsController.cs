@@ -19,7 +19,7 @@ namespace Products.Controllers
         public DealsController(IDealRepository repo, IImageRepository imgRepo)
         {
             this._repo = repo;
-            this.vm = new DealsViewModel(this._repo, imgRepo);
+            this.vm = new DealsViewModel(this._repo);
         }
         #endregion
         // GET api/values
@@ -58,6 +58,14 @@ namespace Products.Controllers
         public async Task<IActionResult> Delete(string id)
         {
             return Ok(await this.vm.DeleteDeal(id));
+        }
+
+        [HttpPost("getDealsByCategory/{id}")]
+
+        public async Task<IActionResult> getDealsByCategory(Guid id)
+        {
+            Console.WriteLine(id);
+            return Ok(await this.vm.GetDealsByCategory(id));
         }
     }
 }

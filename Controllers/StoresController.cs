@@ -14,10 +14,10 @@ namespace Products.Controllers
     {
         private IStoreRepository _repo;
         private StoresViewModel viewModel;
-        public StoresController(IStoreRepository repo,IImageRepository imageRepo)
+        public StoresController(IStoreRepository repo, IImageRepository imageRepo)
         {
             _repo = repo;
-            viewModel = new StoresViewModel(_repo,imageRepo);
+            viewModel = new StoresViewModel(_repo, imageRepo);
         }
 
         // GET api/values
@@ -37,7 +37,7 @@ namespace Products.Controllers
         // POST api/values
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]StoreModel value)
-        { 
+        {
             return Ok(await viewModel.Create(value));
         }
 
@@ -45,7 +45,7 @@ namespace Products.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(Guid id, [FromBody]StoreModel value)
         {
-            return Ok(await viewModel.UpdateStore(id,value));
+            return Ok(await viewModel.UpdateStore(id, value));
         }
 
         // DELETE api/values/5
@@ -53,6 +53,13 @@ namespace Products.Controllers
         public async Task<IActionResult> Delete(string id)
         {
             return Ok(await viewModel.DeleteStore(id));
+        }
+
+        [HttpGet("getSubStores/{id}")]
+        public async Task<IActionResult> GetSubStores(Guid id)
+        {
+            return Ok(await viewModel.GetSubStores(id));
+
         }
     }
 }

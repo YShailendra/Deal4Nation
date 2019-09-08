@@ -4,21 +4,22 @@ using System.Collections.Generic;
 
 namespace Products.Migrations
 {
-    public partial class UpdateTable : Migration
+    public partial class storemodelupdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "Image",
-                table: "Product",
-                nullable: true);
+            migrationBuilder.AddColumn<int>(
+                name: "StoreType",
+                table: "Stores",
+                nullable: false,
+                defaultValue: 0);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Image",
-                table: "Product");
+                name: "StoreType",
+                table: "Stores");
         }
     }
 }

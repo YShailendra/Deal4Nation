@@ -17,7 +17,7 @@ namespace Products.ViewModels
         private IDealRepository _repo;
         private IImageRepository _imgRepo;
         #endregion
-        public DealsViewModel(IDealRepository repo, IImageRepository _imgRepo)
+        public DealsViewModel(IDealRepository repo)
         {
             this._repo = repo;
         }
@@ -50,19 +50,25 @@ namespace Products.ViewModels
         {
             return await _repo.Remove(id);
         }
-        #region  Private Methods
-        private async Task<DealModel> UpdateDealImage(DealModel result, DealModel data)
+
+
+        public async Task<IEnumerable<DealModel>> GetDealsByCategory(Guid id)
         {
-            // if(result !=null && data.Logo!=null){
-            //      var img =  await this._imgRepo.Find(data.Logo.ID.ToString());
-            //      if(img !=null){
-            //          img.RefrenceID = data.ID;
-            //      }
-            //     await this._imgRepo.Update(img);
-            //     data.Logo = img;
-            // }
-            return data;
+            return await _repo.GetDealsByCategory(id);
         }
+        #region  Private Methods
+        // private async Task<DealModel> UpdateDealImage(DealModel result, DealModel data)
+        // {
+        //     // if(result !=null && data.Logo!=null){
+        //     //      var img =  await this._imgRepo.Find(data.Logo.ID.ToString());
+        //     //      if(img !=null){
+        //     //          img.RefrenceID = data.ID;
+        //     //      }
+        //     //     await this._imgRepo.Update(img);
+        //     //     data.Logo = img;
+        //     // }
+        //     return data;
+        // }
         #endregion
     }
 }

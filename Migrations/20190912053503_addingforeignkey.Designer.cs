@@ -11,8 +11,8 @@ using System;
 namespace Products.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190904062825_storemodelupdate")]
-    partial class storemodelupdate
+    [Migration("20190912053503_addingforeignkey")]
+    partial class addingforeignkey
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -341,12 +341,20 @@ namespace Products.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<Guid?>("CategoryID");
+
                     b.Property<Guid?>("CreatedBy");
 
                     b.Property<DateTime>("CreatedOn");
 
+                    b.Property<string>("Logo");
+
                     b.Property<string>("Name")
                         .IsRequired();
+
+                    b.Property<string>("StoreCategory");
+
+                    b.Property<Guid>("StorePID");
 
                     b.Property<int>("StoreType");
 
@@ -359,6 +367,8 @@ namespace Products.Migrations
                     b.Property<bool?>("isFav");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("CategoryID");
 
                     b.ToTable("Stores");
                 });
@@ -425,6 +435,13 @@ namespace Products.Migrations
                     b.HasOne("Products.Models.StoreModel", "Store")
                         .WithMany()
                         .HasForeignKey("StoreID");
+                });
+
+            modelBuilder.Entity("Products.Models.StoreModel", b =>
+                {
+                    b.HasOne("Products.Models.CategoryModel", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryID");
                 });
 #pragma warning restore 612, 618
         }

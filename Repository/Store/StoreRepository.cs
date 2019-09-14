@@ -64,11 +64,13 @@ namespace Products.Repository.Store
 
         public async Task<IEnumerable<StoreModel>> GetSubStores(Guid id)
         {
-            var item = await this.context.Stores.Where(r => r.StorePID == id).Select(s => new StoreModel()
+            var item = await this.context.Stores.Where(r => r.CategoryID == id).Select(s => new StoreModel()
             {
                 Name = s.Name,
                 Url = s.Url,
                 Logo = s.Logo,
+                CategoryID = s.CategoryID,
+
             }).ToListAsync();
             return item;
         }

@@ -20,3 +20,13 @@ namespace Products.Models
         public string Logo { get; set; }
     }
 }
+
+
+
+/* 
+
+Store Category - 1
+Deals Category - 2
+Product Category - 3
+Ads Category - 4
+ */

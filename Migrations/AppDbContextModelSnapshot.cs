@@ -340,6 +340,8 @@ namespace Products.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<Guid?>("CategoryID");
+
                     b.Property<Guid?>("CreatedBy");
 
                     b.Property<DateTime>("CreatedOn");
@@ -348,6 +350,8 @@ namespace Products.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired();
+
+                    b.Property<string>("StoreCategory");
 
                     b.Property<Guid>("StorePID");
 
@@ -362,6 +366,8 @@ namespace Products.Migrations
                     b.Property<bool?>("isFav");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("CategoryID");
 
                     b.ToTable("Stores");
                 });
@@ -428,6 +434,13 @@ namespace Products.Migrations
                     b.HasOne("Products.Models.StoreModel", "Store")
                         .WithMany()
                         .HasForeignKey("StoreID");
+                });
+
+            modelBuilder.Entity("Products.Models.StoreModel", b =>
+                {
+                    b.HasOne("Products.Models.CategoryModel", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryID");
                 });
 #pragma warning restore 612, 618
         }

@@ -89,7 +89,7 @@ namespace Products.Repository.Category
 
         public async Task<IEnumerable<CategoryModel>> GetProductCategory()
         {
-            var data = await this.context.Category.Where(p => p.CatType == 4).Select(s => new CategoryModel()
+            var data = await this.context.Category.Where(p => p.CatType == 1).Select(s => new CategoryModel()
             {
                 ID = s.ID,
                 Name = s.Name,

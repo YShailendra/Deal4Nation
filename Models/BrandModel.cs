@@ -15,5 +15,7 @@ namespace Products.Models
         public string Logo { get; set; }
         public bool? isFav { get; set; }
 
+        public string Url { get; set; }
+
     }
 }

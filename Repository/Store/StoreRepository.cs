@@ -62,7 +62,23 @@ namespace Products.Repository.Store
             return item;
         }
 
-        public async Task<IEnumerable<StoreModel>> GetSubStores(Guid id)
+        public async Task<IEnumerable<StoreModel>> GetSubStores(Guid cid, Guid id)
+        {
+            var item = await this.context.Stores.Where(r => r.CategoryID == id && r.StorePID == cid).Select(s => new StoreModel()
+            {
+                Name = s.Name,
+                Url = s.Url,
+                Logo = s.Logo,
+                CategoryID = s.CategoryID,
+                ID = s.ID,
+                StorePID = s.StorePID,
+                isFav = s.isFav
+
+            }).ToListAsync();
+            return item;
+        }
+
+        public async Task<IEnumerable<StoreModel>> GetStores(Guid id)
         {
             var item = await this.context.Stores.Where(r => r.CategoryID == id).Select(s => new StoreModel()
             {
@@ -70,10 +86,14 @@ namespace Products.Repository.Store
                 Url = s.Url,
                 Logo = s.Logo,
                 CategoryID = s.CategoryID,
+                ID = s.ID,
+                StorePID = s.StorePID,
+                isFav = s.isFav
 
             }).ToListAsync();
             return item;
         }
+
 
     }
 }

@@ -55,11 +55,19 @@ namespace Products.Controllers
             return Ok(await viewModel.DeleteStore(id));
         }
 
-        [HttpGet("getSubStores/{id}")]
-        public async Task<IActionResult> GetSubStores(Guid id)
+        [HttpGet("getSubStores/{cid}/{id}")]
+        public async Task<IActionResult> GetSubStores(Guid cid, Guid id)
         {
-            return Ok(await viewModel.GetSubStores(id));
+            return Ok(await viewModel.GetSubStores(cid, id));
 
+        }
+
+
+        [HttpGet("getStores/{id}")]
+
+        public async Task<IActionResult> GetStores(Guid id)
+        {
+            return Ok(await viewModel.GetStores(id));
         }
     }
 }

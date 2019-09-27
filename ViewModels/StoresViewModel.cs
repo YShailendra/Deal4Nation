@@ -55,13 +55,17 @@ namespace Products.ViewModels
             return data;
         }
 
-        public async Task<IEnumerable<StoreModel>> GetSubStores(Guid id)
+        public async Task<IEnumerable<StoreModel>> GetSubStores(Guid cid, Guid id)
         {
-            var data = await this._repo.GetSubStores(id);
+            var data = await this._repo.GetSubStores(cid, id);
             return data;
         }
 
-
+        public async Task<IEnumerable<StoreModel>> GetStores(Guid id)
+        {
+            var data = await this._repo.GetStores(id);
+            return data;
+        }
 
 
 

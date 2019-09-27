@@ -11,9 +11,10 @@ using System;
 namespace Products.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190917055525_brandmodelchanged")]
+    partial class brandmodelchanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -352,8 +353,6 @@ namespace Products.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired();
-
-                    b.Property<Guid?>("StorePID");
 
                     b.Property<int>("StoreType");
 

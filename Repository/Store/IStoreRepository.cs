@@ -9,6 +9,7 @@ namespace Products.Repository.Store
     public interface IStoreRepository : IBaseRepository<StoreModel>
     {
         Task<StoreModel> GetByName(string _value);
-        Task<IEnumerable<StoreModel>> GetSubStores(Guid id);
+        Task<IEnumerable<StoreModel>> GetSubStores(Guid cid, Guid id);
+        Task<IEnumerable<StoreModel>> GetStores(Guid id);
     }
 }

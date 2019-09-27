@@ -21,9 +21,7 @@ namespace Products.Models
 
         public int StoreType { get; set; }
 
-        public Guid StorePID { get; set; }
-
-        public string StoreCategory { get; set; }
+        public Guid? StorePID { get; set; }
 
         public Guid? CategoryID { get; set; }
 

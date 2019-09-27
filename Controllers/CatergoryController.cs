@@ -71,5 +71,11 @@ namespace Products.Controllers
         {
             return Ok(await this.vm.DeleteCategory(id));
         }
+
+        [HttpGet("getDealsSubCategory/{id}")]
+        public async Task<IActionResult> GetDealSubCategory(Guid id)
+        {
+            return Ok(await this.vm.GetDealsSubCategory(id));
+        }
     }
 }

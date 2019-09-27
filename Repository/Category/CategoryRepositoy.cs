@@ -81,7 +81,8 @@ namespace Products.Repository.Category
                 CreatedOn = s.CreatedOn,
                 isFav = s.isFav,
                 CatType = s.CatType,
-                CatPID = s.CatPID
+                CatPID = s.CatPID,
+                Logo = s.Logo
             }).ToListAsync();
             return data;
             // return await this.context.Category.wH
@@ -89,13 +90,26 @@ namespace Products.Repository.Category
 
         public async Task<IEnumerable<CategoryModel>> GetProductCategory()
         {
-            var data = await this.context.Category.Where(p => p.CatType == 1).Select(s => new CategoryModel()
+            var data = await this.context.Category.Where(p => p.CatType == 5).Select(s => new CategoryModel()
             {
                 ID = s.ID,
                 Name = s.Name,
                 Logo = s.Logo
             }).ToListAsync();
 
+
+            return data;
+        }
+
+
+        public async Task<IEnumerable<CategoryModel>> GetDealsSubCategory(Guid id)
+        {
+            var data = await this.context.Category.Where(cattype => cattype.CatType == 6 && cattype.CatPID == id).Select(model => new CategoryModel()
+            {
+                ID = model.ID,
+                Name = model.Name,
+                Logo = model.Logo,
+            }).ToListAsync();
 
             return data;
         }

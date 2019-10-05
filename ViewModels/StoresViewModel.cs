@@ -41,7 +41,6 @@ namespace Products.ViewModels
         {
             model.ID = Guid.NewGuid();
             var data = await _repo.Add(model);
-            data = await this.UpdateStoreImage(data, model);
             return data;
         }
         public async Task<StoreModel> UpdateStore(Guid id, StoreModel model)

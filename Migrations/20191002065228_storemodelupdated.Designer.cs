@@ -11,8 +11,8 @@ using System;
 namespace Products.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190917055525_brandmodelchanged")]
-    partial class brandmodelchanged
+    [Migration("20191002065228_storemodelupdated")]
+    partial class storemodelupdated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -207,6 +207,32 @@ namespace Products.Migrations
                     b.ToTable("Images");
                 });
 
+            modelBuilder.Entity("Products.Models.LinkModel", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<string>("Name");
+
+                    b.Property<Guid?>("StoreModelID");
+
+                    b.Property<Guid?>("UpdatedBy");
+
+                    b.Property<DateTime?>("UpdatedOn");
+
+                    b.Property<string>("Url");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("StoreModelID");
+
+                    b.ToTable("LinkModel");
+                });
+
             modelBuilder.Entity("Products.Models.MarketPlaceModel", b =>
                 {
                     b.Property<Guid>("ID")
@@ -354,13 +380,13 @@ namespace Products.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
+                    b.Property<Guid?>("StorePID");
+
                     b.Property<int>("StoreType");
 
                     b.Property<Guid?>("UpdatedBy");
 
                     b.Property<DateTime?>("UpdatedOn");
-
-                    b.Property<string>("Url");
 
                     b.Property<bool?>("isFav");
 
@@ -421,6 +447,13 @@ namespace Products.Migrations
                         .IsUnique();
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("Products.Models.LinkModel", b =>
+                {
+                    b.HasOne("Products.Models.StoreModel")
+                        .WithMany("Url")
+                        .HasForeignKey("StoreModelID");
                 });
 
             modelBuilder.Entity("Products.Models.OfferModel", b =>

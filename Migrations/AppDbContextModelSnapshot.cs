@@ -206,6 +206,32 @@ namespace Products.Migrations
                     b.ToTable("Images");
                 });
 
+            modelBuilder.Entity("Products.Models.LinkModel", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<string>("Name");
+
+                    b.Property<Guid?>("StoreModelID");
+
+                    b.Property<Guid?>("UpdatedBy");
+
+                    b.Property<DateTime?>("UpdatedOn");
+
+                    b.Property<string>("Url");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("StoreModelID");
+
+                    b.ToTable("LinkModel");
+                });
+
             modelBuilder.Entity("Products.Models.MarketPlaceModel", b =>
                 {
                     b.Property<Guid>("ID")
@@ -361,8 +387,6 @@ namespace Products.Migrations
 
                     b.Property<DateTime?>("UpdatedOn");
 
-                    b.Property<string>("Url");
-
                     b.Property<bool?>("isFav");
 
                     b.HasKey("ID");
@@ -422,6 +446,13 @@ namespace Products.Migrations
                         .IsUnique();
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("Products.Models.LinkModel", b =>
+                {
+                    b.HasOne("Products.Models.StoreModel")
+                        .WithMany("Url")
+                        .HasForeignKey("StoreModelID");
                 });
 
             modelBuilder.Entity("Products.Models.OfferModel", b =>

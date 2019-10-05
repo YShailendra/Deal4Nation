@@ -11,8 +11,8 @@ using System;
 namespace Products.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190917091004_gdfgfgd")]
-    partial class gdfgfgd
+    [Migration("20190929070755_adding")]
+    partial class adding
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

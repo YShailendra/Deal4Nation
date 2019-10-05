@@ -17,7 +17,7 @@ namespace Products.Models
 
         public bool? isFav { get; set; }
 
-        public string Url { get; set; }
+        public List<LinkModel> Url { get; set; }
 
         public int StoreType { get; set; }
 

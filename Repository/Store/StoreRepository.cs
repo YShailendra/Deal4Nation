@@ -30,7 +30,17 @@ namespace Products.Repository.Store
         }
         public async Task<IEnumerable<StoreModel>> GetAll()
         {
-            var data = await this.context.Stores.ToListAsync();
+            var data = await this.context.Stores.Select(s => new StoreModel()
+            {
+                Name = s.Name,
+                Url = s.Url,
+                Logo = s.Logo,
+                CategoryID = s.CategoryID,
+                ID = s.ID,
+                StorePID = s.StorePID,
+                isFav = s.isFav
+
+            }).ToListAsync();
             return data;
         }
         public async Task<StoreModel> Find(string Id)
@@ -44,8 +54,10 @@ namespace Products.Repository.Store
         public async Task<StoreModel> Remove(string Id)
         {
             var itemToRemove = await context.Stores.FirstOrDefaultAsync(r => r.ID == Guid.Parse(Id));
+
             if (itemToRemove != null)
             {
+
                 context.Stores.Remove(itemToRemove);
                 await context.SaveChangesAsync();
             }

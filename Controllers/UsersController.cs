@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Products.Models;
 using Products.Repository.User;
@@ -10,6 +12,7 @@ using Products.ViewModels;
 namespace Products.Controllers
 {
     [Route("api/[controller]")]
+    [Microsoft.AspNetCore.Authorization.Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class UsersController : Controller
     {
         private UserViewModel viewModel;
@@ -28,6 +31,7 @@ namespace Products.Controllers
             return Ok(await this.viewModel.GetUserById(id));
         }
         [HttpPost("Login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody]LoginModel model){
             return Ok(await this.viewModel.Login(model));
         }

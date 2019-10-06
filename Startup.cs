@@ -1,34 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Products.Context;
+using Products.Extensions;
+using Products.Helper;
+using Products.MiddleWare;
+using Products.Repository.Ads;
 using Products.Repository.Brand;
 using Products.Repository.Category;
 using Products.Repository.Deal;
+using Products.Repository.Image;
 using Products.Repository.Offer;
+using Products.Repository.Product;
 using Products.Repository.Store;
 using Products.Repository.User;
 using Products.Repository.UserInteraction;
-using Products.Repository.Ads;
-using Products.Repository.Image;
-using Newtonsoft.Json.Serialization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Cors.Internal;
-using System.Buffers;
-using Newtonsoft.Json;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using Products.ViewModels;
-using Products.Repository.Product;
-using Products.Extensions;
-using Products.MiddleWare;
+using System;
+using System.Buffers;
+using System.Threading.Tasks;
 
 namespace Products
 {
@@ -57,6 +54,46 @@ namespace Products
             services.AddScoped<IImageRepository, ImageRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ProductViewModel>();
+
+            services.AddAuthentication(x=> {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters =
+                     new TokenValidationParameters
+                     {
+                         ValidateIssuer = true,
+                         ValidateAudience = true,
+                         ValidateLifetime = true,
+                         ValidateIssuerSigningKey = true,
+
+                         ValidIssuer = "Security.Bearer",
+                         ValidAudience = "Security.Bearer",
+                         IssuerSigningKey = JwtSecurityKey.Create(JwtSecurityKey.SecretKey)
+                     };
+
+                options.Events = new JwtBearerEvents
+                {
+                    OnAuthenticationFailed = context =>
+                    {
+                        Console.WriteLine("OnAuthenticationFailed: " + context.Exception.Message);
+                        return Task.CompletedTask;
+                    },
+                    OnTokenValidated = context =>
+                    {
+                        Console.WriteLine("OnTokenValidated: " + context.SecurityToken);
+                        return Task.CompletedTask;
+                    }
+                };
+
+            });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin", policy => policy.RequireClaim("Admin"));
+
+            });
             services.AddMvc(options=>{
             //this is to remove refrence loop of data model
             options.OutputFormatters.Clear();
@@ -85,6 +122,7 @@ namespace Products
             .AllowCredentials());
             app.UseMvc();
             app.UseSwagger(env);
+            app.UseAuthentication();
         }
     }
 }

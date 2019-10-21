@@ -15,7 +15,7 @@ namespace Products.Models
         public string Name { get; set; }
 
         public string Description { get; set; }
-        [NotMapped]
+        
         public string Logo { get; set; }
 
         public string Url { get; set; }

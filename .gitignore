@@ -11,3 +11,4 @@ obj/Debug/netcoreapp2.0/Products.dll
 obj/Debug/netcoreapp2.0/Products.csprojAssemblyReference.cache
 obj/Debug/netcoreapp2.0/Products.pdb
 obj/Debug/netcoreapp2.0/project.razor.json
+bin/Debug/netcoreapp2.0/Products.dll

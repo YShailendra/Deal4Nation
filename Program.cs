@@ -25,7 +25,7 @@ namespace Products
         WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .UseKestrel()
-                .UseUrls("http://localhost:52044", "http://odin:52044", "http://192.168.225.36:52044")
+                .UseUrls("http://localhost:52044", "http://odin:52044", "http://192.168.225.45:52044")
                 .Build();
         // WebHost.CreateDefaultBuilder(args)
         //     .UseStartup<Startup>()

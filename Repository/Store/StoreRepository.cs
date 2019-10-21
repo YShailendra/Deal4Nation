@@ -100,7 +100,8 @@ namespace Products.Repository.Store
                 CategoryID = s.CategoryID,
                 ID = s.ID,
                 StorePID = s.StorePID,
-                isFav = s.isFav
+                isFav = s.isFav ,
+                StoreType = s.StoreType
 
             }).ToListAsync();
             return item;

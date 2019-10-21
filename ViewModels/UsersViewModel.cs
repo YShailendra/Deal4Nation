@@ -129,7 +129,7 @@ namespace Products.ViewModels
         private void SendForgetPasswordMail(string email,string otp)
         {
             string subject="Forget Password OTP";
-            string body=string.Format("Your OTP is {0}.",otp);
+            string body=otp;
             EmailHelper.SendMail(email,body,subject);
         }
         #endregion

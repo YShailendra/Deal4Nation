@@ -7,10 +7,13 @@ using Products.Models;
 using Products.Repository.Offer;
 using Products.Repository.Image;
 using Products.ViewModels;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Products.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class OffersController : Controller
     {
         #region Private Property

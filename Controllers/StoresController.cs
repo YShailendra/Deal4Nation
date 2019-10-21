@@ -7,9 +7,13 @@ using Products.Models;
 using Products.Repository.Store;
 using Products.ViewModels;
 using Products.Repository.Image;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+
 namespace Products.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class StoresController : Controller
     {
         private IStoreRepository _repo;

@@ -59,7 +59,8 @@ namespace Products.Repository.Category
                 Name = s.Name,
                 CreatedOn = s.CreatedOn,
                 isFav = s.isFav,
-                Logo = s.Logo
+                Logo = s.Logo,
+                BrandType = s.BrandType
             }
             ).ToListAsync();
             return data;

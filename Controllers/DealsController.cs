@@ -60,7 +60,7 @@ namespace Products.Controllers
             return Ok(await this.vm.DeleteDeal(id));
         }
 
-        [HttpPost("getDealsByCategory/{id}")]
+        [HttpGet("getDealsByCategory/{id}")]
 
         public async Task<IActionResult> getDealsByCategory(Guid id)
         {

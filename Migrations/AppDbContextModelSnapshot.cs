@@ -57,9 +57,13 @@ namespace Products.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("BrandType");
+
                     b.Property<Guid?>("CreatedBy");
 
                     b.Property<DateTime>("CreatedOn");
+
+                    b.Property<string>("Logo");
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -142,6 +146,8 @@ namespace Products.Migrations
                     b.Property<string>("Description");
 
                     b.Property<bool?>("IsActive");
+
+                    b.Property<string>("Logo");
 
                     b.Property<string>("Name")
                         .IsRequired();

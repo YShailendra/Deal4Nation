@@ -11,8 +11,8 @@ using System;
 namespace Products.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20191002065228_storemodelupdated")]
-    partial class storemodelupdated
+    [Migration("20191021120619_brandmodeltype")]
+    partial class brandmodeltype
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,9 +58,13 @@ namespace Products.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("BrandType");
+
                     b.Property<Guid?>("CreatedBy");
 
                     b.Property<DateTime>("CreatedOn");
+
+                    b.Property<string>("Logo");
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -143,6 +147,8 @@ namespace Products.Migrations
                     b.Property<string>("Description");
 
                     b.Property<bool?>("IsActive");
+
+                    b.Property<string>("Logo");
 
                     b.Property<string>("Name")
                         .IsRequired();

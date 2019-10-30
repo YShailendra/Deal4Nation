@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Products.Migrations
 {
-    public partial class adding : Migration
+    public partial class brandmodel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -36,6 +36,7 @@ namespace Products.Migrations
                     ID = table.Column<Guid>(nullable: false),
                     CreatedBy = table.Column<Guid>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
+                    Logo = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     UpdatedBy = table.Column<Guid>(nullable: true),
                     UpdatedOn = table.Column<DateTime>(nullable: true),
@@ -77,6 +78,7 @@ namespace Products.Migrations
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     IsActive = table.Column<bool>(nullable: true),
+                    Logo = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     SubCategoryID = table.Column<Guid>(nullable: true),
                     UpdatedBy = table.Column<Guid>(nullable: true),
@@ -238,7 +240,6 @@ namespace Products.Migrations
                     StoreType = table.Column<int>(nullable: false),
                     UpdatedBy = table.Column<Guid>(nullable: true),
                     UpdatedOn = table.Column<DateTime>(nullable: true),
-                    Url = table.Column<string>(nullable: true),
                     isFav = table.Column<bool>(nullable: true)
                 },
                 constraints: table =>
@@ -248,6 +249,30 @@ namespace Products.Migrations
                         name: "FK_Stores_Category_CategoryID",
                         column: x => x.CategoryID,
                         principalTable: "Category",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LinkModel",
+                columns: table => new
+                {
+                    ID = table.Column<Guid>(nullable: false),
+                    CreatedBy = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    StoreModelID = table.Column<Guid>(nullable: true),
+                    UpdatedBy = table.Column<Guid>(nullable: true),
+                    UpdatedOn = table.Column<DateTime>(nullable: true),
+                    Url = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LinkModel", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_LinkModel_Stores_StoreModelID",
+                        column: x => x.StoreModelID,
+                        principalTable: "Stores",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -294,6 +319,11 @@ namespace Products.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_LinkModel_StoreModelID",
+                table: "LinkModel",
+                column: "StoreModelID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Offers_BrandID",
                 table: "Offers",
                 column: "BrandID");
@@ -335,6 +365,9 @@ namespace Products.Migrations
 
             migrationBuilder.DropTable(
                 name: "Images");
+
+            migrationBuilder.DropTable(
+                name: "LinkModel");
 
             migrationBuilder.DropTable(
                 name: "MarketPlace");

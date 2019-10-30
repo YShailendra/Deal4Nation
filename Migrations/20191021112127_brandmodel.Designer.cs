@@ -11,8 +11,8 @@ using System;
 namespace Products.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190929070755_adding")]
-    partial class adding
+    [Migration("20191021112127_brandmodel")]
+    partial class brandmodel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,6 +61,8 @@ namespace Products.Migrations
                     b.Property<Guid?>("CreatedBy");
 
                     b.Property<DateTime>("CreatedOn");
+
+                    b.Property<string>("Logo");
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -144,6 +146,8 @@ namespace Products.Migrations
 
                     b.Property<bool?>("IsActive");
 
+                    b.Property<string>("Logo");
+
                     b.Property<string>("Name")
                         .IsRequired();
 
@@ -205,6 +209,32 @@ namespace Products.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("Products.Models.LinkModel", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<string>("Name");
+
+                    b.Property<Guid?>("StoreModelID");
+
+                    b.Property<Guid?>("UpdatedBy");
+
+                    b.Property<DateTime?>("UpdatedOn");
+
+                    b.Property<string>("Url");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("StoreModelID");
+
+                    b.ToTable("LinkModel");
                 });
 
             modelBuilder.Entity("Products.Models.MarketPlaceModel", b =>
@@ -362,8 +392,6 @@ namespace Products.Migrations
 
                     b.Property<DateTime?>("UpdatedOn");
 
-                    b.Property<string>("Url");
-
                     b.Property<bool?>("isFav");
 
                     b.HasKey("ID");
@@ -423,6 +451,13 @@ namespace Products.Migrations
                         .IsUnique();
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("Products.Models.LinkModel", b =>
+                {
+                    b.HasOne("Products.Models.StoreModel")
+                        .WithMany("Url")
+                        .HasForeignKey("StoreModelID");
                 });
 
             modelBuilder.Entity("Products.Models.OfferModel", b =>

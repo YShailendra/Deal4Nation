@@ -21,11 +21,23 @@ namespace Products.Repository.User
         {
 
         }
-        public async Task<UserModel> Add(UserModel item)
+        public async Task<ResultModel<UserModel>> Add(UserModel item)
         {
-            await this.context.User.AddAsync(item);
-            await this.context.SaveChangesAsync();
-            return item;
+            Console.WriteLine(item.Email);
+            var finalresult = new ResultModel<UserModel>();
+            var result = await GetByEmailOrNumber(item.Email);
+            Console.WriteLine("result:"+result?.Email);
+            Console.WriteLine("result:"+result);
+            if(result == null){
+                await context.User.AddAsync(item);
+                await context.SaveChangesAsync();
+            }
+            else{
+                finalresult.HasError = true;
+                finalresult.ErrorMessage = new string[]{"User already exist"};
+            }
+            finalresult.Result = item;
+            return finalresult;
         }
         public async Task<IEnumerable<UserModel>>GetAll()
         {
@@ -60,6 +72,10 @@ namespace Products.Repository.User
             }
             return item;
         }
-        
+
+        Task<UserModel> IBaseRepository<UserModel>.Add(UserModel item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

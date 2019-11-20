@@ -8,5 +8,7 @@ namespace Products.Repository.User
     public interface IUserRepository:IBaseRepository<UserModel>
     {
         Task<UserModel> GetByEmailOrNumber(string _value);
+
+        new Task<ResultModel<UserModel>> Add(UserModel data);
     }
 }

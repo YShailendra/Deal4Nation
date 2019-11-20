@@ -36,6 +36,7 @@ namespace Products.Controllers
         [HttpPost]
         public async Task<IActionResult> Register ([FromBody]UserModel value)
         {
+            Console.WriteLine(value);
             return Ok(await this.viewModel.RegisterUser(value));
         }
 

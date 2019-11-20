@@ -61,5 +61,11 @@ namespace Products.Controllers
         {
              return Ok(await this.vm.DeleteBrand(id));
         }
+
+
+[HttpGet("getBrandsByType/{key}")]
+        public async Task<IActionResult> GetBrandsByType(string key){
+return Ok(await this.vm.GetBrandByType(key));
+        }
     }
 }

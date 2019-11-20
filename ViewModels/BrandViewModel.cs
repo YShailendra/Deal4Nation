@@ -61,5 +61,10 @@ namespace Products.ViewModels
         {
             return await this._repo.Remove(id);
         }
+
+        public async Task<IEnumerable<BrandModel>> GetBrandByType(string key)
+        {
+            return await this._repo.GetBrandByType(key);
+        }
     }
 }

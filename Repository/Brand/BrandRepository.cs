@@ -72,5 +72,20 @@ namespace Products.Repository.Category
         }
 
 
+        public async Task<IEnumerable<BrandModel>> GetBrandByType(string key)
+        {
+            return await this.context.Brand.Where(w => w.BrandType == key).Select(s => new BrandModel()
+            {
+                ID = s.ID,
+                Name = s.Name,
+                CreatedOn = s.CreatedOn,
+                isFav = s.isFav,
+                Logo = s.Logo,
+                BrandType = s.BrandType
+            }
+            ).ToListAsync();
+        
+        }
+
     }
 }

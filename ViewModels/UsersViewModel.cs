@@ -22,7 +22,7 @@ namespace Products.ViewModels
         {
 
         }
-        public async Task<UserModel> RegisterUser(UserModel data)
+        public async Task<ResultModel<UserModel>> RegisterUser(UserModel data)
         {
             data.ID= Guid.NewGuid();
             data.Password = AppHelper.Instance.GetHash(data.Password); 

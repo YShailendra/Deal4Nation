@@ -32,31 +32,31 @@ namespace Products.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}") ,AllowAnonymous]
         public async Task<IActionResult> Get(string id)
         {
             return  Ok(await this.vm.GetOfferById(Guid.Parse(id)));;
         }
-        [HttpGet("GetByStoreId/{id}")]
+        [HttpGet("GetByStoreId/{id}") ,AllowAnonymous]
         public async Task<IActionResult> GetByStoreId(string id)
         {
             Console.WriteLine(id);
             return  Ok(await this.vm.GetByStoreId(Guid.Parse(id)));;
         }
-        [HttpGet("GetByBrandId/{id}")]
+        [HttpGet("GetByBrandId/{id}") ,AllowAnonymous]
         public async Task<IActionResult> GetByBrandId(string id)
         {
              Console.WriteLine(id);
             return  Ok(await this.vm.GetByBrand(Guid.Parse(id)));;
         }
 
-        [HttpGet("GetFavouriteByUserId/{id}")]
+        [HttpGet("GetFavouriteByUserId/{id}") ,AllowAnonymous]
         public async Task<IActionResult> GetFavouriteByUserId(string id)
         {
             return  Ok(await this.vm.GetFavoriteByUserId(Guid.Parse(id)));;
         }
 
-          [HttpGet("GetByCategories/{id}")]
+          [HttpGet("GetByCategories/{id}") ,AllowAnonymous]
         public async Task<IActionResult> GetByCategories(string id)
         {
             return  Ok(await this.vm.GetByCategories(Guid.Parse(id)));

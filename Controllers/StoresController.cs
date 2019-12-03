@@ -25,14 +25,14 @@ namespace Products.Controllers
         }
 
         // GET api/values
-        [HttpGet]
+        [HttpGet ,AllowAnonymous]
         public async Task<IActionResult> Get()
         {
             return Ok(await viewModel.GetAllOffers());
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}") ,AllowAnonymous]
         public async Task<IActionResult> Get(Guid id)
         {
             return Ok(await viewModel.GetOfferById(id));
@@ -59,7 +59,7 @@ namespace Products.Controllers
             return Ok(await viewModel.DeleteStore(id));
         }
 
-        [HttpGet("getSubStores/{cid}/{id}")]
+        [HttpGet("getSubStores/{cid}/{id}") ,AllowAnonymous]
         public async Task<IActionResult> GetSubStores(Guid cid, Guid id)
         {
             return Ok(await viewModel.GetSubStores(cid, id));
@@ -67,7 +67,7 @@ namespace Products.Controllers
         }
 
 
-        [HttpGet("getStores/{id}")]
+        [HttpGet("getStores/{id}") ,AllowAnonymous]
 
         public async Task<IActionResult> GetStores(Guid id)
         {

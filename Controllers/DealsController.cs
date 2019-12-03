@@ -26,7 +26,7 @@ namespace Products.Controllers
         }
         #endregion
         // GET api/values
-        [HttpGet]
+        [HttpGet , AllowAnonymous]
 
         public async Task<IActionResult> Get()
         {
@@ -35,7 +35,7 @@ namespace Products.Controllers
             return Ok(result);
         }
         // GET api/values/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}") ,AllowAnonymous]
         public async Task<IActionResult> Get(Guid id)
         {
             return Ok(await this.vm.GetDealById(id));
@@ -63,14 +63,14 @@ namespace Products.Controllers
             return Ok(await this.vm.DeleteDeal(id));
         }
 
-        [HttpGet("getDealsByCategory/{id}")]
+        [HttpGet("getDealsByCategory/{id}") ,AllowAnonymous]
 
         public async Task<IActionResult> getDealsByCategory(Guid id)
         {
             return Ok(await this.vm.GetDealsByCategory(id));
         }
 
-        [HttpGet("getDealsByParentCategory/{id}")]
+        [HttpGet("getDealsByParentCategory/{id}") ,AllowAnonymous]
 
         public async Task<IActionResult> getDealsByParentCategory(Guid id){
             Console.WriteLine(id);

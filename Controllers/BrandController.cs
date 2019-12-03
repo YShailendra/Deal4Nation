@@ -28,7 +28,7 @@ namespace Products.Controllers
         }
         #endregion
         // GET api/values
-        [HttpGet]
+        [HttpGet ,AllowAnonymous]
 
         public async Task<IActionResult> Get()
         {
@@ -37,7 +37,7 @@ namespace Products.Controllers
             return  Ok(result);
         }
         // GET api/values/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}") ,AllowAnonymous]
         public string Get(int id)
         {
             return null;
@@ -66,7 +66,7 @@ namespace Products.Controllers
         }
 
 
-[HttpGet("getBrandsByType/{key}")]
+[HttpGet("getBrandsByType/{key}") ,AllowAnonymous]
         public async Task<IActionResult> GetBrandsByType(string key){
 return Ok(await this.vm.GetBrandByType(key));
         }

@@ -60,12 +60,13 @@ namespace Products.ViewModels
                     if(data.Password == user.Password)
                     {    
                         data.Token = new JwtTokenBuilder()
-                                                        .AddSecurityKey(JwtSecurityKey.Create(user.ID.ToString()))
+                                                        .AddSecurityKey(JwtSecurityKey.Create(JwtSecurityKey.SecretKey))
                                                         .AddSubject(user.Email)
                                                         .AddIssuer("Security.Bearer")
                                                         .AddAudience("Security.Bearer")
                                                         .AddClaim("IsAdmin", "true")
-                                                        .AddExpiry(5)
+                                                        .AddClaim("Id",user.ID.ToString())
+                                                        .AddExpiry(720)
                                                         .Build();
                        
                     }

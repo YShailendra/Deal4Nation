@@ -103,12 +103,13 @@ namespace Products.Helper
 
         #endregion
   }
-   public static class JwtSecurityKey
+    public static class JwtSecurityKey
     {
         public static SymmetricSecurityKey Create(string secret)
         {
             return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secret));
         }
+
+        public static string SecretKey => "MGVBy5z2e3xZhyAZ2K3s9GuBSWdCp6Tx";
     }
-   
 }

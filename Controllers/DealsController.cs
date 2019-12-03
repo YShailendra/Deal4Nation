@@ -64,8 +64,14 @@ namespace Products.Controllers
 
         public async Task<IActionResult> getDealsByCategory(Guid id)
         {
-            Console.WriteLine(id);
             return Ok(await this.vm.GetDealsByCategory(id));
+        }
+
+        [HttpGet("getDealsByParentCategory/{id}")]
+
+        public async Task<IActionResult> getDealsByParentCategory(Guid id){
+            Console.WriteLine(id);
+                return Ok(await this.vm.GetDealsByParentCategory(id));
         }
     }
 }

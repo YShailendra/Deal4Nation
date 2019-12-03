@@ -9,6 +9,6 @@ namespace Products.Repository.Deal
     public interface IDealRepository : IBaseRepository<DealModel>
     {
         Task<IEnumerable<DealModel>> GetDealsByCategory(Guid id);
-
+        Task<IEnumerable<DealModel>> GetDealByParentCategory(Guid id);
     }
 }

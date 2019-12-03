@@ -23,8 +23,8 @@ namespace Products
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
-        // WebHost.CreateDefaultBuilder(args)
-        //         .UseStartup<Startup>()
+        WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
     //               .UseKestrel(options =>
     // {        // http:*:80
     //     options.Listen(IPAddress.Any, 443, listenOptions =>
@@ -32,16 +32,16 @@ namespace Products
     //         listenOptions.UseHttps("C:\\Users\\Prateek\\Documents\\sslcertificate.pfx", "prateek");
     //     });
     // })
-                // .UseKestrel()
+                .UseKestrel()
                 
                 // .UseUrls("http://localhost:52044", "http://odin:52044", "http://192.168.225.44:52044")
-                // .Build();
+                .Build();
 
-        WebHost.CreateDefaultBuilder(args)
-            .UseStartup<Startup>()
-            .UseContentRoot(Directory.GetCurrentDirectory())
-            .UseStartup<Startup>()
-            .Build();
+        // WebHost.CreateDefaultBuilder(args)
+        //     .UseStartup<Startup>()
+        //     .UseContentRoot(Directory.GetCurrentDirectory())
+        //     .UseStartup<Startup>()
+        //     .Build();
 
     }
 }

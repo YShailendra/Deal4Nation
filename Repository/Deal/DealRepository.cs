@@ -84,7 +84,30 @@ namespace Products.Repository.Deal
         public async Task<IEnumerable<DealModel>> GetDealsByCategory(Guid id)
         {
             var data = await this.context.Deals
-                      .Where(d => d.CategoryID == id)
+                      .Where(d => d.Category.ID == id)
+                      .Select(s => new DealModel()
+                      {
+                          ID = s.ID,
+                          Name = s.Name,
+                          Logo = s.Logo,
+                          Url = s.Url,
+                          CreatedOn = s.CreatedOn,
+                          CategoryID = s.CategoryID,
+                          SubCategoryID = s.SubCategoryID,
+                          isFav = s.isFav,
+                          Description = s.Description,
+                          Category = this.context.Category.Where(a => a.ID == s.CategoryID).FirstOrDefault(),
+                          SubCategory = this.context.Category.Where(a => a.ID == s.SubCategoryID).FirstOrDefault(),
+                      }).ToListAsync();
+            return data;
+
+        }
+        public async Task<IEnumerable<DealModel>> GetDealByParentCategory(Guid id)
+        {
+            Console.WriteLine("Parent ID" + id);
+
+            var data = await this.context.Deals
+                      .Where(d => d.Category.CatPID == id)
                       .Select(s => new DealModel()
                       {
                           ID = s.ID,

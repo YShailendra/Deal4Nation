@@ -56,6 +56,11 @@ namespace Products.ViewModels
         {
             return await _repo.GetDealsByCategory(id);
         }
+
+        public async Task<IEnumerable<DealModel>> GetDealsByParentCategory(Guid id){
+            Console.WriteLine("From View Model" + id);
+            return await _repo.GetDealByParentCategory(id);
+        }
         #region  Private Methods
         // private async Task<DealModel> UpdateDealImage(DealModel result, DealModel data)
         // {

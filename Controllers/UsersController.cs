@@ -37,10 +37,10 @@ namespace Products.Controllers
         }
 
         // POST api/values
-        [HttpPost]
+        [HttpPost,AllowAnonymous]
         public async Task<IActionResult> Register ([FromBody]UserModel value)
         {
-            Console.WriteLine(value);
+            
             return Ok(await this.viewModel.RegisterUser(value));
         }
 
@@ -60,7 +60,7 @@ namespace Products.Controllers
         [HttpPost("ForgetPassword")]
         public async Task<IActionResult> ForgetPassword([FromBody]string email)
         {
-            Console.WriteLine(email);
+            
             return Ok(await this.viewModel.ForgetPassword(email));
         }
         

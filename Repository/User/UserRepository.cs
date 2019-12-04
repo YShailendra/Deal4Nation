@@ -23,11 +23,9 @@ namespace Products.Repository.User
         }
         public async Task<ResultModel<UserModel>> Add(UserModel item)
         {
-            Console.WriteLine(item.Email);
+            
             var finalresult = new ResultModel<UserModel>();
             var result = await GetByEmailOrNumber(item.Email);
-            Console.WriteLine("result:"+result?.Email);
-            Console.WriteLine("result:"+result);
             if(result == null){
                 await context.User.AddAsync(item);
                 await context.SaveChangesAsync();

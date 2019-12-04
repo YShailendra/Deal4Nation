@@ -28,7 +28,7 @@ namespace Products.ViewModels
         public async Task<OfferModel> GetOfferById(Guid id)
         {
            var data = await _offerRepo.Find(id.ToString());
-           Console.WriteLine(data);
+           
            return data;
         }
         public async Task<IEnumerable<OfferModel>> GetAllOffers()

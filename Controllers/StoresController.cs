@@ -53,7 +53,7 @@ namespace Products.Controllers
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"),AllowAnonymous]
         public async Task<IActionResult> Delete(string id)
         {
             return Ok(await viewModel.DeleteStore(id));

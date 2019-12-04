@@ -48,7 +48,7 @@ namespace Products.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]ProductModel value)
         {
-            Console.WriteLine(value);
+            
             return Ok(await vm.CreateProduct(value));
         }
 

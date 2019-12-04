@@ -40,13 +40,13 @@ namespace Products.Controllers
         [HttpGet("GetByStoreId/{id}") ,AllowAnonymous]
         public async Task<IActionResult> GetByStoreId(string id)
         {
-            Console.WriteLine(id);
+            
             return  Ok(await this.vm.GetByStoreId(Guid.Parse(id)));;
         }
         [HttpGet("GetByBrandId/{id}") ,AllowAnonymous]
         public async Task<IActionResult> GetByBrandId(string id)
         {
-             Console.WriteLine(id);
+             
             return  Ok(await this.vm.GetByBrand(Guid.Parse(id)));;
         }
 

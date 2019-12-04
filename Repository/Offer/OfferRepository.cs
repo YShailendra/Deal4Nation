@@ -74,8 +74,6 @@ namespace Products.Repository.Offer
 
         public async Task<IEnumerable<OfferModel>> GetByCategories(Guid ids)
         {
-            Console.WriteLine(ids);
-
             return await this.context.Offers.Where(w=>w.CategoryID == ids).ToListAsync();
         } 
         public async Task<IEnumerable<OfferModel>> GetFavouriteOffers(Guid userId)

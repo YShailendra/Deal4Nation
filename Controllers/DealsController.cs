@@ -45,7 +45,7 @@ namespace Products.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]DealModel value)
         {
-            Console.WriteLine(value);
+            
             return Ok(await this.vm.CreateDeal(value));
         }
 
@@ -73,7 +73,7 @@ namespace Products.Controllers
         [HttpGet("getDealsByParentCategory/{id}") ,AllowAnonymous]
 
         public async Task<IActionResult> getDealsByParentCategory(Guid id){
-            Console.WriteLine(id);
+            
                 return Ok(await this.vm.GetDealsByParentCategory(id));
         }
     }

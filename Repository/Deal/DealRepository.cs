@@ -104,8 +104,6 @@ namespace Products.Repository.Deal
         }
         public async Task<IEnumerable<DealModel>> GetDealByParentCategory(Guid id)
         {
-            Console.WriteLine("Parent ID" + id);
-
             var data = await this.context.Deals
                       .Where(d => d.Category.CatPID == id)
                       .Select(s => new DealModel()

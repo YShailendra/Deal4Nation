@@ -33,11 +33,8 @@ namespace Products.ViewModels
 
         public async Task<DealModel> CreateDeal(DealModel model)
         {
-            Console.WriteLine(model);
             model.ID = Guid.NewGuid();
-
             var result = await _repo.Add(model);
-
             // result = await this.UpdateDealImage(result, model);
             return result;
         }
@@ -58,7 +55,7 @@ namespace Products.ViewModels
         }
 
         public async Task<IEnumerable<DealModel>> GetDealsByParentCategory(Guid id){
-            Console.WriteLine("From View Model" + id);
+            
             return await _repo.GetDealByParentCategory(id);
         }
         #region  Private Methods

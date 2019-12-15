@@ -55,21 +55,21 @@ namespace Products.Controllers
         }
 
         // POST api/values
-        [HttpPost]
+        [HttpPost , AllowAnonymous]
         public async Task<IActionResult> Post([FromBody]CategoryModel value)
         {
             return Ok(await this.vm.Create(value));
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
+        [HttpPut("{id}") ,AllowAnonymous]
         public async Task<IActionResult> Put(Guid id, [FromBody]CategoryModel value)
         {
             return Ok(await this.vm.UpdateCategory(id, value));
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}") , AllowAnonymous]
         public async Task<IActionResult> Delete(string id)
         {
             return Ok(await this.vm.DeleteCategory(id));

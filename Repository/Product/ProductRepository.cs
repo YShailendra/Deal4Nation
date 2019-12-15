@@ -57,5 +57,20 @@ namespace Products.Repository.Product
             }
             return item;
         }
+        public async Task<IEnumerable<ProductModel>> GetProductsByCategory(Guid id)
+        {
+            return await context.Product.Where(w => w.CategoryID == id).Select(s => new ProductModel()
+            {
+                ID = s.ID,
+                Name = s.Name,
+                CreatedOn = s.CreatedOn,
+                Url = s.Url,
+                Logo= s.Logo,
+                CategoryID = s.CategoryID,
+                SubCategoryID = s.SubCategoryID,
+                Category = this.context.Category.Where(a => a.ID == s.CategoryID).FirstOrDefault(),
+                SubCategory = this.context.Category.Where(a => a.ID == s.SubCategoryID).FirstOrDefault(),
+            }).ToListAsync();
+        }
     }
 }

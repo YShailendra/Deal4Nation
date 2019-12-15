@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "b6fceb3aaf3a946270adfa892d91a235b604b1e1"
+    "signature": "6d6e70001214361aa15632b53a50a632ed4869d1"
   },
   "compilationOptions": {
     "defines": [
@@ -24,6 +24,7 @@
     ".NETCoreApp,Version=v2.0": {
       "Products/1.0.0": {
         "dependencies": {
+          "AWSSDK.Pinpoint": "3.3.104.8",
           "IdentityServer4.AccessTokenValidation": "2.4.0",
           "Microsoft.AspNetCore.All": "2.0.5",
           "Microsoft.EntityFrameworkCore.Design": "2.0.1",
@@ -38,6 +39,31 @@
         },
         "compile": {
           "Products.dll": {}
+        }
+      },
+      "AWSSDK.Core/3.3.104": {
+        "runtime": {
+          "lib/netstandard2.0/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.3.104.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/AWSSDK.Core.dll": {}
+        }
+      },
+      "AWSSDK.Pinpoint/3.3.104.8": {
+        "dependencies": {
+          "AWSSDK.Core": "3.3.104"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AWSSDK.Pinpoint.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.3.104.8"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/AWSSDK.Pinpoint.dll": {}
         }
       },
       "IdentityModel/3.0.0": {
@@ -4911,6 +4937,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AWSSDK.Core/3.3.104": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1ldqyzqh18tKTFuseBX3YetZk/flCE3fRVOBAUFpJJrt0xqHjMBxMwpMLrnrYaDubHj7f9EPU0TlGgMef1YUSA==",
+      "path": "awssdk.core/3.3.104",
+      "hashPath": "awssdk.core.3.3.104.nupkg.sha512"
+    },
+    "AWSSDK.Pinpoint/3.3.104.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-08qUCq+WA+zFqAuWTpJFUPLp2sFTnoiLn4JCFwYpAQK8Hduwjz/P1sv0YcWofCDYzJ73TenOdBH27ShG9bWM3Q==",
+      "path": "awssdk.pinpoint/3.3.104.8",
+      "hashPath": "awssdk.pinpoint.3.3.104.8.nupkg.sha512"
     },
     "IdentityModel/3.0.0": {
       "type": "package",

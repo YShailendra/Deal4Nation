@@ -47,6 +47,13 @@ namespace Products.ViewModels
         {
             return await _repo.Remove(id);
         }
+        public async Task<IEnumerable<ProductModel>> GetProductsByCategory(Guid id)
+        {
+            return await _repo.GetProductsByCategory(id);
+        }
+
+
+     
         #region  Private Methods
         //private async Task<ProductModel> UpdateProductImage(ProductModel result, ProductModel data)
         //{

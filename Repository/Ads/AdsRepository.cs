@@ -30,9 +30,24 @@ namespace Products.Repository.Ads
             return await this.context.Ads.Where(w => w.ID == Guid.Parse(key)).FirstOrDefaultAsync();
         }
 
-        public Task<IEnumerable<AdsModel>> GetAll()
+        public async Task<IEnumerable<AdsModel>> GetAll()
         {
-            throw new NotImplementedException();
+            var data = await this.context.Ads.Select(s => new AdsModel()
+            {
+                ID = s.ID,
+                Name = s.Name,
+                CreatedOn = s.CreatedOn,
+                Logo = s.Logo,
+                Url = s.Url,
+                Description = s.Description,
+                CategoryID = s.CategoryID,
+                SubCategoryID = s.SubCategoryID,
+                Category = this.context.Category.Where(a => a.ID == s.CategoryID).FirstOrDefault(),
+                SubCategory = this.context.Category.Where(a => a.ID == s.SubCategoryID).FirstOrDefault(),
+
+            }
+           ).ToListAsync();
+            return data;
         }
 
         public async Task<AdsModel> Remove(string Id)
@@ -58,7 +73,7 @@ namespace Products.Repository.Ads
         }
 
         public async Task<AdsModel> GetAdsByCategory(string value){
-            return await this.context.Ads.Where(w => w.Category == Guid.Parse(value)).FirstOrDefaultAsync();
+            return await this.context.Ads.Where(w => w.CategoryID == Guid.Parse(value)).FirstOrDefaultAsync();
         }
     }
 

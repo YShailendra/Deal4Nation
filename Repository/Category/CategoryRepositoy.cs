@@ -25,6 +25,8 @@ namespace Products.Repository.Category
         public async Task<CategoryModel> Remove(string Id)
         {
             var itemToRemove = await context.Category.FirstOrDefaultAsync(r => r.ID == Guid.Parse(Id));
+            var storeToRemove =  context.Stores.Where(b => EF.Property<Guid>(b, "CategoryID") == Guid.Parse(Id));
+            Console.WriteLine(storeToRemove);
             if (itemToRemove != null)
             {
                 context.Category.Remove(itemToRemove);

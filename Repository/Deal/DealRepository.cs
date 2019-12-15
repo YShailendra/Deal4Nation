@@ -37,11 +37,13 @@ namespace Products.Repository.Deal
                  Name = s.Name,
                  Logo = s.Logo,
                  Url = s.Url,
+                 Coupon = s.Coupon,
                  CreatedOn = s.CreatedOn,
                  CategoryID = s.CategoryID,
                  SubCategoryID = s.SubCategoryID,
                  isFav = s.isFav,
                  Description = s.Description,
+                 ShortDescription = s.ShortDescription,
                  Category = this.context.Category.Where(a => a.ID == s.CategoryID).FirstOrDefault(),
                  SubCategory = this.context.Category.Where(a => a.ID == s.SubCategoryID).FirstOrDefault(),
              }).ToListAsync();
@@ -52,8 +54,18 @@ namespace Products.Repository.Deal
             return await this.context.Deals.Where(w => w.ID == Guid.Parse(Id)).Select(s => new DealModel
             {
                 ID = s.ID,
-                Name = s.Name,
-                Logo = s.Logo
+                 Name = s.Name,
+                 Logo = s.Logo,
+                 Url = s.Url,
+                 Coupon = s.Coupon,
+                 CreatedOn = s.CreatedOn,
+                 CategoryID = s.CategoryID,
+                 SubCategoryID = s.SubCategoryID,
+                 isFav = s.isFav,
+                 Description = s.Description,
+                ShortDescription = s.ShortDescription,
+                 Category = this.context.Category.Where(a => a.ID == s.CategoryID).FirstOrDefault(),
+                 SubCategory = this.context.Category.Where(a => a.ID == s.SubCategoryID).FirstOrDefault(),
             }).FirstOrDefaultAsync();
         }
         public async Task<DealModel> GetByEmailOrNumber(string _value)
@@ -84,18 +96,20 @@ namespace Products.Repository.Deal
         public async Task<IEnumerable<DealModel>> GetDealsByCategory(Guid id)
         {
             var data = await this.context.Deals
-                      .Where(d => d.Category.ID == id)
+                      .Where(d => d.CategoryID == id)
                       .Select(s => new DealModel()
                       {
                           ID = s.ID,
                           Name = s.Name,
                           Logo = s.Logo,
                           Url = s.Url,
+                          Coupon = s.Coupon,
                           CreatedOn = s.CreatedOn,
                           CategoryID = s.CategoryID,
                           SubCategoryID = s.SubCategoryID,
                           isFav = s.isFav,
                           Description = s.Description,
+                          ShortDescription = s.ShortDescription,
                           Category = this.context.Category.Where(a => a.ID == s.CategoryID).FirstOrDefault(),
                           SubCategory = this.context.Category.Where(a => a.ID == s.SubCategoryID).FirstOrDefault(),
                       }).ToListAsync();
@@ -105,21 +119,24 @@ namespace Products.Repository.Deal
         public async Task<IEnumerable<DealModel>> GetDealByParentCategory(Guid id)
         {
             var data = await this.context.Deals
-                      .Where(d => d.Category.CatPID == id)
+                      .Where(d => d.SubCategoryID == id)
                       .Select(s => new DealModel()
                       {
                           ID = s.ID,
                           Name = s.Name,
                           Logo = s.Logo,
                           Url = s.Url,
+                          Coupon = s.Coupon,
                           CreatedOn = s.CreatedOn,
                           CategoryID = s.CategoryID,
                           SubCategoryID = s.SubCategoryID,
                           isFav = s.isFav,
                           Description = s.Description,
+                          ShortDescription = s.ShortDescription,
                           Category = this.context.Category.Where(a => a.ID == s.CategoryID).FirstOrDefault(),
                           SubCategory = this.context.Category.Where(a => a.ID == s.SubCategoryID).FirstOrDefault(),
                       }).ToListAsync();
+                
             return data;
 
         }

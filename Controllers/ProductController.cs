@@ -53,7 +53,7 @@ namespace Products.Controllers
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
+        [HttpPut("{id}"),AllowAnonymous]
         public async Task<IActionResult> Put(Guid id, [FromBody]ProductModel value)
         {
             //await this.vm.UpdateBrand(value);
@@ -65,6 +65,12 @@ namespace Products.Controllers
         public async Task<IActionResult> Delete(string id)
         {
             return Ok(await vm.DeleteProduct(id));
+        }
+
+        [HttpGet("GetProductsByCategory/{id}"), AllowAnonymous]
+        public async Task<IActionResult> GetProductsByCategory(Guid id)
+        {
+            return Ok(await vm.GetProductsByCategory(id));
         }
     }
 }

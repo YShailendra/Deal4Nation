@@ -27,9 +27,17 @@ namespace Products.Models
         public Guid? CategoryID { get; set; }
         public Guid? SubCategoryID { get; set; }
 
+        public Guid? StoreID {get;set;}
+
+        public string ShortDescription{get;set;}
+
+        public string Coupon {get;set;}
+
         [NotMapped]
         public CategoryModel Category { get; set; }
         [NotMapped]
         public CategoryModel SubCategory { get; set; }
+        [NotMapped]
+    public StoreModel Store{get;set;}
     }
 }

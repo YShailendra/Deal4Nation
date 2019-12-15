@@ -10,17 +10,17 @@ namespace Products.Models
     public class ProductModel : BaseModel
     {
         public string Name { get; set; }
-        public string Descriptions { get; set; }
+        public string Description{ get; set; }
         public Guid CategoryID { get; set; }
-        public string Link { get; set; }
+        public string Url { get; set; }
         public Guid? SubCategoryID { get; set; }
         [JsonIgnore]
-        [NotMapped]
+     
         public CategoryModel Category { get; set; }
         [JsonIgnore]
-        [NotMapped]
+     
         public CategoryModel SubCategory { get; set; }
 
-        public string Image { get; set; }
+        public string Logo { get; set; }
     }
 }

@@ -17,5 +17,7 @@
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\Prateek\.nuget\packages\microsoft.entityframeworkcore.tools\2.0.1</PkgMicrosoft_EntityFrameworkCore_Tools>
+    <PkgAWSSDK_Core Condition=" '$(PkgAWSSDK_Core)' == '' ">C:\Users\Prateek\.nuget\packages\awssdk.core\3.3.104</PkgAWSSDK_Core>
+    <PkgAWSSDK_Pinpoint Condition=" '$(PkgAWSSDK_Pinpoint)' == '' ">C:\Users\Prateek\.nuget\packages\awssdk.pinpoint\3.3.104.8</PkgAWSSDK_Pinpoint>
   </PropertyGroup>
 </Project>

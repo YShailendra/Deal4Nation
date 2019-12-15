@@ -11,9 +11,10 @@ using System;
 namespace Products.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191206041311_couponindealmodel")]
+    partial class couponindealmodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,7 +26,7 @@ namespace Products.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("CategoryID");
+                    b.Property<Guid?>("Category");
 
                     b.Property<Guid?>("CreatedBy");
 
@@ -33,25 +34,21 @@ namespace Products.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("Logo")
+                    b.Property<string>("Image")
                         .IsRequired();
+
+                    b.Property<string>("Link");
 
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<Guid?>("SubCategoryID");
+                    b.Property<Guid?>("SubCategory");
 
                     b.Property<Guid?>("UpdatedBy");
 
                     b.Property<DateTime?>("UpdatedOn");
 
-                    b.Property<string>("Url");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("CategoryID");
-
-                    b.HasIndex("SubCategoryID");
 
                     b.ToTable("Ads");
                 });
@@ -360,9 +357,11 @@ namespace Products.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Descriptions");
 
-                    b.Property<string>("Logo");
+                    b.Property<string>("Image");
+
+                    b.Property<string>("Link");
 
                     b.Property<string>("Name");
 
@@ -372,13 +371,7 @@ namespace Products.Migrations
 
                     b.Property<DateTime?>("UpdatedOn");
 
-                    b.Property<string>("Url");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("CategoryID");
-
-                    b.HasIndex("SubCategoryID");
 
                     b.ToTable("Product");
                 });
@@ -468,17 +461,6 @@ namespace Products.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("Products.Models.AdsModel", b =>
-                {
-                    b.HasOne("Products.Models.CategoryModel", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryID");
-
-                    b.HasOne("Products.Models.CategoryModel", "SubCategory")
-                        .WithMany()
-                        .HasForeignKey("SubCategoryID");
-                });
-
             modelBuilder.Entity("Products.Models.LinkModel", b =>
                 {
                     b.HasOne("Products.Models.StoreModel")
@@ -496,18 +478,6 @@ namespace Products.Migrations
                     b.HasOne("Products.Models.StoreModel", "Store")
                         .WithMany()
                         .HasForeignKey("StoreID");
-                });
-
-            modelBuilder.Entity("Products.Models.ProductModel", b =>
-                {
-                    b.HasOne("Products.Models.CategoryModel", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Products.Models.CategoryModel", "SubCategory")
-                        .WithMany()
-                        .HasForeignKey("SubCategoryID");
                 });
 
             modelBuilder.Entity("Products.Models.StoreModel", b =>

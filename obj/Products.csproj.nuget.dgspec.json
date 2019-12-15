@@ -39,6 +39,10 @@
       "frameworks": {
         "netcoreapp2.0": {
           "dependencies": {
+            "AWSSDK.Pinpoint": {
+              "target": "Package",
+              "version": "[3.3.104.8, )"
+            },
             "IdentityServer4.AccessTokenValidation": {
               "target": "Package",
               "version": "[2.4.0, )"

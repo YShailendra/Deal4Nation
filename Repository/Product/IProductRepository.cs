@@ -8,5 +8,6 @@ namespace Products.Repository.Product
 {
     public interface IProductRepository:IBaseRepository<ProductModel>
     {
+        Task<IEnumerable<ProductModel>> GetProductsByCategory(Guid id);
     }
 }

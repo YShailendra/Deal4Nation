@@ -2,6 +2,27 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.0": {
+      "AWSSDK.Core/3.3.104": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/AWSSDK.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AWSSDK.Core.dll": {}
+        }
+      },
+      "AWSSDK.Pinpoint/3.3.104.8": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.3.104, 3.4.0)"
+        },
+        "compile": {
+          "lib/netstandard2.0/AWSSDK.Pinpoint.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AWSSDK.Pinpoint.dll": {}
+        }
+      },
       "IdentityModel/3.0.0": {
         "type": "package",
         "dependencies": {
@@ -5110,6 +5131,95 @@
     }
   },
   "libraries": {
+    "AWSSDK.Core/3.3.104": {
+      "sha512": "1ldqyzqh18tKTFuseBX3YetZk/flCE3fRVOBAUFpJJrt0xqHjMBxMwpMLrnrYaDubHj7f9EPU0TlGgMef1YUSA==",
+      "type": "package",
+      "path": "awssdk.core/3.3.104",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "awssdk.core.3.3.104.nupkg.sha512",
+        "awssdk.core.nuspec",
+        "lib/MonoAndroid10/AWSSDK.Core.XML",
+        "lib/MonoAndroid10/AWSSDK.Core.dll",
+        "lib/MonoAndroid10/AWSSDK.Core.pdb",
+        "lib/MonoTouch10/AWSSDK.Core.XML",
+        "lib/MonoTouch10/AWSSDK.Core.dll",
+        "lib/Xamarin.Mac20/AWSSDK.Core.XML",
+        "lib/Xamarin.Mac20/AWSSDK.Core.dll",
+        "lib/Xamarin.iOS10/AWSSDK.Core.XML",
+        "lib/Xamarin.iOS10/AWSSDK.Core.dll",
+        "lib/net35/AWSSDK.Core.dll",
+        "lib/net35/AWSSDK.Core.pdb",
+        "lib/net35/AWSSDK.Core.xml",
+        "lib/net45/AWSSDK.Core.dll",
+        "lib/net45/AWSSDK.Core.pdb",
+        "lib/net45/AWSSDK.Core.xml",
+        "lib/netstandard1.3/AWSSDK.Core.dll",
+        "lib/netstandard1.3/AWSSDK.Core.pdb",
+        "lib/netstandard1.3/AWSSDK.Core.xml",
+        "lib/netstandard2.0/AWSSDK.Core.dll",
+        "lib/netstandard2.0/AWSSDK.Core.pdb",
+        "lib/netstandard2.0/AWSSDK.Core.xml",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.Core.XML",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.Core.dll",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.Core.pdb",
+        "lib/uap/AWSSDK.Core.XML",
+        "lib/uap/AWSSDK.Core.dll",
+        "lib/uap/AWSSDK.Core.pdb",
+        "lib/win8/AWSSDK.Core.XML",
+        "lib/win8/AWSSDK.Core.dll",
+        "lib/win8/AWSSDK.Core.pdb",
+        "lib/wp8/AWSSDK.Core.XML",
+        "lib/wp8/AWSSDK.Core.dll",
+        "lib/wp8/AWSSDK.Core.pdb",
+        "lib/wpa81/AWSSDK.Core.XML",
+        "lib/wpa81/AWSSDK.Core.dll",
+        "lib/wpa81/AWSSDK.Core.pdb",
+        "tools/account-management.ps1"
+      ]
+    },
+    "AWSSDK.Pinpoint/3.3.104.8": {
+      "sha512": "08qUCq+WA+zFqAuWTpJFUPLp2sFTnoiLn4JCFwYpAQK8Hduwjz/P1sv0YcWofCDYzJ73TenOdBH27ShG9bWM3Q==",
+      "type": "package",
+      "path": "awssdk.pinpoint/3.3.104.8",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/AWSSDK.Pinpoint.CodeAnalysis.dll",
+        "awssdk.pinpoint.3.3.104.8.nupkg.sha512",
+        "awssdk.pinpoint.nuspec",
+        "lib/MonoAndroid10/AWSSDK.Pinpoint.XML",
+        "lib/MonoAndroid10/AWSSDK.Pinpoint.dll",
+        "lib/MonoTouch10/AWSSDK.Pinpoint.XML",
+        "lib/MonoTouch10/AWSSDK.Pinpoint.dll",
+        "lib/MonoTouch10/AWSSDK.Pinpoint.pdb",
+        "lib/Xamarin.iOS10/AWSSDK.Pinpoint.XML",
+        "lib/Xamarin.iOS10/AWSSDK.Pinpoint.dll",
+        "lib/net35/AWSSDK.Pinpoint.dll",
+        "lib/net35/AWSSDK.Pinpoint.pdb",
+        "lib/net35/AWSSDK.Pinpoint.xml",
+        "lib/net45/AWSSDK.Pinpoint.dll",
+        "lib/net45/AWSSDK.Pinpoint.pdb",
+        "lib/net45/AWSSDK.Pinpoint.xml",
+        "lib/netstandard1.3/AWSSDK.Pinpoint.dll",
+        "lib/netstandard1.3/AWSSDK.Pinpoint.pdb",
+        "lib/netstandard1.3/AWSSDK.Pinpoint.xml",
+        "lib/netstandard2.0/AWSSDK.Pinpoint.dll",
+        "lib/netstandard2.0/AWSSDK.Pinpoint.pdb",
+        "lib/netstandard2.0/AWSSDK.Pinpoint.xml",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.Pinpoint.XML",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.Pinpoint.dll",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.Pinpoint.pdb",
+        "lib/uap/AWSSDK.Pinpoint.XML",
+        "lib/uap/AWSSDK.Pinpoint.dll",
+        "lib/uap/AWSSDK.Pinpoint.pdb",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
     "IdentityModel/3.0.0": {
       "sha512": "EKMOOUUqDzBR3goiA8eWJ1aQBz1AMfKVxxR7XnzAf5qq2k9vr6GT91SyHmzC14KINpNNJOrbmowXf5S04gQ0ZA==",
       "type": "package",
@@ -13637,6 +13747,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "AWSSDK.Pinpoint >= 3.3.104.8",
       "IdentityServer4.AccessTokenValidation >= 2.4.0",
       "Microsoft.AspNetCore.All >= 2.0.5",
       "Microsoft.EntityFrameworkCore.Design >= 2.0.1",
@@ -13686,6 +13797,10 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
+          "AWSSDK.Pinpoint": {
+            "target": "Package",
+            "version": "[3.3.104.8, )"
+          },
           "IdentityServer4.AccessTokenValidation": {
             "target": "Package",
             "version": "[2.4.0, )"

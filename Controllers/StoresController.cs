@@ -39,14 +39,14 @@ namespace Products.Controllers
         }
 
         // POST api/values
-        [HttpPost]
+        [HttpPost ,AllowAnonymous]
         public async Task<IActionResult> Post([FromBody]StoreModel value)
         {
             return Ok(await viewModel.Create(value));
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
+        [HttpPut("{id}") , AllowAnonymous]
         public async Task<IActionResult> Put(Guid id, [FromBody]StoreModel value)
         {
             return Ok(await viewModel.UpdateStore(id, value));

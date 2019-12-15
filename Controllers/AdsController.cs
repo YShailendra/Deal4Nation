@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -24,10 +21,10 @@ namespace Products.Controllers
             this.vm = new AdsViewModel(this._repo);
         }
 
-        [HttpGet]
+        [HttpGet , AllowAnonymous]
         public async Task<IActionResult> Get(){
-               var result = await this.vm.GetAds();
-               return Ok(result);
+            var result = await this.vm.GetAds();
+            return Ok(result);
         }
         
         [HttpGet("{id}")]

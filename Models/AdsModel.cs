@@ -13,15 +13,20 @@ namespace Products.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        public string Image { get; set; }
+        public string Logo { get; set; }
 
         public string Description { get; set; }
 
-        public string Link { get; set; }
+        public string Url { get; set; }
 
-        public Guid? Category { get; set; }
+        public Guid? CategoryID { get; set; }
 
-        public Guid? SubCategory { get; set; }
+        public Guid? SubCategoryID { get; set; }
+
+        public CategoryModel Category { get; set; }
+        
+        public CategoryModel SubCategory { get; set; }
+        
 
     }
 }

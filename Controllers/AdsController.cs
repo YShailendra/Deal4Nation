@@ -33,10 +33,10 @@ namespace Products.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateAds([FromBody]AdsModel value){
-            var result = await this.vm.Create(value);
-            return Ok(result);
+        [HttpPost, AllowAnonymous]
+        public async Task<IActionResult> Post([FromBody]AdsModel value)
+        {
+            return Ok(await this.vm.Create(value));
         }
     }
 }

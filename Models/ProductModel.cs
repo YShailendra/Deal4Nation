@@ -14,10 +14,10 @@ namespace Products.Models
         public Guid CategoryID { get; set; }
         public string Url { get; set; }
         public Guid? SubCategoryID { get; set; }
-        [JsonIgnore]
+        
      
         public CategoryModel Category { get; set; }
-        [JsonIgnore]
+        
      
         public CategoryModel SubCategory { get; set; }
 

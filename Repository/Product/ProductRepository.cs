@@ -59,7 +59,7 @@ namespace Products.Repository.Product
         }
         public async Task<IEnumerable<ProductModel>> GetProductsByCategory(Guid id)
         {
-            return await context.Product.Where(w => w.CategoryID == id).Select(s => new ProductModel()
+            return await context.Product.Where(w => w.SubCategoryID == id).Select(s => new ProductModel()
             {
                 ID = s.ID,
                 Name = s.Name,

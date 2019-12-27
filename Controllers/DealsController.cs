@@ -42,7 +42,7 @@ namespace Products.Controllers
         }
 
         // POST api/values
-        [HttpPost]
+        [HttpPost,AllowAnonymous]
         public async Task<IActionResult> Post([FromBody]DealModel value)
         {
             

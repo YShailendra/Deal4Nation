@@ -39,9 +39,10 @@ namespace Products.Controllers
         }
         // GET api/values/5
         [HttpGet("{id}") ,AllowAnonymous]
-        public string Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            return null;
+            var result = await vm.GetProductById(id);
+            return Ok(result);
         }
 
         // POST api/values

@@ -1,32 +1,35 @@
 {
   "format": 1,
   "restore": {
-    "D:\\development\\backend\\Deal4Nation\\Products.csproj": {}
+    "D:\\Personal\\Deal4Nation\\Products.csproj": {}
   },
   "projects": {
-    "D:\\development\\backend\\Deal4Nation\\Products.csproj": {
+    "D:\\Personal\\Deal4Nation\\Products.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\development\\backend\\Deal4Nation\\Products.csproj",
+        "projectUniqueName": "D:\\Personal\\Deal4Nation\\Products.csproj",
         "projectName": "Products",
-        "projectPath": "D:\\development\\backend\\Deal4Nation\\Products.csproj",
-        "packagesPath": "C:\\Users\\Prateek\\.nuget\\packages\\",
-        "outputPath": "D:\\development\\backend\\Deal4Nation\\obj\\",
+        "projectPath": "D:\\Personal\\Deal4Nation\\Products.csproj",
+        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "outputPath": "D:\\Personal\\Deal4Nation\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Prateek\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp2.0"
+          "netcoreapp3.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://shailendra.yadav%40preqin.com:gc3sTmYTiib8oAHSGAMk@ci.hub.preqin.com/httpAuth/app/nuget/v1/FeedService.svc/": {}
         },
         "frameworks": {
-          "netcoreapp2.0": {
+          "netcoreapp3.0": {
             "projectReferences": {}
           }
         },
@@ -37,31 +40,31 @@
         }
       },
       "frameworks": {
-        "netcoreapp2.0": {
+        "netcoreapp3.0": {
           "dependencies": {
             "AWSSDK.Pinpoint": {
               "target": "Package",
-              "version": "[3.3.104.8, )"
+              "version": "[3.3.105.6, )"
             },
             "IdentityServer4.AccessTokenValidation": {
               "target": "Package",
-              "version": "[2.4.0, )"
+              "version": "[3.0.1, )"
             },
             "Microsoft.AspNetCore.All": {
               "target": "Package",
-              "version": "[2.0.5, )"
+              "version": "[2.2.8, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "target": "Package",
-              "version": "[2.0.1, )"
+              "version": "[3.1.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[2.0.1, )"
+              "version": "[3.1.0, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
-              "version": "[2.0.1, )"
+              "version": "[3.1.0, )"
             },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
@@ -71,7 +74,7 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[2.0.4, )"
+              "version": "[3.1.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
